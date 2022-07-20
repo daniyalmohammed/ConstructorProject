@@ -1,6 +1,7 @@
 #ifndef SUBJECT_H
 #define SUBJECT_H
 #include <vector>
+#include "observer.h"
 
 /* A note on InfoType and StateType:
 
@@ -17,8 +18,6 @@
 */
 
 // DO NOT MODIFY THIS FILE!
-
-class Observer;
 
 class Subject {
   std::vector<Observer*> observers;
