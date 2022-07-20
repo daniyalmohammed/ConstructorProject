@@ -5,6 +5,7 @@
 #include "tile.h"
 #include "builder.h"
 #include "vertices.h"
+#include "edges.h"
 #include <iostream>
 #include <string>
 #include <stdexcept>
