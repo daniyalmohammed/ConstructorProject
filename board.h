@@ -51,9 +51,9 @@ class Board {
 	void loadedDice();
 	void fairDice();
 	void buildRoad(int road_index);
-		void first8();
-		void moveGeese();
-		int colour_to_index(string colour);
+	void first8();
+	void moveGeese();
+	int colour_to_index(string colour);
 	private:
 		void testTile();
 };
@@ -62,4 +62,3 @@ class Board {
 
 
 
-}
