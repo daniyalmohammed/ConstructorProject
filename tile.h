@@ -5,13 +5,13 @@
 using namespace std;
 
 class Tile {
-    bool goose;
+    bool geese;
     int elements[6];
     int pos;
-    int type;
-    int resources;
-    int chance;
-    int tiles[19][6] = {{0, 1, 3, 4, 8, 9}, {2, 3, 7, 8, 13, 14},
+    int typeofResources;
+    // int resources;
+    // int chance;
+    // int tiles[19][6] = {{0, 1, 3, 4, 8, 9}, {2, 3, 7, 8, 13, 14},
                            {4, 5, 9, 10, 15, 16}, {6, 7, 12, 13, 18, 19},
                            {8, 9, 14, 15, 20, 21}, {10, 11, 16, 17, 22, 23},
                            {13, 14, 19, 20, 25, 26}, {15, 16, 21, 22, 27, 28},
