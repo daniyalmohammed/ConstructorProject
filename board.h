@@ -19,10 +19,10 @@ class Board {
     bool win;
     // int curTure;
     // int goose_location
-    vector<Tiles> tiles;
+    vector<Tile> tiles;
     // vector<Builder> builders;
 	vector<string> roads;
-	vector<Vertices> vertices;
+	vector<Vertex> vertices;
 	// string colours[4] = {"Blue","Red","Orange","Yellow"};
 	// string initials[4] = {"B","R","O","Y"};
 	// string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
