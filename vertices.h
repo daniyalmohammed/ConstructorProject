@@ -2,9 +2,11 @@
 #define VERTICES_H
 #include <vector>
 #include <string>
+#include "subject.h"
+#include "observer.h"
 using namespace std;
 
-class Vertex {
+class Vertex : public Subject, public Observer{
 	int pos;
 	vector<vector<int>> collectNeighbours = {{1,3},{0,4},
 					{3,7},{0,2,8},{1,5,9},{4,10},
@@ -40,7 +42,7 @@ class Vertex {
 	// Vertex();
 	// bool canBuild;
 	void upgrade();
-	void notify()
+	void notify();
 	// void colonize(int builder_index);
 	string getVertexInfo();
 };
