@@ -5,6 +5,7 @@
 #include "vertices.h"
 #include "edges.h"
 #include <memory>
+#include <string>
 using namespace std;
 
 void Board::init() {
@@ -37,7 +38,7 @@ void Board::moveGeese(int index) {
     goose_location = index;
 }
 
-bool Board::canBuild(int vertex_index) {
+bool Board::canBuild(int vertex_index, int player) {
     if (vertices[vertex_index].owner_index != -1) {
         return false;
     }
@@ -47,7 +48,54 @@ bool Board::canBuild(int vertex_index) {
         }
     }
     for(auto ind_2: vertices[vertex_index].my_roads) {
-
+        if (roads[ind_2].owner_index == player) {
+            return true;
+        }
     }
+    return false;
 }
+
+void Board::build(int vertex_index, int player) {
+    vertices[vertex_index].colonize(player);
+}
+
+bool Board::canBuildRoad(int road_index, int player) {
+    if (roads[road_index].owner_index != -1) {
+        return false;
+    }
+    for(auto ind_1 : roads[road_index].neighborVertex) {
+        if (vertices[ind_1].owner_index == player) {
+            return true;
+        }
+    }
+    for (std::size_t i = 0; i < roads[road_index].neighborEdges.size(); ++i) {
+        if (roads[roads[road_index].neighborEdges[i]].owner_index == player) {
+            if ( vertices[roads[road_index].neighborVertex[i]].owner_index == -1) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+void Board::buildRoad(int road_index, int player) {
+    roads[road_index].colonize(player);
+}
+
+int Board::colour_to_index(string colour) {
+    if (colour == "B" || colour == "Blue") {
+        return 0;
+    }
+    if (colour == "R" || colour == "Red") {
+        return 1;
+    }
+    if (colour == "O" || colour == "Orange") {
+        return 2;
+    }
+    return 3;
+}
+
+
+
 

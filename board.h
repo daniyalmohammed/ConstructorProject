@@ -32,7 +32,7 @@ class Board {
 	// string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	// int dice_modes[4];
 	// bool loadedGame = false;
-	void init();
+	void init(); //somewhat done
 	~Board();
 	void loadFile(string file_name);
 	void loadBoard(string file_name);
@@ -47,15 +47,15 @@ class Board {
 	// void printHelp();
 	// void next();
 	// void save(string file_name);
-	bool canBuild(int vertex_index);
-	void build(int vertex_index);
+	bool canBuild(int vertex_index, int player); //done but need to add material check
+	void build(int vertex_index, int player); //done
 	// void improve(int vertex_index);
 	void distribution(int n);
 	void rollDice();
 	void loadedDice();
 	void fairDice();
-	bool canBuildRoad(int road_index);
-	void buildRoad(int road_index);
+	bool canBuildRoad(int road_index, int player); //done but need to add material check
+	void buildRoad(int road_index, int player); //done
 	void first8();
 	void moveGeese(int index);
 	int colour_to_index(string colour);
