@@ -24,7 +24,7 @@ class Board {
     // int curTure;
     int goose_location;
     vector<Tile> tiles;
-    // vector<Builder> builders;
+    vector<Builder> builders;
 	vector<Edge> roads;
 	vector<Vertex> vertices;
 	// string colours[4] = {"Blue","Red","Orange","Yellow"};
@@ -56,7 +56,7 @@ class Board {
 	void fairDice();
 	void buildRoad(int road_index);
 	void first8();
-	void moveGeese();
+	void moveGeese(int index);
 	int colour_to_index(string colour);
 	private:
 		void testTile();

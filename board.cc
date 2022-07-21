@@ -24,6 +24,16 @@ void Board::init() {
     for (int v = 0; v < 54; ++v) {
         (vertices[v]) = Vertex{v};
     }
+    builders.resize(4);
+    for (int b = 0; b < 4; ++b) {
+        (builders[b]) = Builder{b};
+    }
+}
+
+void Board::moveGeese(int index) {
+    tiles[goose_location].geese = false;
+    tiles[index].geese = true;
+    goose_location = index;
 }
 
 
