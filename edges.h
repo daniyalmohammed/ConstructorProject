@@ -7,14 +7,15 @@
 using namespace std;
 
 class Edge {
-    int pos;
-    int owner_index;
-    vector<int> neighborVertex;
-    vector<int> neighborEdges;
-    Edge(int location);
-    void colonize(int builder_index);
-    void notify();
-    string getEdgeInfo();
+    public:
+        int pos;
+        int owner_index;
+        vector<int> neighborVertex;
+        vector<int> neighborEdges;
+        Edge(int location);
+        void colonize(int builder_index);
+        void notify();
+        string getEdgeInfo();
 };
 
 #endif
