@@ -38,6 +38,16 @@ void Board::moveGeese(int index) {
 }
 
 bool Board::canBuild(int vertex_index) {
-    
+    if (vertices[vertex_index].owner_index != -1) {
+        return false;
+    }
+    for(auto ind_1: vertices[vertex_index].neighbor) {
+        if (vertices[ind_1].owner_index != -1) {
+            return false;
+        }
+    }
+    for(auto ind_2: vertices[vertex_index].my_roads) {
+
+    }
 }
 
