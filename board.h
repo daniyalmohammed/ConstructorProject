@@ -19,7 +19,7 @@ class Board {
     default_random_engine rng;
     bool win;
     // int curTure;
-    // int goose_location
+    int goose_location;
     vector<Tile> tiles;
     // vector<Builder> builders;
 	vector<string> roads;
