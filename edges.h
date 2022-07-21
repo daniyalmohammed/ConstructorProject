@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "subject.h"
+using namespace std;
 
 class Edge : public Subject {
     int pos;

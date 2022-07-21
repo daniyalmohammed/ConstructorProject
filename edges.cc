@@ -1,6 +1,7 @@
 #include "edges.h"
 #include <vector>
 #include <string>
+using namespace std;
 
 const vector<vector<int>> edge_neighbors = {{1, 2}, {0, 3, 6}, {0, 4, 7}, {1, 5, 6}, {2, 7, 8},
 {3, 9, 10, 13}, {1, 3, 10, 14}, {2, 4, 10, 15}, {4, 11, 16}, {5, 12, 13}, {6, 7, 14, 15},
@@ -34,7 +35,7 @@ const vector<vector<int>> vertex_neighbors = {{0, 1}, {0, 3, 3}, {1, 4, 4}, {3, 
 const string builders[4] = {"B","R","O","Y"};
 
 Edge::Edge(int location) : pos{location}, owner_index{-1}, neighborVertex{vertex_neighbors[location]},
-neighborEdges{edge_neighbors[location]};
+neighborEdges{edge_neighbors[location]} {};
 
 void Edge::colonize(int builder_index) {
     owner_index = builder_index;
