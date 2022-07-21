@@ -14,17 +14,18 @@
 #include <random>
 #include <chrono>
 #include "TextDisplay.h"
+#include <memory>
 using namespace std;
 
 class Board {
-	TextDisplay *td = nullptr;
+	unique_ptr<TextDisplay> td = nullptr;
     default_random_engine rng;
     bool win;
     // int curTure;
     int goose_location;
     vector<Tile> tiles;
     // vector<Builder> builders;
-	vector<string> roads;
+	vector<Edge> roads;
 	vector<Vertex> vertices;
 	// string colours[4] = {"Blue","Red","Orange","Yellow"};
 	// string initials[4] = {"B","R","O","Y"};
