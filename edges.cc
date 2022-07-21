@@ -41,11 +41,6 @@ void Edge::colonize(int builder_index) {
     owner_index = builder_index;
 }
 
-void Edge::notify() {
-    notifyObservers();
-}
-
-
 string Edge::getEdgeInfo() {
     if (owner_index == -1) {
         return " ";

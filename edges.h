@@ -6,7 +6,7 @@
 #include "subject.h"
 using namespace std;
 
-class Edge : public Subject {
+class Edge {
     int pos;
     int owner_index;
     vector<int> neighborVertex;

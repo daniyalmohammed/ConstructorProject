@@ -42,10 +42,6 @@ void Vertex::upgrade() {
     residenceLevel += 1;
 }
 
-void Vertex::notify() {
-    notifyObservers();
-}
-
 string Vertex::getVertexInfo() {
     if (owner_index == -1) {
         return "  ";

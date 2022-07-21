@@ -6,7 +6,7 @@
 #include "observer.h"
 using namespace std;
 
-class Vertex : public Subject {
+class Vertex {
 	int pos;
 	int residenceLevel;	
 	int owner_index;
