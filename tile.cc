@@ -1,8 +1,8 @@
 #include <iostream>
 #include "tile.h"
 
-const NUM_TILES = 19;
-const NUM_TYPES = 6;
+const int NUM_TILES = 19;
+const int NUM_TYPES = 6;
 
 const int TILES[NUM_TILES][NUM_TYPES] = {{0, 1, 3, 4, 8, 9}, {2, 3, 7, 8, 13, 14},
                                         {4, 5, 9, 10, 15, 16}, {6, 7, 12, 13, 18, 19},
