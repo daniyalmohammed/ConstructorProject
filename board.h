@@ -32,17 +32,17 @@ class Board {
 	// bool loadedGame = false;
 	void init(); //somewhat done
 	void loadFile(string file_name); // Gio
+	void save(string file_name); // Gio
 	// vector<int> seed(string input);
 	// void randomBoard();
 	void trade(int color, int give, int take); // Dani
 	void status(); // Dani
 	// std::string convert(int num);
 	// std::string trans(std::string str);
-	void printBoard(); // Later probably Gio
+	void printBoard(); // Gio
 	void residences(); // H
 	void printHelp(); // Dani
 	void next(); // H
-	void save(string file_name); // Gio
 	bool canBuild(int vertex_index, int player); //done but need to add material check
 	void build(int vertex_index, int player); //done remove material 
 	bool canImprove(int vertex_index, int player); // Gio, Dani do material
