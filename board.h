@@ -13,9 +13,11 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include "TextDisplay.h"
 using namespace std;
 
 class Board {
+	TextDisplay *td = nullptr;
     default_random_engine rng;
     bool win;
     // int curTure;
