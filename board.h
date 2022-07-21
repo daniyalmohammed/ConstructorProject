@@ -21,7 +21,7 @@ class Board {
 	unique_ptr<TextDisplay> td = nullptr;
     default_random_engine rng;
     bool win;
-    // int curTure;
+    int curTurn;
     int goose_location;
     vector<Tile> tiles;
     vector<Builder> builders;
@@ -47,13 +47,14 @@ class Board {
 	// void printHelp();
 	// void next();
 	// void save(string file_name);
-	// bool canBuild(int vertex_index);
-	// void build(int vertex_index);
+	bool canBuild(int vertex_index);
+	void build(int vertex_index);
 	// void improve(int vertex_index);
 	void distribution(int n);
 	void rollDice();
 	void loadedDice();
 	void fairDice();
+	bool canBuildRoad(int road_index);
 	void buildRoad(int road_index);
 	void first8();
 	void moveGeese(int index);

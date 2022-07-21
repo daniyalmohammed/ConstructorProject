@@ -8,6 +8,7 @@
 using namespace std;
 
 void Board::init() {
+    curTurn = 0;
     td = make_unique<TextDisplay>();
     win = false;
     tiles.resize(19);
@@ -36,4 +37,7 @@ void Board::moveGeese(int index) {
     goose_location = index;
 }
 
+bool Board::canBuild(int vertex_index) {
+    
+}
 
