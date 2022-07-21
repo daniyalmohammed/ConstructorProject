@@ -11,7 +11,7 @@ class Tile {
         int pos;
         int typeofResources;
         // int resources;
-        // int chance;
+        int chance;
         void tilesInitialization(int tile_index);
 };
 

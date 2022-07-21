@@ -10,11 +10,12 @@ using namespace std;
 
 void Board::init() {
     curTurn = 0;
-    td = make_unique<TextDisplay>();
     win = false;
     tiles.resize(19);
     for (int t = 0; t < 19; ++t) {
-        tilesInitialization(tiles[t]);
+        tiles[t].tilesInitialization(t);
+        tiles[t].geese = false;
+        tiles[t].pos = t;
     }
     tiles[4].geese = true;
     goose_location = 4;

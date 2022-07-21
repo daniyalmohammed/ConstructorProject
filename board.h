@@ -13,13 +13,11 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
-#include "TextDisplay.h"
 #include <memory>
 using namespace std;
 
 class Board {
-	unique_ptr<TextDisplay> td = nullptr;
-    default_random_engine rng;
+    // default_random_engine rng;
     bool win;
     int curTurn;
     int goose_location;
@@ -33,32 +31,33 @@ class Board {
 	// int dice_modes[4];
 	// bool loadedGame = false;
 	void init(); //somewhat done
-	~Board();
-	void loadFile(string file_name);
-	void loadBoard(string file_name);
-	vector<int> seed(string input);
-	void randomBoard();
-	void trade(int color, int give, int take);	
-	void status();
+	void loadFile(string file_name); // Gio
+	// vector<int> seed(string input);
+	// void randomBoard();
+	void trade(int color, int give, int take); // Dani
+	void status(); // Dani
 	// std::string convert(int num);
 	// std::string trans(std::string str);
-	// void printBoard();
-	void residences();
-	// void printHelp();
-	// void next();
-	// void save(string file_name);
+	void printBoard(); // Later probably Gio
+	void residences(); // H
+	void printHelp(); // Dani
+	void next(); // H
+	void save(string file_name); // Gio
 	bool canBuild(int vertex_index, int player); //done but need to add material check
-	void build(int vertex_index, int player); //done
-	// void improve(int vertex_index);
-	void distribution(int n);
-	void rollDice();
-	void loadedDice();
-	void fairDice();
-	bool canBuildRoad(int road_index, int player); //done but need to add material check
-	void buildRoad(int road_index, int player); //done
-	void first8();
-	void moveGeese(int index);
-	int colour_to_index(string colour);
+	void build(int vertex_index, int player); //done remove material 
+	bool canImprove(int vertex_index, int player); // Gio, Dani do material
+	void improve(int vertex_index, int player); // Gio, Dani do material
+	void distribution(int n); // Gio 
+	void SevenRolled(); // Dani
+	void rollDice(); // H
+	void loadedDice(); // H
+	void fairDice(); // H
+	bool canBuildRoad(int road_index, int player); // Dani do material
+	void buildRoad(int road_index, int player); // Dani do material
+	bool canFirst8(int vertex_index, int player); // Gio
+	void first8(); // H
+	void moveGeese(int index); // done
+	int colour_to_index(string colour); // done
 	private:
 		void testTile();
 };
