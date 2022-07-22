@@ -39,14 +39,14 @@ class Board {
 	void status(); // Dani - done
 	// std::string convert(int num);
 	// std::string trans(std::string str);
-	void printBoard(); // Gio
+	void printBoard(); // Done
 	void residences(); // H
 	void printHelp(); // Dani -- done
 	void next(); // H
 	bool canBuild(int vertex_index, int player); //Dani -- done
 	void build(int vertex_index, int player); //Dani -- done
-	bool canImprove(int vertex_index, int player); // Gio implement first, then Dani do material
-	void improve(int vertex_index, int player); // Gio implement first, then Dani do material 
+	bool canImprove(int vertex_index, int player); // then Dani do material
+	void improve(int vertex_index, int player); // then Dani do material 
 	void distribution(int n); // Gio 
 	void SevenRolled(); // Dani -- done
 	void rollDice(); // H
@@ -58,7 +58,7 @@ class Board {
 	void first8(); // H
 	void moveGeese(int index); // done
 	int colour_to_index(string colour); // done
-	string GeeseStr(int index); // Gio
+	string GeeseStr(int index); // Done
 	private:
 		void testTile();
 };

@@ -238,3 +238,17 @@ void Board::trade(int color, int give, int take){ // Dani -- done
     }
 }
 
+
+bool Board::canImprove(int vertex_index, int player) {
+    if (vertices[vertex_index].residenceLevel == 3) {
+        return false;
+    }
+    if (vertices[vertex_index].owner_index != player) {
+        return false;
+    }
+    return true;
+}
+
+void Board::improve(int vertex_index, int player) {
+    vertices[vertex_index].upgrade();
+}
