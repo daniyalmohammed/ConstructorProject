@@ -7,10 +7,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Thu Jul 21 22:11:44 2022
+# Make data base, printed on Fri Jul 22 17:02:12 2022
 
 # Variables
 
@@ -76,7 +74,6 @@ ZSH = /Users/giovanighanem/.oh-my-zsh
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
- 
 # environment
 XPC_FLAGS = 0x0
 # default
@@ -160,9 +157,9 @@ VSCODE_PID = 97069
 
 # Directories
 
-# . (device 16777221, inode 34771595): 27 files, no impossibilities.
+# . (device 16777221, inode 34771595): 28 files, no impossibilities.
 
-# 27 files, no impossibilities in 1 directories.
+# 28 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -218,7 +215,6 @@ edges.o: Makefile
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
- 
 #  Last modified 2022-07-20 23:42:02
 #  File has been updated.
 #  Successfully updated.
@@ -326,6 +322,8 @@ edges.d:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4036 / max = 4036 / min = 4036 / avg = 4036
 
-# Finished Make data base on Thu Jul 21 22:11:44 2022
+# Finished Make data base on Fri Jul 22 17:02:12 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+
