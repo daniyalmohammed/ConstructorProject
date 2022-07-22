@@ -90,6 +90,13 @@ int Board::colour_to_index(string colour) {
     return 3;
 }
 
+string Board::GeeseStr(int index) {
+    if (index == goose_location) {
+        return "GEESE";
+    }
+    return "     ";
+}
+
 void Board::loadedDice() {
     cout << "Input a roll between 2 and 12:" << endl;// H
     int n;

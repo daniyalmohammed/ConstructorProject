@@ -58,6 +58,7 @@ class Board {
 	void first8(); // H
 	void moveGeese(int index); // done
 	int colour_to_index(string colour); // done
+	string GeeseStr(int index); // Gio
 	private:
 		void testTile();
 };

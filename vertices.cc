@@ -44,7 +44,10 @@ void Vertex::upgrade() {
 
 string Vertex::getVertexInfo() {
     if (owner_index == -1) {
-        return "  ";
+		if (pos < 10) {
+			return " " + to_string(pos);
+		}
+        return to_string(pos);
     } else {
         return builders[owner_index] + res_types[residenceLevel];
     }

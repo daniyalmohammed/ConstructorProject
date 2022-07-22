@@ -43,9 +43,12 @@ void Edge::colonize(int builder_index) {
 
 string Edge::getEdgeInfo() {
     if (owner_index == -1) {
-        return " ";
+        if (pos < 10) {
+			return " " + to_string(pos);
+		}
+        return to_string(pos);
     } else {
-        return  builders[owner_index];
+        return  " " + builders[owner_index];
     }
 }
 
