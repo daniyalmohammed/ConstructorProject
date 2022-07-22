@@ -27,7 +27,7 @@ class Board {
 	vector<Vertex> vertices;
 	string colours[4] = {"Blue","Red","Orange","Yellow"};
 	// string initials[4] = {"B","R","O","Y"};
-	// string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
+	string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	int dice_modes[4];
 	// bool loadedGame = false;
 	void init(); //somewhat done
@@ -35,25 +35,25 @@ class Board {
 	void save(string file_name); // Gio
 	// vector<int> seed(string input);
 	// void randomBoard();
-	void trade(int color, int give, int take); // Dani
-	void status(); // Dani
+	void trade(int color, int give, int take); // Dani -- done
+	void status(); // Dani - done
 	// std::string convert(int num);
 	// std::string trans(std::string str);
 	void printBoard(); // Gio
 	void residences(); // H
-	void printHelp(); // Dani
+	void printHelp(); // Dani -- done
 	void next(); // H
-	bool canBuild(int vertex_index, int player); //done but need to add material check
-	void build(int vertex_index, int player); //done remove material 
-	bool canImprove(int vertex_index, int player); // Gio, Dani do material
-	void improve(int vertex_index, int player); // Gio, Dani do material
+	bool canBuild(int vertex_index, int player); //Dani -- done
+	void build(int vertex_index, int player); //Dani -- done
+	bool canImprove(int vertex_index, int player); // Gio implement first, then Dani do material
+	void improve(int vertex_index, int player); // Gio implement first, then Dani do material 
 	void distribution(int n); // Gio 
-	void SevenRolled(); // Dani
+	void SevenRolled(); // Dani -- done
 	void rollDice(); // H
 	void loadedDice(); // H
 	void fairDice(); // H
-	bool canBuildRoad(int road_index, int player); // Dani do material
-	void buildRoad(int road_index, int player); // Dani do material
+	bool canBuildRoad(int road_index, int player); // Dani -- done
+	void buildRoad(int road_index, int player); // Dani -- done
 	bool canFirst8(int vertex_index, int player); // Gio
 	void first8(); // H
 	void moveGeese(int index); // done

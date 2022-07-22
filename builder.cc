@@ -5,7 +5,7 @@
 using namespace std;
 
 Builder::Builder(int playerNum) : playerNum{playerNum}, buildingPoints{0} {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         resourcesType[i] = 0;
     }
     if (playerNum == 0){
@@ -24,36 +24,60 @@ Builder::Builder(int playerNum) : playerNum{playerNum}, buildingPoints{0} {
         cout << "error in builder::constructor()" << endl;
     }
 }
+bool Builder::roadCanBuild(){
+    if ((resourcesType[4] < 1) || (resourcesType[3] < 1)) {
+        return false; //not enough resources
+    }
+    return true;
+}
+void Builder::roadBuild(){
+    this->resourcesType[4] -= 1;
+    this->resourcesType[3] -= 1;
+}
 bool Builder::basementCanBuild(){
     if ((resourcesType[0] < 1) || (resourcesType[1] < 1) 
     || (resourcesType[2] < 1) || (resourcesType[4] < 1)) {
         return false; //not enough resources
     }
-    //more conditions?
-    buildingPoints++; //update points?
     return true;
 }
-bool Builder::roadCanBuild(){
-    if ((resourcesType[2] < 2) || (resourcesType[3] < 3)) {
-        return false; //not enough resources
-    }
-    //more conditions?
-    buildingPoints++; //update points?
-    return true;
-} 
+
+void Builder::basementBuild(){
+    this->resourcesType[0] -= 1;
+    this->resourcesType[1] -= 1;
+    this->resourcesType[2] -= 1;
+    this->resourcesType[4] -= 1;
+    buildingPoints++;
+}
+
 bool Builder::towerCanBuild(){
     if ((resourcesType[0] < 3) || (resourcesType[1] < 2) 
     || (resourcesType[2] < 2) || (resourcesType[4] < 1) || (resourcesType[3] < 2)) {
         return false; //not enough resources
     }
-    //more conditions?
-    buildingPoints++; //update points?
     return true;
+}
+void Builder::towerBuild(){
+    this->resourcesType[0] -= 3;
+    this->resourcesType[1] -= 2;
+    this->resourcesType[2] -= 2;
+    this->resourcesType[3] -= 2;
+    this->resourcesType[4] -= 1;
+    buildingPoints++;
+} 
 
+bool Builder::houseCanBuild(){
+    if ((resourcesType[2] < 2) || (resourcesType[3] < 3)) {
+        return false; //not enough resources
+    }
+    return true;
+}
+void Builder::houseBuild(){
+    this->resourcesType[2] -= 2;
+    this->resourcesType[3] -= 3;
+    buildingPoints++;
 } 
-void Builder::gooseMoving(int pos){
-    //move goose to position pos
-} 
+
 
 //void Builder::improveResources(int type, int num){}
 //bool Builder::improveResidences(int pos, int residenceLevel){}
