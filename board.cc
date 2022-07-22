@@ -252,3 +252,15 @@ bool Board::canImprove(int vertex_index, int player) {
 void Board::improve(int vertex_index, int player) {
     vertices[vertex_index].upgrade();
 }
+
+bool Board::canFirst8(int vertex_index, int player) {
+    if (vertices[vertex_index].owner_index != -1) {
+        return false;
+    }
+    for(auto ind_1: vertices[vertex_index].neighbor) {
+        if (vertices[ind_1].owner_index != -1) {
+            return false;
+        }
+    }
+    return true;
+}

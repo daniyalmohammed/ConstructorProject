@@ -54,7 +54,7 @@ class Board {
 	void fairDice(); // H
 	bool canBuildRoad(int road_index, int player); // Dani -- done
 	void buildRoad(int road_index, int player); // Dani -- done
-	bool canFirst8(int vertex_index, int player); // Gio
+	bool canFirst8(int vertex_index, int player); // Done
 	void first8(); // H
 	void moveGeese(int index); // Needs a lot more
 	int colour_to_index(string colour); // done
