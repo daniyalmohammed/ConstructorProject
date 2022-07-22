@@ -15,7 +15,7 @@ class Edge {
         Edge(int location);
         void colonize(int builder_index);
         void notify();
-        string getEdgeInfo();
+        string getIn();
 };
 
 #endif

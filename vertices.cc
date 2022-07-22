@@ -42,7 +42,7 @@ void Vertex::upgrade() {
     residenceLevel += 1;
 }
 
-string Vertex::getVertexInfo() {
+string Vertex::getIn() {
     if (owner_index == -1) {
 		if (pos < 10) {
 			return " " + to_string(pos);

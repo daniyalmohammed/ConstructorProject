@@ -17,6 +17,6 @@ class Vertex {
 		void upgrade();
 		void notify();
 		void colonize(int builder_index);
-		string getVertexInfo();
+		string getIn();
 };
 #endif
