@@ -1,11 +1,4 @@
 #include "board.h"
-#include <vector>
-#include "tile.h"
-#include "builder.h"
-#include "vertices.h"
-#include "edges.h"
-#include <memory>
-#include <string>
 using namespace std;
 
 void Board::init() {
@@ -96,6 +89,43 @@ int Board::colour_to_index(string colour) {
     }
     return 3;
 }
+
+void Board::loadedDice() {
+    cout << "Input a roll between 2 and 12:" << endl;// H
+    int n;
+    while (true) {
+        if (!(cin >> n)) {
+            cout << "Invalid roll." << endl;
+        } else if (n < 2 && n > 12) {
+            cout << "Invalid roll." << endl;
+        } else {
+            cin >> n;
+            cout << colours[curTurn] << " has rolled a " << n << "." <<endl;
+            break;
+        }
+    }
+    if (n == 7) {
+        moveGeese(n);
+    } else {
+        distribution(n);
+    }        
+}
+    
+
+   
+void Board::rollDice() {
+    if (dice_modes[curTurn] == 0) {
+        loadedDice();
+    } else {
+        fairDice();
+    }
+} 
+
+// void Board::fairDice() {
+//     default_random_engine num = rng;
+//     int n = distribution(num);
+
+// }
 
 
 

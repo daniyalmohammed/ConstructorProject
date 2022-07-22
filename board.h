@@ -17,7 +17,7 @@
 using namespace std;
 
 class Board {
-    // default_random_engine rng;
+    default_random_engine rng;
     bool win;
     int curTurn;
     int goose_location;
@@ -25,10 +25,10 @@ class Board {
     vector<Builder> builders;
 	vector<Edge> roads;
 	vector<Vertex> vertices;
-	// string colours[4] = {"Blue","Red","Orange","Yellow"};
+	string colours[4] = {"Blue","Red","Orange","Yellow"};
 	// string initials[4] = {"B","R","O","Y"};
 	// string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
-	// int dice_modes[4];
+	int dice_modes[4];
 	// bool loadedGame = false;
 	void init(); //somewhat done
 	void loadFile(string file_name); // Gio
