@@ -42,6 +42,10 @@ bool Board::canBuild(int vertex_index, int player) {
             return false;
         }
     }
+    if (builders[player].basementCanBuild() == false) { //not enough resources
+    cout << "You do not have enough resources." << endl;
+        return false;
+    }
     for(auto ind_2: vertices[vertex_index].my_roads) {
         if (roads[ind_2].owner_index == player) {
             return true;
@@ -52,10 +56,15 @@ bool Board::canBuild(int vertex_index, int player) {
 
 void Board::build(int vertex_index, int player) {
     vertices[vertex_index].colonize(player);
+    builders[player].basementBuild();
 }
 
 bool Board::canBuildRoad(int road_index, int player) {
     if (roads[road_index].owner_index != -1) {
+        return false;
+    }
+    if (builders[player].roadCanBuild() == false) { //not enough resources
+    cout << "You do not have enough resources." << endl;
         return false;
     }
     for(auto ind_1 : roads[road_index].neighborVertex) {
@@ -76,6 +85,7 @@ bool Board::canBuildRoad(int road_index, int player) {
 
 void Board::buildRoad(int road_index, int player) {
     roads[road_index].colonize(player);
+    builders[player].roadBuild();
 }
 
 int Board::colour_to_index(string colour) {
@@ -113,6 +123,7 @@ void Board::loadedDice() {
         }
     }
     if (n == 7) {
+        SevenRolled(); //removes resources if necessary and produces output - Dani
         moveGeese(n);
     } else {
         distribution(n);
@@ -180,3 +191,50 @@ void Board::printBoard() {
     cout << "                            |         |" << endl;
     cout << "                          |"+vertices[52].getIn()+"|--"+roads[71].getIn()+"--|"+vertices[53].getIn()+"|" << endl;
 }
+
+void Board::status() { // - dani completed
+    for (int i = 0; i < 4; i++) {
+        builders[i].getInfo();
+    }
+}
+
+void Board::printHelp() { //done
+    cout << "Valid commands:" << endl;
+    cout << "board" << endl;
+    cout << "status" << endl;
+    cout << "residences" << endl;
+    cout << "build-road <edge#>" << endl;
+    cout << "build-res <housing#>" << endl;
+    cout << "improve <housing#>" << endl;
+    cout << "trade <colour> <give> <take>" << endl;
+    cout << "next" << endl;
+    cout << "save <file>" << endl;
+    cout << "help" << endl;
+}
+
+void Board::SevenRolled() { // called to remove resources of builders -- done
+    for (int i = 0; i < 4; i++) {
+        builders[i].loseResources();
+    }
+} 
+
+void Board::trade(int color, int give, int take){ // Dani -- done
+    cout << colours[curTurn] << " offers " << colours[color] << 
+    " one " << types[give] << " for one " << types[take] << "." << endl;
+    cout << "Does " << colours[color] << " accept this offer?" << endl;
+
+    string input = "";
+    cin >> input;
+    if (input == "yes") {
+        if ((builders[curTurn].resourcesType[give] < 1) || (builders[color].resourcesType[take] < 1)){
+            cout << "Builder does not have enough resources for the given trade." << endl;
+        }
+        else {
+            builders[curTurn].resourcesType[give] -= 1;
+            builders[curTurn].resourcesType[take] += 1;
+            builders[color].resourcesType[give] += 1;
+            builders[color].resourcesType[take] -= 1;
+        }
+    }
+}
+
