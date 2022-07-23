@@ -53,6 +53,7 @@ void Builder::basementBuild(){
 bool Builder::towerCanBuild(){
     if ((resourcesType[0] < 3) || (resourcesType[1] < 2) 
     || (resourcesType[2] < 2) || (resourcesType[4] < 1) || (resourcesType[3] < 2)) {
+        cout << "You do not have enough resources." << endl;
         return false; //not enough resources
     }
     return true;
@@ -68,6 +69,7 @@ void Builder::towerBuild(){
 
 bool Builder::houseCanBuild(){
     if ((resourcesType[2] < 2) || (resourcesType[3] < 3)) {
+        cout << "You do not have enough resources." << endl;
         return false; //not enough resources
     }
     return true;

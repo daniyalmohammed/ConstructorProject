@@ -248,13 +248,27 @@ bool Board::canImprove(int vertex_index) {
     if (vertices[vertex_index].residenceLevel == 3) {
         return false;
     }
-    if (vertices[vertex_index].owner_index != curTurn) {
+    else if (vertices[vertex_index].owner_index != curTurn) {
         return false;
     }
-    return true;
+    else if (vertices[vertex_index].residenceLevel == 1) {
+        return builders[curTurn].houseCanBuild();
+    }
+    else if (vertices[vertex_index].residenceLevel == 2) {
+        return builders[curTurn].towerCanBuild();
+    }
+    else {
+        cout << "check Board::canImprove for bugs" << endl;
+    }
 }
 
 void Board::improve(int vertex_index) {
+    if (vertices[vertex_index].residenceLevel == 1) {
+        builders[curTurn].houseBuild();
+    }
+    else if (vertices[vertex_index].residenceLevel == 2) {
+        builders[curTurn].towerBuild();
+    }
     vertices[vertex_index].upgrade();
 }
 
@@ -272,7 +286,6 @@ bool Board::canFirst8(int vertex_index) {
 
 
 void Board::moveGeese() {
-    // Add the thingy that removes resource if anyone has more then 10
     int index;
     cin >> index;
     cout << "Choose where to place the GEESE." << endl;

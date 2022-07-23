@@ -45,8 +45,8 @@ class Board {
 	void next(); // H -- done
 	bool canBuild(int vertex_index); //Dani -- done
 	void build(int vertex_index); //Dani -- done
-	bool canImprove(int vertex_index); // then Dani do material
-	void improve(int vertex_index); // then Dani do material 
+	bool canImprove(int vertex_index); // Dani -- material done
+	void improve(int vertex_index); // Dani -- material done
 	void distribution(int n); // Gio 
 	void SevenRolled(); // Dani -- done
 	void rollDice(); // H -- done
