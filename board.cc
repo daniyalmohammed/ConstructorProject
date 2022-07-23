@@ -316,8 +316,8 @@ void Board::next() {
 
 void Board::testTile() {
 	for (Tile t : tiles) {
-		cout << "index is" << " " << t.index << " ";
-        cout << "type is" << " " << t.type;
+		cout << "index is" << " " << t.pos << " ";
+        cout << "type is" << " " << t.typeofResources;
 		cout << " " << "chance is" << " " << t.chance << endl;
 	}
 }
