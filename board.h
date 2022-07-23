@@ -43,18 +43,18 @@ class Board {
 	void residences(); // H
 	void helpCommendsPrint(); // Dani -- done
 	void next(); // H -- done
-	bool canBuild(int vertex_index, int player); //Dani -- done
-	void build(int vertex_index, int player); //Dani -- done
-	bool canImprove(int vertex_index, int player); // then Dani do material
-	void improve(int vertex_index, int player); // then Dani do material 
+	bool canBuild(int vertex_index); //Dani -- done
+	void build(int vertex_index); //Dani -- done
+	bool canImprove(int vertex_index); // then Dani do material
+	void improve(int vertex_index); // then Dani do material 
 	void distribution(int n); // Gio 
 	void SevenRolled(); // Dani -- done
 	void rollDice(); // H -- done
 	void loadedDice(); // H -- done
 	void fairDice(); // H -- done
-	bool canBuildRoad(int road_index, int player); // Dani -- done
-	void buildRoad(int road_index, int player); // Dani -- done
-	bool canFirst8(int vertex_index, int player); // Done
+	bool canBuildRoad(int road_index); // Dani -- done
+	void buildRoad(int road_index); // Dani -- done
+	bool canFirst8(int vertex_index); // Done
 	void first8(); // H
 	void moveGeese(); // Gio
 	int colour_to_index(string colour); // done

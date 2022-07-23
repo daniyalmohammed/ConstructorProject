@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Sat Jul 23 12:17:35 2022
+
+# Make data base, printed on Sat Jul 23 12:22:38 2022
 
 # Variables
 
@@ -22,7 +25,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-1
+CURDIR := /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-2
 # makefile
 SHELL = /bin/sh
 # environment
@@ -52,7 +55,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.MPYIsyjYoo/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-PWD = /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-1
+PWD = /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-2
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -66,7 +69,7 @@ VSCODE_CODE_CACHE_PATH = /Users/giovanighanem/Library/Application Support/Code/C
 # environment
 LOGNAME = giovanighanem
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 ZSH = /Users/giovanighanem/.oh-my-zsh
 # environment
@@ -156,7 +159,7 @@ VSCODE_PID = 97069
 
 # Directories
 
-# . (device 16777221, inode 34771595): 28 files, no impossibilities.
+# . (device 16777221, inode 34876919): 28 files, no impossibilities.
 
 # 28 files, no impossibilities in 1 directories.
 
@@ -214,7 +217,7 @@ edges.o: Makefile
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 23:42:02
+#  Last modified 2022-07-23 12:22:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -317,13 +320,10 @@ edges.d:
 # No general (`VPATH' variable) search path.
 
 # # of strings in strcache: 7
- 
-make: *** No rule to make target `all'.  Stop.
-
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4036 / max = 4036 / min = 4036 / avg = 4036
 
-# Finished Make data base on Sat Jul 23 12:17:35 2022
+# Finished Make data base on Sat Jul 23 12:22:38 2022
 
  

@@ -27,7 +27,7 @@ void Board::init() {
     }
 }
 
-bool Board::canBuild(int vertex_index, int player) {
+bool Board::canBuild(int vertex_index) {
     if (vertices[vertex_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
@@ -38,12 +38,12 @@ bool Board::canBuild(int vertex_index, int player) {
             return false;
         }
     }
-    if (builders[player].basementCanBuild() == false) { //not enough resources
+    if (builders[curTurn].basementCanBuild() == false) { //not enough resources
     cout << "You do not have enough resources." << endl;
         return false;
     }
     for(auto ind_2: vertices[vertex_index].my_roads) {
-        if (roads[ind_2].owner_index == player) {
+        if (roads[ind_2].owner_index == curTurn) {
             return true;
         }
     }
@@ -51,27 +51,27 @@ bool Board::canBuild(int vertex_index, int player) {
     return false;
 }
 
-void Board::build(int vertex_index, int player) {
-    vertices[vertex_index].colonize(player);
-    builders[player].basementBuild();
+void Board::build(int vertex_index) {
+    vertices[vertex_index].colonize(curTurn);
+    builders[curTurn].basementBuild();
 }
 
-bool Board::canBuildRoad(int road_index, int player) {
+bool Board::canBuildRoad(int road_index) {
     if (roads[road_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
-    if (builders[player].roadCanBuild() == false) { //not enough resources
+    if (builders[curTurn].roadCanBuild() == false) { //not enough resources
     cout << "You do not have enough resources." << endl;
         return false;
     }
     for(auto ind_1 : roads[road_index].neighborVertex) {
-        if (vertices[ind_1].owner_index == player) {
+        if (vertices[ind_1].owner_index == curTurn) {
             return true;
         }
     }
     for (std::size_t i = 0; i < roads[road_index].neighborEdges.size(); ++i) {
-        if (roads[roads[road_index].neighborEdges[i]].owner_index == player) {
+        if (roads[roads[road_index].neighborEdges[i]].owner_index == curTurn) {
             if ( vertices[roads[road_index].neighborVertex[i]].owner_index == -1) {
                 return true;
             }
@@ -82,9 +82,9 @@ bool Board::canBuildRoad(int road_index, int player) {
 }
 
 
-void Board::buildRoad(int road_index, int player) {
-    roads[road_index].colonize(player);
-    builders[player].roadBuild();
+void Board::buildRoad(int road_index) {
+    roads[road_index].colonize(curTurn);
+    builders[curTurn].roadBuild();
 }
 
 int Board::colour_to_index(string colour) {
@@ -244,21 +244,21 @@ void Board::trade(int color, int give, int take){ // Dani -- done
 }
 
 
-bool Board::canImprove(int vertex_index, int player) {
+bool Board::canImprove(int vertex_index) {
     if (vertices[vertex_index].residenceLevel == 3) {
         return false;
     }
-    if (vertices[vertex_index].owner_index != player) {
+    if (vertices[vertex_index].owner_index != curTurn) {
         return false;
     }
     return true;
 }
 
-void Board::improve(int vertex_index, int player) {
+void Board::improve(int vertex_index) {
     vertices[vertex_index].upgrade();
 }
 
-bool Board::canFirst8(int vertex_index, int player) {
+bool Board::canFirst8(int vertex_index) {
     if (vertices[vertex_index].owner_index != -1) {
         return false;
     }
