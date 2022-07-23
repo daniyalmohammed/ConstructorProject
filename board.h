@@ -25,9 +25,9 @@ class Board {
     vector<Builder> builders;
 	vector<Edge> roads;
 	vector<Vertex> vertices;
-	string colours[4] = {"Blue","Red","Orange","Yellow"};
+	const string colours[4] = {"Blue","Red","Orange","Yellow"};
 	// string initials[4] = {"B","R","O","Y"};
-	string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
+	const string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	int dice_modes[4];
 	// bool loadedGame = false;
 	void init(); // done
@@ -63,7 +63,3 @@ class Board {
 	void stealResource(int steal_from); // Dani -- done
 };
 #endif
-
-
-
-

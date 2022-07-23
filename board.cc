@@ -412,7 +412,19 @@ void Board::distribution(int n) {
         }
     }
     if (give == true) {
-        // Dani magic
+        for (int player = 0; player < 4; player++) {
+            int resources[5] = {0, 0, 0, 0, 0};
+            for (int resource = 0; resource < 5; resource++) {
+                builders[player].resourcesType[resource] += getting[player][resource];
+                resources[resource] += getting[player][resource];
+            }
+            cout << "Builder " << colours[player] << " gained: " << endl;
+            for (int resource = 0; resource < 5; resource++) {
+                if (resources[resource] > 0) {
+                    cout << resources[resource] << " " << types[resource] << endl;
+                }
+            }
+        }
     } else {
         cout << "No builders gained resources." << endl;
         return;
