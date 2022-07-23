@@ -14,6 +14,10 @@ class Builder {
         // resources[2] = # GLASS;
         // resources[3] = # HEAT;
         // resources[4] = # WIFI;
+        std::vector<int> basement;
+        std::vector<int> tower;
+        std::vector<int> house;
+        std::vector<int> road;
                
         Builder(int playerNum); //initializes the builder and takes in the player number (0,1,2,3)
         bool basementCanBuild(); // decide if there is enough resources for a basement

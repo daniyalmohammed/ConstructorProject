@@ -322,3 +322,16 @@ void Board::testTile() {
 	}
 }
 
+void Board::residences() {
+	cout << colours[curTurn] << " " << "has built:" << endl;
+	for (int i : builders[curTurn].basement) {
+		cout << i << " " << "B" << endl;
+	} 
+	for (int j : builders[curTurn].house) {
+        cout << j << " " << "H" << endl;
+    }
+	for (int k : builders[curTurn].tower) {
+        cout << k << " " << "T" << endl;
+    }
+}
+
