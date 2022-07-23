@@ -27,18 +27,14 @@ void Board::init() {
     }
 }
 
-void Board::moveGeese(int index) {
-    tiles[goose_location].geese = false;
-    tiles[index].geese = true;
-    goose_location = index;
-}
-
 bool Board::canBuild(int vertex_index, int player) {
     if (vertices[vertex_index].owner_index != -1) {
+        cout << "You cannot build here." << endl;
         return false;
     }
     for(auto ind_1: vertices[vertex_index].neighbor) {
         if (vertices[ind_1].owner_index != -1) {
+            cout << "You cannot build here." << endl;
             return false;
         }
     }
@@ -51,6 +47,7 @@ bool Board::canBuild(int vertex_index, int player) {
             return true;
         }
     }
+    cout << "You cannot build here." << endl;
     return false;
 }
 
@@ -61,6 +58,7 @@ void Board::build(int vertex_index, int player) {
 
 bool Board::canBuildRoad(int road_index, int player) {
     if (roads[road_index].owner_index != -1) {
+        cout << "You cannot build here." << endl;
         return false;
     }
     if (builders[player].roadCanBuild() == false) { //not enough resources
@@ -79,6 +77,7 @@ bool Board::canBuildRoad(int road_index, int player) {
             }
         }
     }
+    cout << "You cannot build here." << endl;
     return false;
 }
 
@@ -124,7 +123,7 @@ void Board::loadedDice() {
     }
     if (n == 7) {
         SevenRolled(); //removes resources if necessary and produces output - Dani
-        moveGeese(n);
+        moveGeese();
     } else {
         distribution(n);
     }        
@@ -263,4 +262,40 @@ bool Board::canFirst8(int vertex_index, int player) {
         }
     }
     return true;
+}
+
+
+void Board::moveGeese() {
+    // Add the thingy that removes resource if anyone has more then 10
+    int index;
+    cin >> index;
+    cout << "Choose where to place the GEESE." << endl;
+    tiles[goose_location].geese = false;
+    tiles[index].geese = true;
+    goose_location = index;
+    vector<bool> Here = {false, false, false, false};
+    for(auto ind_1: vertices[index].neighbor) {
+        if (vertices[ind_1].owner_index != -1) {
+            Here[vertices[ind_1].owner_index] = true;
+        }
+    }
+    Here[index] = false;
+    if (Here[0] || Here[1] || Here[2] || Here[3]) {
+        string victimes = "";
+        for(int b = 0; b < 4; ++b) {
+            if (Here[b]) {
+                if (victimes != "") {
+                    victimes += ",";
+                }
+                victimes += colours[b];
+            }
+        }
+        cout << "Builder + colours[curTurn] + can choose to steal from " + victimes + "." << endl;
+
+        
+
+    } else {
+        cout << "Builder " + colours[curTurn] + " has no builders to steal from." << endl;
+    }
+
 }
