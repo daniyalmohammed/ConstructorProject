@@ -333,3 +333,25 @@ void Board::residences() {
     }
 }
 
+
+void Board::distribution(int n) {
+    bool give = false;
+    vector<vector<int>> getting = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+    for(auto T : tiles) {
+        if (T.chance == n) {
+            for (auto ind : T.elements) {
+                if (vertices[ind].owner_index != -1) {
+                    getting[vertices[ind].owner_index][T.typeofResources] += vertices[ind].residenceLevel;
+                    give = true;
+                }
+            }
+        }
+    }
+    if (give) {
+        // Dani magic
+    } else {
+        cout << "No builders gained resources." << endl;
+        return;
+    }
+}
+
