@@ -30,12 +30,13 @@ class Board {
 	const string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	int dice_modes[4];
 	// bool loadedGame = false;
+	public:
 	void init(); // done
 	void loadFile(string file_name); // Gio
 	void save(string file_name); // Gio
 	// vector<int> seed(string input);
 	// void randomBoard();
-	void trade(int color, int give, int take); // Dani -- done
+	void trade(string color, string give, string take); // Dani -- done
 	void status(); // Dani - done
 	// std::string convert(int num);
 	// std::string trans(std::string str);
@@ -58,6 +59,7 @@ class Board {
 	void first8(); // H -- done
 	void moveGeese(); // Dani
 	int colour_to_index(string colour); // done
+	int material_to_index(string material); // Dani done
 	string GeeseStr(int index); // Done
 	void testTile(); // H -- done
 	void stealResource(int steal_from); // Dani -- done
