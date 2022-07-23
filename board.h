@@ -60,6 +60,7 @@ class Board {
 	int colour_to_index(string colour); // done
 	string GeeseStr(int index); // Done
 	void testTile(); // H -- done
+	void stealResource(int steal_from); // Dani -- done
 };
 #endif
 

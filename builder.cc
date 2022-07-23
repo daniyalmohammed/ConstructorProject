@@ -91,29 +91,41 @@ void Builder::getInfo(){
 }
     
 void Builder::loseResources(){
-    int total_resources = 0;
-    for (int i = 0; i < 5; i++) {
-        total_resources += resourcesType[i];
-    }
-    if (total_resources < 10) {
+    int total = totalResources();
+    if (total < 10) {
         return;
     }
     int removed_resources[5] = {0, 0, 0, 0, 0};
-    int remove = total_resources/2;
+    int remove = total/2;
 
     while(remove > 0) {
-        for (int i = 0; i < 5; i++) {
-            if (resourcesType[i] > 0) {
-            resourcesType[i] -= 1;
-            removed_resources[i] += 1;
-            remove--;
-            }
-        }
-        if (remove == 0) {
-            break;
-        }
+    int total_resources = totalResources();
+    vector<int> randomizer;
+
+    for (int j = 0; j < resourcesType[0]; j++) {
+            randomizer.emplace_back(0);
     }
-    cout << "Builder " << colour << " loses " << total_resources/2 << " to the geese. They lose:" << endl;
+    for (int j = 0; j < resourcesType[1]; j++) {
+            randomizer.emplace_back(1);
+    }
+    for (int j = 0; j < resourcesType[2]; j++) {
+            randomizer.emplace_back(2);
+    }
+    for (int j = 0; j < resourcesType[3]; j++) {
+            randomizer.emplace_back(3);
+    }
+
+    default_random_engine num = rng;
+    uniform_int_distribution<int> pic(0, total_resources - 1);
+    int spot = pic(rng);
+
+    int resource = randomizer[spot];
+    resourcesType[resource] -= 1;
+    remove--;
+    removed_resources[resource] += 1;
+    }
+
+    cout << "Builder " << colour << " loses " << total/2 << " to the geese. They lose:" << endl;
     for (int i = 0; i < 5; i++) {
         if (removed_resources[i] > 0) {
             cout << removed_resources[i] << " ";
@@ -134,6 +146,14 @@ void Builder::loseResources(){
             }
         }
     }
+}
+
+int Builder::totalResources(){
+    int total_resources = 0;
+    for (int i = 0; i < 5; i++) {
+        total_resources += resourcesType[i];
+    }
+    return total_resources;
 }
 
 

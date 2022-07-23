@@ -299,17 +299,39 @@ void Board::moveGeese() {
     Here[curTurn] = false;
     if (Here[0] || Here[1] || Here[2] || Here[3]) {
         string victimes = "";
+        vector<string> vect_victims;
+
         for(int b = 0; b < 4; ++b) {
-            if (Here[b]) {
+            if (Here[b] && (builders[b].totalResources() != 0)) {
                 if (victimes != "") {
                     victimes += ",";
                 }
                 victimes += colours[b];
+                vect_victims.emplace_back(colours[b]);
             }
         }
-        cout << "Builder + colours[curTurn] + can choose to steal from " + victimes + "." << endl;
+        cout << "Builder " + colours[curTurn] + " can choose to steal from " + victimes + "." << endl;
+        
+        string input;
+        cout << "Choose a builder to steal from." << endl;
 
-
+        while(1) {
+            string input = "";
+            cin >> input;
+            bool is_builder = false;
+            for (int i = 0; i < vect_victims.size(); i++) {
+                if (input == vect_victims[i]) {
+                    is_builder = true;
+                }
+            }
+            if (is_builder) {
+                stealResource(colour_to_index(input));
+                break;
+            }
+            else {
+                cout << "Not a valid builder to steal from. Try again." << endl;
+            }
+        }
     } else {
         cout << "Builder " + colours[curTurn] + " has no builders to steal from." << endl;
     }
@@ -344,5 +366,35 @@ void Board::residences() {
 	for (int k : builders[curTurn].tower) {
         cout << k << " " << "T" << endl;
     }
+}
+
+void Board::stealResource(int steal_from) { //dani done
+    int total_resources = builders[steal_from].totalResources();
+    vector<int> randomizer;
+
+    for (int j = 0; j < builders[steal_from].resourcesType[0]; j++) {
+            randomizer.emplace_back(0);
+    }
+    for (int j = 0; j < builders[steal_from].resourcesType[1]; j++) {
+            randomizer.emplace_back(1);
+    }
+    for (int j = 0; j < builders[steal_from].resourcesType[2]; j++) {
+            randomizer.emplace_back(2);
+    }
+    for (int j = 0; j < builders[steal_from].resourcesType[3]; j++) {
+            randomizer.emplace_back(3);
+    }
+
+    default_random_engine num = rng;
+    uniform_int_distribution<int> pic(0, total_resources - 1);
+    int spot = pic(rng);
+    int resource = randomizer[spot];
+
+    builders[curTurn].resourcesType[resource] += 1;
+    builders[steal_from].resourcesType[resource] -= 1;
+
+    cout << "Builder " << colours[curTurn] << "steals "<< types[resource] << 
+    " from builder " << colours[steal_from] << "." << endl;
+
 }
 
