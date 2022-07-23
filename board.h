@@ -41,17 +41,17 @@ class Board {
 	// std::string trans(std::string str);
 	void printBoard(); // Done
 	void residences(); // H
-	void printHelp(); // Dani -- done
-	void next(); // H
+	void helpCommendsPrint(); // Dani -- done
+	void next(); // H -- done
 	bool canBuild(int vertex_index, int player); //Dani -- done
 	void build(int vertex_index, int player); //Dani -- done
 	bool canImprove(int vertex_index, int player); // then Dani do material
 	void improve(int vertex_index, int player); // then Dani do material 
 	void distribution(int n); // Gio 
 	void SevenRolled(); // Dani -- done
-	void rollDice(); // H
-	void loadedDice(); // H
-	void fairDice(); // H
+	void rollDice(); // H -- done
+	void loadedDice(); // H -- done
+	void fairDice(); // H -- done
 	bool canBuildRoad(int road_index, int player); // Dani -- done
 	void buildRoad(int road_index, int player); // Dani -- done
 	bool canFirst8(int vertex_index, int player); // Done
@@ -59,8 +59,7 @@ class Board {
 	void moveGeese(); // Gio
 	int colour_to_index(string colour); // done
 	string GeeseStr(int index); // Done
-	private:
-		void testTile();
+	void testTile(); // H
 };
 #endif
 

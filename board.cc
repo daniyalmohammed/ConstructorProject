@@ -139,11 +139,17 @@ void Board::rollDice() {
     }
 } 
 
-// void Board::fairDice() {
-//     default_random_engine num = rng;
-//     int n = distribution(num);
-
-// }
+void Board::fairDice() {
+    default_random_engine num = rng;
+    uniform_int_distribution<int> pic(2,12);
+    int n = pic(rng);
+    if (n == 7) {
+	    moveGeese();
+    } else {
+	    distribution(n);
+    }
+    cout << n << " has been rolled." << endl;
+}
 
 
 
@@ -197,7 +203,7 @@ void Board::status() { // - dani completed
     }
 }
 
-void Board::printHelp() { //done
+void Board::helpCommandsPrint() { //done
     cout << "Valid commands:" << endl;
     cout << "board" << endl;
     cout << "status" << endl;
@@ -299,3 +305,21 @@ void Board::moveGeese() {
     }
 
 }
+
+void Board::next() {
+    curTurn += 1;
+    if (curTurn == 4) {
+        curTurn = 0;
+    }
+    cout << "Builder " << colours[curTurn] << "'s turn." << endl;
+    printBoard();
+}
+
+void Board::testTile() {
+	for (Tile t : tiles) {
+		cout << "index is" << " " << t.index << " ";
+        cout "type is" << " " << t.type;
+		cout << " " << "chance is" << " " << t.chance << endl;
+	}
+}
+
