@@ -315,4 +315,11 @@ void Board::next() {
     printBoard();
 }
 
+void Board::testTile() {
+	for (Tile t : tiles) {
+		cout << "index is" << " " << t.index << " ";
+        cout "type is" << " " << t.type;
+		cout << " " << "chance is" << " " << t.chance << endl;
+	}
+}
 
