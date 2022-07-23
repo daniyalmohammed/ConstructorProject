@@ -7,9 +7,7 @@ void Board::init() {
     win = false;
     tiles.resize(19);
     for (int t = 0; t < 19; ++t) {
-        tiles[t].tilesInitialization(t);
-        tiles[t].geese = false;
-        tiles[t].pos = t;
+        (tiles[t]) = Tile{t};
     }
     tiles[4].geese = true;
     goose_location = 4;
