@@ -7,12 +7,11 @@ using namespace std;
 class Tile {
     public:
         bool geese;
-        int elements[6];
+        vector<int> elements;
         int pos;
         int typeofResources;
-        // int resources;
         int chance;
-        void tilesInitialization(int tile_index);
+        Tile(int tile_index);
 };
 
 #endif
