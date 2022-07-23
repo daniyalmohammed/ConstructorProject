@@ -47,7 +47,7 @@ class Board {
 	void build(int vertex_index); //Dani -- done
 	bool canImprove(int vertex_index); // Dani -- material done
 	void improve(int vertex_index); // Dani -- material done
-	void distribution(int n); // Gio 
+	void distribution(int n); // Done
 	void SevenRolled(); // Dani -- done
 	void rollDice(); // H -- done
 	void loadedDice(); // H -- done
