@@ -7,17 +7,17 @@ void Board::init() {
     win = false;
     tiles.resize(19);
     for (int t = 0; t < 19; ++t) {
-        (tiles[t]) = Tile{t};
+        tiles[t] = Tile{t};
     }
     tiles[4].geese = true;
     goose_location = 4;
     roads.resize(72);
     for (int r = 0; r < 72; ++r) {
-        (roads[r]) = Edge{r};
+        roads[r] = Edge{r};
     }
     vertices.resize(54);
     for (int v = 0; v < 54; ++v) {
-        (vertices[v]) = Vertex{v};
+        vertices[v] = Vertex{v};
     }
     builders.resize(4);
     for (int b = 0; b < 4; ++b) {
@@ -68,7 +68,7 @@ bool Board::canBuildRoad(int road_index) {
             return true;
         }
     }
-    for (std::size_t i = 0; i < roads[road_index].neighborEdges.size(); ++i) {
+    for (size_t i = 0; i < roads[road_index].neighborEdges.size(); ++i) {
         if (roads[roads[road_index].neighborEdges[i]].owner_index == curTurn) {
             if ( vertices[roads[road_index].neighborVertex[i]].owner_index == -1) {
                 return true;
@@ -396,5 +396,26 @@ void Board::stealResource(int steal_from) { //dani done
     cout << "Builder " << colours[curTurn] << "steals "<< types[resource] << 
     " from builder " << colours[steal_from] << "." << endl;
 
+}
+
+void Board::distribution(int n) {
+    bool give = false;
+    vector<vector<int>> getting = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+    for(auto T : tiles) {
+        if (T.chance == n) {
+            for (auto ind : T.elements) {
+                if (vertices[ind].owner_index != -1) {
+                    getting[vertices[ind].owner_index][T.typeofResources] += vertices[ind].residenceLevel;
+                    give = true;
+                }
+            }
+        }
+    }
+    if (give == true) {
+        // Dani magic
+    } else {
+        cout << "No builders gained resources." << endl;
+        return;
+    }
 }
 
