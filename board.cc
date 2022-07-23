@@ -280,12 +280,12 @@ void Board::moveGeese() {
     tiles[index].geese = true;
     goose_location = index;
     vector<bool> Here = {false, false, false, false};
-    for(auto ind_1: vertices[index].neighbor) {
+    for(auto ind_1: tiles[index].elements) {
         if (vertices[ind_1].owner_index != -1) {
             Here[vertices[ind_1].owner_index] = true;
         }
     }
-    Here[index] = false;
+    Here[curTurn] = false;
     if (Here[0] || Here[1] || Here[2] || Here[3]) {
         string victimes = "";
         for(int b = 0; b < 4; ++b) {
@@ -298,7 +298,6 @@ void Board::moveGeese() {
         }
         cout << "Builder + colours[curTurn] + can choose to steal from " + victimes + "." << endl;
 
-        
 
     } else {
         cout << "Builder " + colours[curTurn] + " has no builders to steal from." << endl;
