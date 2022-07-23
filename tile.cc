@@ -1,10 +1,7 @@
 #include <iostream>
 #include "tile.h"
 
-const int NUM_TILES = 19;
-const int NUM_TYPES = 6;
-
-const int TILES[NUM_TILES][NUM_TYPES] = {{0, 1, 3, 4, 8, 9}, {2, 3, 7, 8, 13, 14},
+const vector<vector<int>> TILES = {{0, 1, 3, 4, 8, 9}, {2, 3, 7, 8, 13, 14},
                                         {4, 5, 9, 10, 15, 16}, {6, 7, 12, 13, 18, 19},
                                         {8, 9, 14, 15, 20, 21}, {10, 11, 16, 17, 22, 23},
                                         {13, 14, 19, 20, 25, 26}, {15, 16, 21, 22, 27, 28},
@@ -15,8 +12,8 @@ const int TILES[NUM_TILES][NUM_TYPES] = {{0, 1, 3, 4, 8, 9}, {2, 3, 7, 8, 13, 14
                                         {37, 38, 43, 44, 48, 49}, {39, 40, 45, 46, 50, 51},
                                         {44, 45, 49, 50, 52, 53}};
 
-void Tile::tilesInitialization(int pos) {
-    for (int i = 0; i < NUM_TYPES; i++) {
-        elements[i] = TILES[pos][i];
-    }
-}
+const vector<vector<int>> R_and_C = {{0,3},{1,10},{3,5},{1,4},{-1,0},{3,10},{2,11},{0,3},{3,8},{0,2},
+    {0,6},{1,8},{4,12},{1,5},{4,11},{2,4},{4,6},{2,9},{2,9}};
+
+Tile::Tile(int tile_index) : geese{false}, elements{TILES[tile_index]}, pos{tile_index},
+ typeofResources{R_and_C[tile_index][0]}, chance{R_and_C[tile_index][1]} {};
