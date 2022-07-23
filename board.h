@@ -40,7 +40,7 @@ class Board {
 	// std::string convert(int num);
 	// std::string trans(std::string str);
 	void printBoard(); // Done
-	void residences(); // H
+	void residences(); // H -- done
 	void helpCommendsPrint(); // Dani -- done
 	void next(); // H -- done
 	bool canBuild(int vertex_index); //Dani -- done
