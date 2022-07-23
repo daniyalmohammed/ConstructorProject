@@ -30,7 +30,7 @@ class Board {
 	string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	int dice_modes[4];
 	// bool loadedGame = false;
-	void init(); //somewhat done
+	void init(); // done
 	void loadFile(string file_name); // Gio
 	void save(string file_name); // Gio
 	// vector<int> seed(string input);
