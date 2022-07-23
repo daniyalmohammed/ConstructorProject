@@ -56,7 +56,7 @@ class Board {
 	void buildRoad(int road_index, int player); // Dani -- done
 	bool canFirst8(int vertex_index, int player); // Done
 	void first8(); // H
-	void moveGeese(int index); // Gio
+	void moveGeese(); // Gio
 	int colour_to_index(string colour); // done
 	string GeeseStr(int index); // Done
 	private:
