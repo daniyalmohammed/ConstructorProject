@@ -41,7 +41,7 @@ class Board {
 	// std::string trans(std::string str);
 	void printBoard(); // Done
 	void residences(); // H -- done
-	void helpCommendsPrint(); // Dani -- done
+	void helpCommandsPrint(); // Dani -- done
 	void next(); // H -- done
 	bool canBuild(int vertex_index); //Dani -- done
 	void build(int vertex_index); //Dani -- done
