@@ -1,6 +1,7 @@
 #include "board.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 using namespace std;
 
 void Board::init() {
@@ -475,6 +476,121 @@ void Board::first8() {
 	}
 }
 
-void Board::saveFile(string file_name) {
+void Board::save(string file_name) {
+    ofstream outfile{ file_name };
+    outfile << to_string(curTurn) << endl;
+    vector<vector<int>> owners_pos = {{},{},{},{}};
+    vector<vector<int>> owners_lv = {{},{},{},{}};
+    for(auto v : vertices) {
+        if (v.owner_index != -1) {
+            owners_pos[v.owner_index].emplace_back(v.pos);
+            owners_pos[v.owner_index].emplace_back(v.residenceLevel);
+        } 
+    }
+    vector<vector<int>> road_pos = {{},{},{},{}};
+    for(auto r : roads) {
+        if (r.owner_index != -1) {
+            road_pos[r.owner_index].emplace_back(r.pos);
+        }
+    }
+    outfile << builders[0].resourcesType[0] << " ";
+    outfile << builders[0].resourcesType[1] << " ";
+    outfile << builders[0].resourcesType[2] << " ";
+    outfile << builders[0].resourcesType[3] << " ";
+    outfile << builders[0].resourcesType[4] << " ";
+    outfile << "r ";
+    for (auto r_0 : road_pos[0]) {
+        outfile << r_0;
+        outfile << " ";
+    }
+    outfile << "h";
+    for (int i = 0; i < owners_pos[0].size(); ++ i) {
+        outfile << " " << owners_pos[0][i];
+        if (owners_lv[0][i] == 1) {
+            outfile << " B";
+        } else if ((owners_lv[0][i] == 2)) {
+            outfile << " H";
+        } else {
+            outfile << " T";
+        }
+    }
+    outfile << endl;
 
+    outfile << builders[1].resourcesType[0] << " ";
+    outfile << builders[1].resourcesType[1] << " ";
+    outfile << builders[1].resourcesType[2] << " ";
+    outfile << builders[1].resourcesType[3] << " ";
+    outfile << builders[1].resourcesType[4] << " ";
+    outfile << "r ";
+    for (auto r_1 : road_pos[1]) {
+        outfile << r_1;
+        outfile << " ";
+    }
+    outfile << "h";
+    for (int j = 0; j < owners_pos[1].size(); ++ j) {
+        outfile << " " << owners_pos[1][j];
+        if (owners_lv[1][j] == 1) {
+            outfile << " B";
+        } else if ((owners_lv[1][j] == 2)) {
+            outfile << " H";
+        } else {
+            outfile << " T";
+        }
+    }
+    outfile << endl;
+
+
+    outfile << builders[2].resourcesType[0] << " ";
+    outfile << builders[2].resourcesType[1] << " ";
+    outfile << builders[2].resourcesType[2] << " ";
+    outfile << builders[2].resourcesType[3] << " ";
+    outfile << builders[2].resourcesType[4] << " ";
+    outfile << "r ";
+    for (auto r_2 : road_pos[2]) {
+        outfile << r_2;
+        outfile << " ";
+    }
+    outfile << "h";
+    for (int k = 0; k < owners_pos[2].size(); ++ k) {
+        outfile << " " << owners_pos[2][k];
+        if (owners_lv[2][k] == 1) {
+            outfile << " B";
+        } else if ((owners_lv[2][k] == 2)) {
+            outfile << " H";
+        } else {
+            outfile << " T";
+        }
+    }
+    outfile << endl;
+
+    outfile << builders[3].resourcesType[0] << " ";
+    outfile << builders[3].resourcesType[1] << " ";
+    outfile << builders[3].resourcesType[2] << " ";
+    outfile << builders[3].resourcesType[3] << " ";
+    outfile << builders[3].resourcesType[4] << " ";
+    outfile << "r ";
+    for (auto r_3 : road_pos[3]) {
+        outfile << r_3;
+        outfile << " ";
+    }
+    outfile << "h";
+    for (int m = 0; m < owners_pos[3].size(); ++ m) {
+        outfile << " " << owners_pos[3][m];
+        if (owners_lv[3][m] == 1) {
+            outfile << " B";
+        } else if ((owners_lv[3][m] == 2)) {
+            outfile << " H";
+        } else {
+            outfile << " T";
+        }
+    }
+    outfile << endl;
+
+    outfile << "0 3 1 10 3 5 1 4 5 7 3 10 2 11 0 3 3 8 0 2 0 6 1 8 4 12 1 5 4 11 2 4 4 6 2 9 2 9" << endl;
+    outfile << goose_location << endl;
+    
 }
+
+
+
+
