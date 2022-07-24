@@ -99,6 +99,30 @@ int Board::colour_to_index(string colour) {
     return 3;
 }
 
+int Board::material_to_index(string material) {
+    if (material == "BRICK") {
+        return 0;
+    }
+    if (material == "ENERGY") {
+        return 1;
+    }
+    if (material == "GLASS") {
+        return 2;
+    }
+    if (material == "HEAT") {
+        return 3;
+    }
+    if (material == "WIFI") {
+        return 4;
+    }
+    if (material == "PARK") {
+        return 5;
+    }
+    else {
+        return -1;
+    }
+}
+
 string Board::GeeseStr(int index) {
     if (index == goose_location) {
         return "GEESE";
@@ -222,22 +246,27 @@ void Board::SevenRolled() { // called to remove resources of builders -- done
     }
 } 
 
-void Board::trade(int color, int give, int take){ // Dani -- done
-    cout << colours[curTurn] << " offers " << colours[color] << 
-    " one " << types[give] << " for one " << types[take] << "." << endl;
-    cout << "Does " << colours[color] << " accept this offer?" << endl;
+void Board::trade(string color, string give, string take){ // Dani -- done
+
+    cout << colours[curTurn] << " offers " << color << 
+    " one " << give << " for one " << take << "." << endl;
+    cout << "Does " << color << " accept this offer?" << endl;
+
+    int num_colour = colour_to_index(color);
+    int give_int = material_to_index(give);
+    int take_int = material_to_index(take);
 
     string input = "";
     cin >> input;
     if (input == "yes") {
-        if ((builders[curTurn].resourcesType[give] < 1) || (builders[color].resourcesType[take] < 1)){
+        if ((builders[curTurn].resourcesType[give_int] < 1) || (builders[num_colour].resourcesType[take_int] < 1)){
             cout << "Builder does not have enough resources for the given trade." << endl;
         }
         else {
-            builders[curTurn].resourcesType[give] -= 1;
-            builders[curTurn].resourcesType[take] += 1;
-            builders[color].resourcesType[give] += 1;
-            builders[color].resourcesType[take] -= 1;
+            builders[curTurn].resourcesType[give_int] -= 1;
+            builders[curTurn].resourcesType[take_int] += 1;
+            builders[num_colour].resourcesType[give_int] += 1;
+            builders[num_colour].resourcesType[take_int] -= 1;
         }
     }
 }
