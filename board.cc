@@ -1,5 +1,6 @@
 #include "board.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 void Board::init() {
@@ -445,4 +446,6 @@ void Board::first8() {
 	}
 }
 
+void Board::saveFile(string file_name) {
 
+}
