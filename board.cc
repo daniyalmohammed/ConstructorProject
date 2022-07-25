@@ -659,12 +659,15 @@ void Board::loadFile(string file_name) {
             if (reader == "B") {
                 vertices[mat].owner_index = i;
                 vertices[mat].residenceLevel = 1;
+                builders[i].buildingPoints += 1;
             } else if (reader == "H") {
                 vertices[mat].owner_index = i;
                 vertices[mat].residenceLevel = 2;
+                builders[i].buildingPoints += 2;
             } else {
                 vertices[mat].owner_index = i;
                 vertices[mat].residenceLevel = 3;
+                builders[i].buildingPoints += 3;
             }
         }
     }
