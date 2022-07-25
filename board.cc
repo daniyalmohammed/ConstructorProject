@@ -5,6 +5,9 @@
 using namespace std;
 
 void Board::init() {
+    for (int d = 0; d < 4; d++) {
+        dice_modes[d] = 0;
+    }
     curTurn = 0;
     win = false;
     tiles.resize(19);
