@@ -34,12 +34,6 @@ class Builder {
         void getInfo(); // call when a status of a builder is printed, output message
         void loseResources(); //call on all builders when a 7 is rolled
         int totalResources(); //sums the total number of resources a builder has
-        //void improveResources(int type, int num);
-        //bool improveResidences(int pos, int residenceLevel);
-        //void steal(std::string current_builder, 
-        //std::string steal_from, int &amount, int &stolen_index);
-        // void storeStolen(int &amount, int &stolen_index);
-
 };
 
 #endif
