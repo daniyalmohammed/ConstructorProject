@@ -466,11 +466,15 @@ void Board::distribution(int n) {
 void Board::first8() {
     int arr[8] = {0,1,2,3,3,2,1,0};
     for (int i = 0; i < 8; i++) {
-		cout << "Builder" << " ";
+        bool checking = false;
+        cout << "Builder" << " ";
         cout << colours[arr[i]] << ", ";
         cout << "where do you want to build a basement?" << endl;
-		int num;
-		cin >> num;
+        int num;
+        while (! checking) {
+		    cin >> num;
+            checking = canFirst8(num);
+        }
 		builders[arr[i]].basement.emplace_back(num);
 		builders[arr[i]].buildingPoints += 1;
         vertices[num].colonize(arr[i]);
