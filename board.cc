@@ -134,10 +134,11 @@ void Board::loadedDice() {
     while (true) {
         if (!(cin >> n)) {
             cout << "Invalid roll." << endl;
+            cout << "Input a roll between 2 and 12:" << endl;// H
         } else if (n < 2 || n > 12) {
             cout << "Invalid roll." << endl;
+            cout << "Input a roll between 2 and 12:" << endl;// H
         } else {
-            //cin >> n;
             cout << colours[curTurn] << " has rolled a " << n << "." <<endl;
             break;
         }
