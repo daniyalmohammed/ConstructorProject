@@ -302,10 +302,12 @@ void Board::improve(int vertex_index) {
 
 bool Board::canFirst8(int vertex_index) {
     if (vertices[vertex_index].owner_index != -1) {
+        cout << "You cannot build here." << endl;
         return false;
     }
     for(auto ind_1: vertices[vertex_index].neighbor) {
         if (vertices[ind_1].owner_index != -1) {
+            cout << "You cannot build here." << endl;
             return false;
         }
     }
