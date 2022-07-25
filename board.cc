@@ -596,6 +596,13 @@ void Board::getRez() {
     for(auto v : vertices) {
         if (v.owner_index == curTurn) {
             cout << (v.pos) << " ";
+            if (v.residenceLevel == 1) {
+                cout << "B ";
+            } else if ((v.residenceLevel == 2)) {
+                cout << "H ";
+            } else {
+                cout << "T ";
+            }
         } 
     }
     cout << endl;
