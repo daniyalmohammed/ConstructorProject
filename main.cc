@@ -74,10 +74,10 @@ void beginning_turn(Board b){
     cout << "> ";
     while (cin >> cmd) {
         if (cmd == "load") { // sets the dice of the current builder to be loaded dice
-            b.dice_modes[b.curTurn] = 1;
+            b.dice_modes[b.curTurn] = 0;
         } 
         else if (cmd == "fair") { // sets the dice of the current builder to be fair dice
-            b.dice_modes[b.curTurn] = 0;
+            b.dice_modes[b.curTurn] = 1;
         } 
         else if (cmd == "roll") { // rolls the current builder’s dice. This ends the ”Beginning of the turn” phase and moves the builder to ”During the turn”.
             b.rollDice();
@@ -92,7 +92,7 @@ void beginning_turn(Board b){
 
 int main(int argc, char** argv) {
 
-    bool quit_game = true;
+    bool quit_game = false;
     while(!(quit_game))  {
     Board b;
     b.init();

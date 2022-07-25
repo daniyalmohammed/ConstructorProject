@@ -137,7 +137,7 @@ void Board::loadedDice() {
         } else if (n < 2 || n > 12) {
             cout << "Invalid roll." << endl;
         } else {
-            cin >> n;
+            //cin >> n;
             cout << colours[curTurn] << " has rolled a " << n << "." <<endl;
             break;
         }
@@ -479,6 +479,7 @@ void Board::first8() {
 		builders[arr[i]].buildingPoints += 1;
         vertices[num].colonize(arr[i]);
 	}
+    cout << "Builder " << colours[curTurn] << "'s turn." << endl;
 }
 
 void Board::save(string file_name) {
