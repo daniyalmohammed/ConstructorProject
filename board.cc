@@ -178,40 +178,40 @@ void Board::printBoard() {
     cout << "                          |"+vertices[0].getIn()+"|--"+roads[0].getIn()+"--|"+vertices[1].getIn()+"|" << endl;
     cout << "                            |         |" << endl;
     cout << "                           "+roads[1].getIn()+"    0   "+roads[2].getIn()+"" << endl;
-    cout << "                            |  BRICK  |" << endl;
-    cout << "                |"+vertices[2].getIn()+"|--"+roads[3].getIn()+"--|"+vertices[3].getIn()+"|   3  |"+vertices[4].getIn()+"|--"+roads[4].getIn()+"--|"+vertices[5].getIn()+"|" << endl;
+    cout << "                            |"+ tiles[0].to_s() +"|" << endl;
+    cout << "                |"+vertices[2].getIn()+"|--"+roads[3].getIn()+"--|"+vertices[3].getIn()+"|  "+ tiles[0].c_to_s() +"  |"+vertices[4].getIn()+"|--"+roads[4].getIn()+"--|"+vertices[5].getIn()+"|" << endl;
     cout << "                  |         |  "+GeeseStr(0)+"  |         |" << endl;
     cout << "                 "+roads[5].getIn()+"    1   "+roads[6].getIn()+"        "+roads[7].getIn()+"    2   "+roads[8].getIn()+"" << endl;
-    cout << "                  | ENERGY  |         |  HEAT   |" << endl;
-    cout << "      |"+vertices[6].getIn()+"|--"+roads[9].getIn()+"--|"+vertices[7].getIn()+"|  10  |"+vertices[8].getIn()+"|--"+roads[10].getIn()+"--|"+vertices[9].getIn()+"|   5  |"+vertices[10].getIn()+"|--"+roads[11].getIn()+"--|"+vertices[11].getIn()+"|" << endl;
+    cout << "                  |"+ tiles[1].to_s() +"|         |"+ tiles[2].to_s() +"|" << endl;
+    cout << "      |"+vertices[6].getIn()+"|--"+roads[9].getIn()+"--|"+vertices[7].getIn()+"|  "+ tiles[1].c_to_s() +"  |"+vertices[8].getIn()+"|--"+roads[10].getIn()+"--|"+vertices[9].getIn()+"|  "+ tiles[2].c_to_s() +"  |"+vertices[10].getIn()+"|--"+roads[11].getIn()+"--|"+vertices[11].getIn()+"|" << endl;
     cout << "        |         |  "+GeeseStr(1)+"  |         |  "+GeeseStr(2)+"  |         |" << endl;
     cout << "       "+roads[12].getIn()+"    3   "+roads[13].getIn()+"        "+roads[14].getIn()+"    4   "+roads[15].getIn()+"        "+roads[16].getIn()+"    5   "+roads[17].getIn()+"" << endl;
-    cout << "        | ENERGY  |         |  PARK   |         |  HEAT   |" << endl;
-    cout << "      |"+vertices[12].getIn()+"|   4  |"+vertices[13].getIn()+"|--"+roads[18].getIn()+"--|"+vertices[14].getIn()+"|      |"+vertices[15].getIn()+"|--"+roads[19].getIn()+"--|"+vertices[16].getIn()+"|  10  |"+vertices[17].getIn()+"|" << endl;
+    cout << "        |"+ tiles[3].to_s() +"|         |"+ tiles[4].to_s() +"|         |"+ tiles[5].to_s() +"|" << endl;
+    cout << "      |"+vertices[12].getIn()+"|  "+ tiles[3].c_to_s() +"  |"+vertices[13].getIn()+"|--"+roads[18].getIn()+"--|"+vertices[14].getIn()+"|  "+ tiles[4].c_to_s() +"  |"+vertices[15].getIn()+"|--"+roads[19].getIn()+"--|"+vertices[16].getIn()+"|  "+ tiles[5].c_to_s() +"  |"+vertices[17].getIn()+"|" << endl;
     cout << "        |  "+GeeseStr(3)+"  |         |  "+GeeseStr(4)+"  |         |  "+GeeseStr(5)+"  |" << endl;
     cout << "       "+roads[20].getIn()+"        "+roads[21].getIn()+"    6   "+roads[22].getIn()+"        "+roads[23].getIn()+"    7   "+roads[24].getIn()+"        "+roads[25].getIn()+"" << endl;
-    cout << "        |         |  GLASS  |         |  BRICK  |         |" << endl;
-    cout << "      |"+vertices[18].getIn()+"|--"+roads[26].getIn()+"--|"+vertices[19].getIn()+"|  11  |"+vertices[20].getIn()+"|--"+roads[27].getIn()+"--|"+vertices[21].getIn()+"|   3  |"+vertices[22].getIn()+"|--"+roads[28].getIn()+"--|"+vertices[23].getIn()+"|" << endl;
+    cout << "        |         |"+ tiles[6].to_s() +"|         |"+ tiles[7].to_s() +"|         |" << endl;
+    cout << "      |"+vertices[18].getIn()+"|--"+roads[26].getIn()+"--|"+vertices[19].getIn()+"|  "+ tiles[6].c_to_s() +"  |"+vertices[20].getIn()+"|--"+roads[27].getIn()+"--|"+vertices[21].getIn()+"|  "+ tiles[7].c_to_s() +"  |"+vertices[22].getIn()+"|--"+roads[28].getIn()+"--|"+vertices[23].getIn()+"|" << endl;
     cout << "        |         |  "+GeeseStr(6)+"  |         |  "+GeeseStr(7)+"  |         |" << endl;
     cout << "       "+roads[29].getIn()+"    8   "+roads[30].getIn()+"        "+roads[31].getIn()+"    9   "+roads[32].getIn()+"        "+roads[33].getIn()+"   10   "+roads[34].getIn()+"" << endl;
-    cout << "        |  HEAT   |         |  BRICK  |         |  BRICK  |" << endl;
-    cout << "      |"+vertices[24].getIn()+"|   8  |"+vertices[25].getIn()+"|--"+roads[35].getIn()+"--|"+vertices[26].getIn()+"|   2  |"+vertices[27].getIn()+"|--"+roads[36].getIn()+"--|"+vertices[28].getIn()+"|   6  |"+vertices[29].getIn()+"|" << endl;
+    cout << "        |"+ tiles[8].to_s() +"|         |"+ tiles[9].to_s() +"|         |"+ tiles[10].to_s() +"|" << endl;
+    cout << "      |"+vertices[24].getIn()+"|  "+ tiles[8].c_to_s() +"  |"+vertices[25].getIn()+"|--"+roads[35].getIn()+"--|"+vertices[26].getIn()+"|  "+ tiles[9].c_to_s() +"  |"+vertices[27].getIn()+"|--"+roads[36].getIn()+"--|"+vertices[28].getIn()+"|  "+ tiles[10].c_to_s() +"  |"+vertices[29].getIn()+"|" << endl;
     cout << "        |  "+GeeseStr(8)+"  |         |  "+GeeseStr(9)+"  |         |  "+GeeseStr(10)+"  |" << endl;
     cout << "       "+roads[37].getIn()+"        "+roads[38].getIn()+"   11   "+roads[39].getIn()+"        "+roads[40].getIn()+"   12   "+roads[41].getIn()+"        "+roads[42].getIn()+"" << endl;
-    cout << "        |         | ENERGY  |         |  WIFI   |         |" << endl;
-    cout << "      |"+vertices[30].getIn()+"|--"+roads[43].getIn()+"--|"+vertices[31].getIn()+"|   8  |"+vertices[32].getIn()+"|--"+roads[44].getIn()+"--|"+vertices[33].getIn()+"|  12  |"+vertices[34].getIn()+"|--"+roads[45].getIn()+"--|"+vertices[35].getIn()+"|" << endl;
+    cout << "        |         |"+ tiles[11].to_s() +"|         |"+ tiles[12].to_s() +"|         |" << endl;
+    cout << "      |"+vertices[30].getIn()+"|--"+roads[43].getIn()+"--|"+vertices[31].getIn()+"|  "+ tiles[11].c_to_s() +"  |"+vertices[32].getIn()+"|--"+roads[44].getIn()+"--|"+vertices[33].getIn()+"|  "+ tiles[12].c_to_s() +"  |"+vertices[34].getIn()+"|--"+roads[45].getIn()+"--|"+vertices[35].getIn()+"|" << endl;
     cout << "        |         |  "+GeeseStr(11)+"  |         |  "+GeeseStr(12)+"  |         |" << endl;
     cout << "       "+roads[46].getIn()+"   13   "+roads[47].getIn()+"        "+roads[48].getIn()+"   14   "+roads[49].getIn()+"        "+roads[50].getIn()+"   15   "+roads[51].getIn()+"" << endl;
-    cout << "        | ENERGY  |         |  WIFI   |         |  GLASS  |" << endl;
-    cout << "      |"+vertices[36].getIn()+"|   5  |"+vertices[37].getIn()+"|--"+roads[52].getIn()+"--|"+vertices[38].getIn()+"|  11  |"+vertices[39].getIn()+"|--"+roads[53].getIn()+"--|"+vertices[40].getIn()+"|   4  |"+vertices[41].getIn()+"|" << endl;
+    cout << "        |"+ tiles[13].to_s() +"|         |"+ tiles[14].to_s() +"|         |"+ tiles[15].to_s() +"|" << endl;
+    cout << "      |"+vertices[36].getIn()+"|  "+ tiles[13].c_to_s() +"  |"+vertices[37].getIn()+"|--"+roads[52].getIn()+"--|"+vertices[38].getIn()+"|  "+ tiles[14].c_to_s() +"  |"+vertices[39].getIn()+"|--"+roads[53].getIn()+"--|"+vertices[40].getIn()+"|  "+ tiles[15].c_to_s() +"  |"+vertices[41].getIn()+"|" << endl;
     cout << "        |  "+GeeseStr(13)+"  |         |  "+GeeseStr(14)+"  |         |  "+GeeseStr(15)+"  |" << endl;
     cout << "       "+roads[54].getIn()+"        "+roads[55].getIn()+"   16   "+roads[56].getIn()+"        "+roads[57].getIn()+"   17   "+roads[58].getIn()+"        "+roads[59].getIn()+"" << endl;
-    cout << "        |         |  WIFI   |         |  GLASS  |         |" << endl;
-    cout << "      |"+vertices[42].getIn()+"|--"+roads[60].getIn()+"--|"+vertices[43].getIn()+"|   6  |"+vertices[44].getIn()+"|--"+roads[61].getIn()+"--|"+vertices[45].getIn()+"|   9  |"+vertices[46].getIn()+"|--"+roads[62].getIn()+"--|"+vertices[47].getIn()+"|" << endl;
+    cout << "        |         |"+ tiles[16].to_s() +"|         |"+ tiles[17].to_s() +"|         |" << endl;
+    cout << "      |"+vertices[42].getIn()+"|--"+roads[60].getIn()+"--|"+vertices[43].getIn()+"|  "+ tiles[16].c_to_s() +"  |"+vertices[44].getIn()+"|--"+roads[61].getIn()+"--|"+vertices[45].getIn()+"|  "+ tiles[17].c_to_s() +"  |"+vertices[46].getIn()+"|--"+roads[62].getIn()+"--|"+vertices[47].getIn()+"|" << endl;
     cout << "                  |  "+GeeseStr(16)+"  |         |  "+GeeseStr(17)+"  |" << endl;
     cout << "                 "+roads[63].getIn()+"        "+roads[64].getIn()+"   18   "+roads[65].getIn()+"        "+roads[66].getIn()+"" << endl;
-    cout << "                  |         |  GLASS  |         |" << endl;
-    cout << "                |"+vertices[48].getIn()+"|--"+roads[67].getIn()+"--|"+vertices[49].getIn()+"|   9  |"+vertices[50].getIn()+"|--"+roads[68].getIn()+"--|"+vertices[51].getIn()+"|" << endl;
+    cout << "                  |         |"+ tiles[18].to_s() +"|         |" << endl;
+    cout << "                |"+vertices[48].getIn()+"|--"+roads[67].getIn()+"--|"+vertices[49].getIn()+"|  "+ tiles[18].c_to_s() +"  |"+vertices[50].getIn()+"|--"+roads[68].getIn()+"--|"+vertices[51].getIn()+"|" << endl;
     cout << "                            |  "+GeeseStr(18)+"  |" << endl;
     cout << "                           "+roads[69].getIn()+"        "+roads[70].getIn()+"" << endl;
     cout << "                            |         |" << endl;
@@ -624,9 +624,9 @@ void Board::loadFile(string file_name) {
     string line;
     ifstream infile{ file_name};
     getline(infile, line);
-    istringstream iss(line);
+    istringstream iss_0(line);
     int n;
-    iss >> n;
+    iss_0 >> n;
     curTurn = n;
     string reader;
     int mat;
@@ -667,12 +667,12 @@ void Board::loadFile(string file_name) {
         }
     }
     getline(infile, line);
-    istringstream iss(line);
+    istringstream iss_3(line);
     int r;
     int c;
     for (int j = 0; j < 19; ++ j) {
-        iss >> r;
-        iss >> c;
+        iss_3 >> r;
+        iss_3 >> c;
         if (r == 5) {
             tiles[j].typeofResources = -1;
             tiles[j].chance = -1;
@@ -682,9 +682,9 @@ void Board::loadFile(string file_name) {
         }
     }
     getline(infile, line);
-    istringstream iss(line);
+    istringstream iss_4(line);
     int g_pos;
-    iss >> g_pos;
+    iss_4 >> g_pos;
     tiles[g_pos].geese = true;
     tiles[goose_location].geese = false;
     goose_location = g_pos;

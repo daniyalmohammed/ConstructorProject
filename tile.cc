@@ -17,3 +17,29 @@ const vector<vector<int>> R_and_C = {{0,3},{1,10},{3,5},{1,4},{-1,-1},{3,10},{2,
 
 Tile::Tile(int tile_index) : geese{false}, elements{TILES[tile_index]}, pos{tile_index},
  typeofResources{R_and_C[tile_index][0]}, chance{R_and_C[tile_index][1]} {};
+
+string Tile::to_s() {
+    if (typeofResources == 0) {
+        return "  BRICK  ";
+    } else if (typeofResources == 1) {
+        return " ENERGY  ";
+    } else if (typeofResources == 2) {
+        return "  GLASS  ";
+    } else if (typeofResources == 3) {
+        return "  HEAT   ";
+    } else if (typeofResources == 4) {
+        return "  WIFI   ";
+    } else {
+        return "  PARK   ";
+    }
+}
+
+string Tile::c_to_s() {
+    if (chance == -1) {
+        return "  ";
+    }
+    if (chance < 10) {
+        return " " + to_string(chance);
+    }
+    return to_string(chance);
+}
