@@ -689,3 +689,13 @@ void Board::loadFile(string file_name) {
     tiles[goose_location].geese = false;
     goose_location = g_pos;
 }
+
+bool Board::checkWin(){
+    for (int i = 0; i < 4; i++){
+        if (builders[i].buildingPoints >= 10){
+            cout << "Player " << colours[i] << "wins the game!" << endl;
+            return true;
+        }
+    }
+    return false;
+}
