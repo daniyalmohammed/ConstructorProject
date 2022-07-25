@@ -2,8 +2,8 @@
 #define VERTICES_H
 #include <vector>
 #include <string>
-#include "subject.h"
-#include "observer.h"
+// #include "subject.h"
+// #include "observer.h"
 using namespace std;
 
 class Vertex {

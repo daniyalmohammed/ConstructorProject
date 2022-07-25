@@ -1,32 +1,28 @@
 #include "board.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
 using namespace std;
 
 void Board::init() {
-    for (int d = 0; d < 4; d++) {
-        dice_modes[d] = 0;
+    for (int i = 0; i < 4; i++) {
+        dice_modes[i] = 0;
     }
     curTurn = 0;
     win = false;
-    tiles.resize(19);
     for (int t = 0; t < 19; ++t) {
-        tiles[t] = Tile{t};
+        tiles.emplace_back(Tile{t});
     }
     tiles[4].geese = true;
     goose_location = 4;
-    roads.resize(72);
     for (int r = 0; r < 72; ++r) {
-        roads[r] = Edge{r};
+        roads.emplace_back(Edge{r});
     }
-    vertices.resize(54);
+    //vertices.resize(54);
     for (int v = 0; v < 54; ++v) {
-        vertices[v] = Vertex{v};
+        vertices.emplace_back(Vertex{v});
+        //vertices[v]{v};
     }
-    builders.resize(4);
+    //builders.resize(4);
     for (int b = 0; b < 4; ++b) {
-        (builders[b]) = Builder{b};
+        builders.emplace_back(Builder{b});
     }
 }
 
@@ -140,7 +136,7 @@ void Board::loadedDice() {
     while (true) {
         if (!(cin >> n)) {
             cout << "Invalid roll." << endl;
-        } else if (n < 2 && n > 12) {
+        } else if (n < 2 || n > 12) {
             cout << "Invalid roll." << endl;
         } else {
             cin >> n;
@@ -169,7 +165,7 @@ void Board::rollDice() {
 void Board::fairDice() {
     default_random_engine num = rng;
     uniform_int_distribution<int> pic(2,12);
-    int n = pic(rng);
+    int n = pic(num);
     if (n == 7) {
 	    moveGeese();
     } else {
@@ -291,6 +287,7 @@ bool Board::canImprove(int vertex_index) {
     }
     else {
         cout << "check Board::canImprove for bugs" << endl;
+        return false;
     }
 }
 
@@ -421,7 +418,7 @@ void Board::stealResource(int steal_from) { //dani done
 
     default_random_engine num = rng;
     uniform_int_distribution<int> pic(0, total_resources - 1);
-    int spot = pic(rng);
+    int spot = pic(num);
     int resource = randomizer[spot];
 
     builders[curTurn].resourcesType[resource] += 1;
@@ -469,12 +466,12 @@ void Board::first8() {
     int arr[8] = {0,1,2,3,3,2,1,0};
     for (int i = 0; i < 8; i++) {
 		cout << "Builder" << " ";
-        cout << colours[i] << ", ";
+        cout << colours[arr[i]] << ", ";
         cout << "where do you want to build a basement?" << endl;
 		int num;
 		cin >> num;
-		builders[i].basement.emplace_back(num);
-		builders[i].buildingPoints += 1;
+		builders[arr[i]].basement.emplace_back(num);
+		builders[arr[i]].buildingPoints += 1;
         vertices[num].colonize(i);
 	}
 }
@@ -511,7 +508,7 @@ void Board::save(string file_name) {
         outfile << " " << owners_pos[0][i];
         if (owners_lv[0][i] == 1) {
             outfile << " B";
-        } else if ((owners_lv[0][i] == 2)) {
+        } else if (owners_lv[0][i] == 2) {
             outfile << " H";
         } else {
             outfile << " T";
@@ -534,7 +531,7 @@ void Board::save(string file_name) {
         outfile << " " << owners_pos[1][j];
         if (owners_lv[1][j] == 1) {
             outfile << " B";
-        } else if ((owners_lv[1][j] == 2)) {
+        } else if (owners_lv[1][j] == 2) {
             outfile << " H";
         } else {
             outfile << " T";
@@ -558,7 +555,7 @@ void Board::save(string file_name) {
         outfile << " " << owners_pos[2][k];
         if (owners_lv[2][k] == 1) {
             outfile << " B";
-        } else if ((owners_lv[2][k] == 2)) {
+        } else if (owners_lv[2][k] == 2) {
             outfile << " H";
         } else {
             outfile << " T";
@@ -581,7 +578,7 @@ void Board::save(string file_name) {
         outfile << " " << owners_pos[3][m];
         if (owners_lv[3][m] == 1) {
             outfile << " B";
-        } else if ((owners_lv[3][m] == 2)) {
+        } else if (owners_lv[3][m] == 2) {
             outfile << " H";
         } else {
             outfile << " T";
@@ -601,7 +598,7 @@ void Board::getRez() {
             cout << (v.pos) << " ";
             if (v.residenceLevel == 1) {
                 cout << "B ";
-            } else if ((v.residenceLevel == 2)) {
+            } else if (v.residenceLevel == 2) {
                 cout << "H ";
             } else {
                 cout << "T ";

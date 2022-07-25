@@ -2,8 +2,12 @@
 #define BUILDER_H
 #include <string>
 #include <vector>
+#include <iostream>
+#include <stdexcept>
+#include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 class Builder {
     public:
@@ -20,7 +24,7 @@ class Builder {
         std::vector<int> tower;
         std::vector<int> house;
         std::vector<int> road;
-        default_random_engine rng;
+        std::default_random_engine rng;
                
         Builder(int playerNum); //initializes the builder and takes in the player number (0,1,2,3)
         bool basementCanBuild(); // decide if there is enough resources for a basement
