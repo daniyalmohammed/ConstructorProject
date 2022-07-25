@@ -618,3 +618,74 @@ void Board::seed(string input) { // assume input is in range of std::stoi
     }
 }
 
+
+
+void Board::loadFile(string file_name) {
+    string line;
+    ifstream infile{ file_name};
+    getline(infile, line);
+    istringstream iss(line);
+    int n;
+    iss >> n;
+    curTurn = n;
+    string reader;
+    int mat;
+    for(int i = 0; i < 4; ++i) {
+        getline(infile, line);
+        istringstream iss(line);
+        iss >> mat;
+        builders[i].resourcesType[0] = mat;
+        iss >> mat;
+        builders[i].resourcesType[1] = mat;
+        iss >> mat;
+        builders[i].resourcesType[2] = mat;
+        iss >> mat;
+        builders[i].resourcesType[3] = mat;
+        iss >> mat;
+        builders[i].resourcesType[4] = mat;
+        iss >> reader;
+        while (iss >> reader) {
+            if (reader == "h") {
+                break;
+            }
+            istringstream iss_2(reader);
+            iss_2 >> mat;
+            roads[mat].owner_index = i;
+        }
+        while (iss >> mat) {
+            iss >> reader;
+            if (reader == "B") {
+                vertices[mat].owner_index = i;
+                vertices[mat].residenceLevel = 1;
+            } else if (reader == "H") {
+                vertices[mat].owner_index = i;
+                vertices[mat].residenceLevel = 2;
+            } else {
+                vertices[mat].owner_index = i;
+                vertices[mat].residenceLevel = 3;
+            }
+        }
+    }
+    getline(infile, line);
+    istringstream iss(line);
+    int r;
+    int c;
+    for (int j = 0; j < 19; ++ j) {
+        iss >> r;
+        iss >> c;
+        if (r == 5) {
+            tiles[j].typeofResources = -1;
+            tiles[j].chance = -1;
+        } else {
+            tiles[j].typeofResources = -1;
+            tiles[j].chance = -1;
+        }
+    }
+    getline(infile, line);
+    istringstream iss(line);
+    int g_pos;
+    iss >> g_pos;
+    tiles[g_pos].geese = true;
+    tiles[goose_location].geese = false;
+    goose_location = g_pos;
+}
