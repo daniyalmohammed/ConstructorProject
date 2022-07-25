@@ -48,7 +48,7 @@ string Edge::getIn() {
 		}
         return to_string(pos);
     } else {
-        return  " " + builders[owner_index];
+        return  builders[owner_index] + "R";
     }
 }
 

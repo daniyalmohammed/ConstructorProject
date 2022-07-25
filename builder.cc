@@ -5,7 +5,7 @@
 using namespace std;
 
 Builder::Builder(int playerNum) : playerNum{playerNum}, buildingPoints{0} {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         resourcesType[i] = 0;
     }
     if (playerNum == 0){
