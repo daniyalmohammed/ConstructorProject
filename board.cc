@@ -471,7 +471,7 @@ void Board::first8() {
 		cin >> num;
 		builders[arr[i]].basement.emplace_back(num);
 		builders[arr[i]].buildingPoints += 1;
-        vertices[num].colonize(i);
+        vertices[num].colonize(arr[i]);
 	}
 }
 
@@ -669,6 +669,7 @@ void Board::loadFile(string file_name) {
         }
     }
     getline(infile, line);
+    loadout = line;
     istringstream iss_3(line);
     int r;
     int c;
