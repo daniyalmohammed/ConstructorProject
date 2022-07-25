@@ -1,9 +1,54 @@
 #include "board.h"
 using namespace std;
 
-int main() {
+int main(int argc, char** argv) {
     Board b;
     b.init();
+    bool load = false;
+    bool board = false;
+    bool random_board = false;
+    string file_name = "";
+    string seed = "";
+    for (int i = 1; i < argc; i++) {
+        string option = argv[i];
+	    if (option == "-load") {
+            i++;
+		    file_name = argv[i];
+            load = true;
+	    } else if (option == "-board") {
+            i++;
+            file_name = argv[i];
+            board = true;
+	    } else if (option == "-seed") {
+            i++;
+		    seed = argv[i];
+	    } 
+        else if (option == "-random-board") {
+            random_board = true;
+	    } 
+    }
+
+    b.seed(seed);
+    if (load) {
+        b.loadFile(file_name);
+        b.printBoard();
+		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
+    }
+    else if (board) {
+        b.loadBoard(file_name);
+        b.printBoard();
+		b.first8();
+    }
+    else if (random_board){
+        b.randomBoard();
+	    b.printBoard();
+        b.first8();
+    }
+    else {
+        b.printBoard();
+        b.first8();
+    }
+
     string cmd;
     cout << ">" << endl;
     while (cin >> cmd) {
@@ -14,7 +59,7 @@ int main() {
             b.status(); //DONE
         } 
         else if (cmd == "residences") { // prints the residences the current builder has currently completed
-            //NOT DONE
+            b.getRez(); //DONE
         } 
         else if (cmd == "build-road") { // attempts to build the road at <road#>
             int road;

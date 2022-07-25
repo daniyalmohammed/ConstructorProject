@@ -1,8 +1,11 @@
+#include <string>
+#include <vector>
+#include <iostream>
 #include "builder.h"
 using namespace std;
 
 Builder::Builder(int playerNum) : playerNum{playerNum}, buildingPoints{0} {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         resourcesType[i] = 0;
     }
     if (playerNum == 0){
@@ -112,9 +115,9 @@ void Builder::loseResources(){
             randomizer.emplace_back(3);
     }
 
-    default_random_engine num = rng;
+    default_random_engine num = rng_b;
     uniform_int_distribution<int> pic(0, total_resources - 1);
-    int spot = pic(num);
+    int spot = pic(rng_b);
 
     int resource = randomizer[spot];
     resourcesType[resource] -= 1;
@@ -126,19 +129,19 @@ void Builder::loseResources(){
     for (int i = 0; i < 5; i++) {
         if (removed_resources[i] > 0) {
             cout << removed_resources[i] << " ";
-            if (i == 0) {
+            if (i = 0) {
                 cout << "BRICK" << endl;
             }
-            else if (i == 1) {
+            else if (i = 1) {
                 cout << "ENERGY" << endl;
             }
-            else if (i == 2) {
+            else if (i = 2) {
                 cout << "GLASS" << endl;
             }
-            else if (i == 3) {
+            else if (i = 3) {
                 cout << "HEAT" << endl;
             }
-            else if (i == 4) {
+            else if (i = 4) {
                 cout << "WIFI" << endl;
             }
         }

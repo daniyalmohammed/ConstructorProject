@@ -17,6 +17,7 @@
 using namespace std;
 
 class Board {
+	public:
     default_random_engine rng;
     bool win;
     int curTurn;
@@ -30,7 +31,6 @@ class Board {
 	const string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	int dice_modes[4];
 	// bool loadedGame = false;
-	public:
 	void init(); // done
 	void loadFile(string file_name); // Gio
 	void save(string file_name); // Done
@@ -63,6 +63,8 @@ class Board {
 	string GeeseStr(int index); // Done
 	void testTile(); // H -- done
 	void stealResource(int steal_from); // Dani -- done
-	void getRez();
+	void getRez(); // done
+	void loadBoard(string file_name); // gio
+	void randomBoard(); // gio
 };
 #endif

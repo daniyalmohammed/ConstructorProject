@@ -15,12 +15,9 @@ void Board::init() {
     for (int r = 0; r < 72; ++r) {
         roads.emplace_back(Edge{r});
     }
-    //vertices.resize(54);
     for (int v = 0; v < 54; ++v) {
         vertices.emplace_back(Vertex{v});
-        //vertices[v]{v};
     }
-    //builders.resize(4);
     for (int b = 0; b < 4; ++b) {
         builders.emplace_back(Builder{b});
     }
