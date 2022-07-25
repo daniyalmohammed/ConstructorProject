@@ -2,6 +2,7 @@
 using namespace std;
 
 void Board::init() {
+    loadout = "0 3 1 10 3 5 1 4 5 7 3 10 2 11 0 3 3 8 0 2 0 6 1 8 4 12 1 5 4 11 2 4 4 6 2 9 2 9";
     for (int i = 0; i < 4; i++) {
         dice_modes[i] = 0;
     }
@@ -584,7 +585,7 @@ void Board::save(string file_name) {
     }
     outfile << endl;
 
-    outfile << "0 3 1 10 3 5 1 4 5 7 3 10 2 11 0 3 3 8 0 2 0 6 1 8 4 12 1 5 4 11 2 4 4 6 2 9 2 9" << endl;
+    outfile << loadout << endl;
     outfile << goose_location << endl;
 
 }
@@ -623,7 +624,7 @@ void Board::seed(string input) { // assume input is in range of std::stoi
 
 void Board::loadFile(string file_name) {
     string line;
-    ifstream infile{ file_name};
+    ifstream infile{file_name};
     getline(infile, line);
     istringstream iss_0(line);
     int n;
@@ -678,8 +679,8 @@ void Board::loadFile(string file_name) {
             tiles[j].typeofResources = -1;
             tiles[j].chance = -1;
         } else {
-            tiles[j].typeofResources = -1;
-            tiles[j].chance = -1;
+            tiles[j].typeofResources = r;
+            tiles[j].chance = c;
         }
     }
     getline(infile, line);
@@ -699,4 +700,25 @@ bool Board::checkWin(){
         }
     }
     return false;
+}
+
+void Board::loadBoard(string file_name) {
+    string line;
+    ifstream infile{file_name};
+    getline(infile, line);
+    loadout = line;
+    istringstream iss(line);
+    int r;
+    int c;
+    for (int j = 0; j < 19; ++ j) {
+        iss >> r;
+        iss >> c;
+        if (r == 5) {
+            tiles[j].typeofResources = -1;
+            tiles[j].chance = -1;
+        } else {
+            tiles[j].typeofResources = r;
+            tiles[j].chance = c;
+        }
+    }
 }

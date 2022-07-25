@@ -18,6 +18,7 @@ using namespace std;
 
 class Board {
 	public:
+	string loadout;
     default_random_engine rng;
     bool win;
     int curTurn;
@@ -32,7 +33,7 @@ class Board {
 	int dice_modes[4];
 	// bool loadedGame = false;
 	void init(); // done
-	void loadFile(string file_name); // Gio
+	void loadFile(string file_name); // Done
 	void save(string file_name); // Done
 	void seed(string input);
 	// void randomBoard();
