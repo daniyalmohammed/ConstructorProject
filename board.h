@@ -18,6 +18,7 @@ using namespace std;
 
 class Board {
 	public:
+	string loadout;
     default_random_engine rng;
     bool win;
     int curTurn;
@@ -32,7 +33,7 @@ class Board {
 	int dice_modes[4];
 	// bool loadedGame = false;
 	void init(); // done
-	void loadFile(string file_name); // Gio
+	void loadFile(string file_name); // Done
 	void save(string file_name); // Done
 	void seed(string input);
 	// void randomBoard();
@@ -57,16 +58,15 @@ class Board {
 	void buildRoad(int road_index); // Dani -- done
 	bool canFirst8(int vertex_index); // Done
 	void first8(); // H -- done
-	void moveGeese(); // Dani
+	void moveGeese(); // Done
 	int colour_to_index(string colour); // done
 	int material_to_index(string material); // Dani done
 	string GeeseStr(int index); // Done
 	void testTile(); // H -- done
 	void stealResource(int steal_from); // Dani -- done
 	void getRez(); // done
-	//void loadBoard(string file_name); // gio
+	void loadBoard(string file_name); // Done
 	void randomBoard(); // gio
 	bool checkWin(); // dani done
-	//void saveGame(string file_name); // gio save game to file file_name
 };
 #endif

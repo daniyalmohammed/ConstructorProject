@@ -2,6 +2,7 @@
 using namespace std;
 
 void Board::init() {
+    loadout = "0 3 1 10 3 5 1 4 5 7 3 10 2 11 0 3 3 8 0 2 0 6 1 8 4 12 1 5 4 11 2 4 4 6 2 9 2 9";
     for (int i = 0; i < 4; i++) {
         dice_modes[i] = 0;
     }
@@ -470,7 +471,7 @@ void Board::first8() {
 		cin >> num;
 		builders[arr[i]].basement.emplace_back(num);
 		builders[arr[i]].buildingPoints += 1;
-        vertices[num].colonize(i);
+        vertices[num].colonize(arr[i]);
 	}
 }
 
@@ -584,7 +585,7 @@ void Board::save(string file_name) {
     }
     outfile << endl;
 
-    outfile << "0 3 1 10 3 5 1 4 5 7 3 10 2 11 0 3 3 8 0 2 0 6 1 8 4 12 1 5 4 11 2 4 4 6 2 9 2 9" << endl;
+    outfile << loadout << endl;
     outfile << goose_location << endl;
 
 }
@@ -623,7 +624,7 @@ void Board::seed(string input) { // assume input is in range of std::stoi
 
 void Board::loadFile(string file_name) {
     string line;
-    ifstream infile{ file_name};
+    ifstream infile{file_name};
     getline(infile, line);
     istringstream iss_0(line);
     int n;
@@ -668,6 +669,7 @@ void Board::loadFile(string file_name) {
         }
     }
     getline(infile, line);
+    loadout = line;
     istringstream iss_3(line);
     int r;
     int c;
@@ -678,8 +680,8 @@ void Board::loadFile(string file_name) {
             tiles[j].typeofResources = -1;
             tiles[j].chance = -1;
         } else {
-            tiles[j].typeofResources = -1;
-            tiles[j].chance = -1;
+            tiles[j].typeofResources = r;
+            tiles[j].chance = c;
         }
     }
     getline(infile, line);
@@ -699,4 +701,76 @@ bool Board::checkWin(){
         }
     }
     return false;
+}
+
+void Board::loadBoard(string file_name) {
+    string line;
+    ifstream infile{file_name};
+    getline(infile, line);
+    loadout = line;
+    istringstream iss(line);
+    int r;
+    int c;
+    for (int j = 0; j < 19; ++ j) {
+        iss >> r;
+        iss >> c;
+        if (r == 5) {
+            tiles[j].typeofResources = -1;
+            tiles[j].chance = -1;
+        } else {
+            tiles[j].typeofResources = r;
+            tiles[j].chance = c;
+        }
+    }
+}
+
+void Board::randomBoard() {
+    vector<int> cha = {2,7,12,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11};
+    vector<int> types = {0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,4,4,4,5};
+    shuffle( cha.begin(), cha.end(), rng );
+    shuffle( types.begin(), types.end(), rng );
+    int sev_p;
+    int five_p;
+    for(int ch = 0; ch < 19; + ch) {
+        if (cha[ch] == 7) {
+            sev_p = ch;
+            break;
+        }
+    }
+    for(int t = 0; t < 19; ++ t) {
+        if (types[t] == 5) {
+            five_p = t;
+            break;
+        }
+    }
+    if (sev_p != five_p) {
+        int temp = cha[five_p];
+        cha[five_p] = 7;
+        cha[sev_p] = temp;
+    }
+    string newloadout = "";
+    for (int i = 0; i < 18; ++i) {
+        newloadout += to_string(types[i]);
+        newloadout += " ";
+        newloadout += to_string(cha[i]);
+        newloadout += " ";
+    }
+    newloadout += to_string(types[18]);
+    newloadout += " ";
+    newloadout += to_string(cha[18]);
+    loadout = newloadout;
+    istringstream iss(newloadout);
+    int r;
+    int c;
+    for (int j = 0; j < 19; ++ j) {
+        iss >> r;
+        iss >> c;
+        if (r == 5) {
+            tiles[j].typeofResources = -1;
+            tiles[j].chance = -1;
+        } else {
+            tiles[j].typeofResources = r;
+            tiles[j].chance = c;
+        }
+    }
 }
