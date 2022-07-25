@@ -115,9 +115,9 @@ void Builder::loseResources(){
             randomizer.emplace_back(3);
     }
 
-    default_random_engine num = rng;
+    default_random_engine num = rng_b;
     uniform_int_distribution<int> pic(0, total_resources - 1);
-    int spot = pic(rng);
+    int spot = pic(rng_b);
 
     int resource = randomizer[spot];
     resourcesType[resource] -= 1;

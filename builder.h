@@ -2,8 +2,12 @@
 #define BUILDER_H
 #include <string>
 #include <vector>
+#include <iostream>
+#include <stdexcept>
+#include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 class Builder {
     public:
@@ -20,7 +24,7 @@ class Builder {
         std::vector<int> tower;
         std::vector<int> house;
         std::vector<int> road;
-        default_random_engine rng;
+        std::default_random_engine rng_b;
                
         Builder(int playerNum); //initializes the builder and takes in the player number (0,1,2,3)
         bool basementCanBuild(); // decide if there is enough resources for a basement
@@ -34,12 +38,6 @@ class Builder {
         void getInfo(); // call when a status of a builder is printed, output message
         void loseResources(); //call on all builders when a 7 is rolled
         int totalResources(); //sums the total number of resources a builder has
-        //void improveResources(int type, int num);
-        //bool improveResidences(int pos, int residenceLevel);
-        //void steal(std::string current_builder, 
-        //std::string steal_from, int &amount, int &stolen_index);
-        // void storeStolen(int &amount, int &stolen_index);
-
 };
 
 #endif
