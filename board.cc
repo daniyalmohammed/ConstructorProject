@@ -12,18 +12,17 @@ void Board::init() {
     }
     tiles[4].geese = true;
     goose_location = 4;
-    //roads.resize(72);
     for (int r = 0; r < 72; ++r) {
-        //roads[r]{r};
+        roads.emplace_back(Edge{r});
     }
     //vertices.resize(54);
     for (int v = 0; v < 54; ++v) {
+        vertices.emplace_back(Vertex{v});
         //vertices[v]{v};
     }
     //builders.resize(4);
     for (int b = 0; b < 4; ++b) {
-        //Builder build = Builder(b);
-       // builders[b] = build;
+        builders.emplace_back(Builder{b});
     }
 }
 
@@ -288,6 +287,7 @@ bool Board::canImprove(int vertex_index) {
     }
     else {
         cout << "check Board::canImprove for bugs" << endl;
+        return false;
     }
 }
 
@@ -466,12 +466,12 @@ void Board::first8() {
     int arr[8] = {0,1,2,3,3,2,1,0};
     for (int i = 0; i < 8; i++) {
 		cout << "Builder" << " ";
-        cout << colours[i] << ", ";
+        cout << colours[arr[i]] << ", ";
         cout << "where do you want to build a basement?" << endl;
 		int num;
 		cin >> num;
-		builders[i].basement.emplace_back(num);
-		builders[i].buildingPoints += 1;
+		builders[arr[i]].basement.emplace_back(num);
+		builders[arr[i]].buildingPoints += 1;
         vertices[num].colonize(i);
 	}
 }

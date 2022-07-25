@@ -3,8 +3,10 @@ using namespace std;
 
 int main() {
     Board b;
+    b.init();
     string cmd;
     cout << ">" << endl;
+    //b.first8();
     while (cin >> cmd) {
         if (cmd == "board") { // prints the current board
             b.printBoard(); //DONE
