@@ -58,16 +58,15 @@ class Board {
 	void buildRoad(int road_index); // Dani -- done
 	bool canFirst8(int vertex_index); // Done
 	void first8(); // H -- done
-	void moveGeese(); // Dani
+	void moveGeese(); // Done
 	int colour_to_index(string colour); // done
 	int material_to_index(string material); // Dani done
 	string GeeseStr(int index); // Done
 	void testTile(); // H -- done
 	void stealResource(int steal_from); // Dani -- done
 	void getRez(); // done
-	void loadBoard(string file_name); // gio
+	void loadBoard(string file_name); // Done
 	void randomBoard(); // gio
 	bool checkWin(); // dani done
-	void saveGame(string file_name); // gio save game to file file_name
 };
 #endif

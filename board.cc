@@ -722,3 +722,54 @@ void Board::loadBoard(string file_name) {
         }
     }
 }
+
+void Board::randomBoard() {
+    vector<int> cha = {2,7,12,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11};
+    vector<int> types = {0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,4,4,4,5};
+    shuffle( cha.begin(), cha.end(), rng );
+    shuffle( types.begin(), types.end(), rng );
+    int sev_p;
+    int five_p;
+    for(int ch = 0; ch < 19; + ch) {
+        if (cha[ch] == 7) {
+            sev_p = ch;
+            break;
+        }
+    }
+    for(int t = 0; t < 19; ++ t) {
+        if (types[t] == 5) {
+            five_p = t;
+            break;
+        }
+    }
+    if (sev_p != five_p) {
+        int temp = cha[five_p];
+        cha[five_p] = 7;
+        cha[sev_p] = temp;
+    }
+    string newloadout = "";
+    for (int i = 0; i < 18; ++i) {
+        newloadout += to_string(types[i]);
+        newloadout += " ";
+        newloadout += to_string(cha[i]);
+        newloadout += " ";
+    }
+    newloadout += to_string(types[18]);
+    newloadout += " ";
+    newloadout += to_string(cha[18]);
+    loadout = newloadout;
+    istringstream iss(newloadout);
+    int r;
+    int c;
+    for (int j = 0; j < 19; ++ j) {
+        iss >> r;
+        iss >> c;
+        if (r == 5) {
+            tiles[j].typeofResources = -1;
+            tiles[j].chance = -1;
+        } else {
+            tiles[j].typeofResources = r;
+            tiles[j].chance = c;
+        }
+    }
+}
