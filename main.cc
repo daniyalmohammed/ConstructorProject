@@ -53,8 +53,10 @@ void during_turn(Board b){
             break;
             //DONE
         } 
-        else if (cmd == "save <file>") { // saves the current game state to <file>
-            //NOT DONE
+        else if (cmd == "save") { // saves the current game state to <file>
+            string file;
+            cin >> file;
+            b.saveGame(file);
         } 
         else if (cmd == "help") { // prints out the list of commands
             b.helpCommandsPrint();

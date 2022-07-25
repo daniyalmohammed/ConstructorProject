@@ -593,6 +593,7 @@ void Board::save(string file_name) {
 void Board::getRez() {
     for(auto v : vertices) {
         if (v.owner_index == curTurn) {
+            cout << colours[curTurn] << "has built: " << endl;
             cout << (v.pos) << " ";
             if (v.residenceLevel == 1) {
                 cout << "B ";
