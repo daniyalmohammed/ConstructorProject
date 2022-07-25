@@ -66,5 +66,6 @@ class Board {
 	void getRez(); // done
 	void loadBoard(string file_name); // gio
 	void randomBoard(); // gio
+	bool checkWin(); // dani print winner message
 };
 #endif
