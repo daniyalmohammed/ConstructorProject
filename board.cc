@@ -613,5 +613,8 @@ void Board::seed(string input) { // assume input is in range of std::stoi
         seed = stoi(input);
     }
     rng = default_random_engine{seed};
+    for (int i = 0; i < 4; i++) {
+        builders[i].rng_b = rng;
+    }
 }
 
