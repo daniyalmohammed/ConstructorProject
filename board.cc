@@ -375,9 +375,9 @@ void Board::next() {
     if (curTurn == 4) {
         curTurn = 0;
     }
+    printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
     builders[curTurn].getInfo();
-    printBoard();
 }
 
 void Board::testTile() {
@@ -435,10 +435,12 @@ void Board::distribution(int n) {
     if (give == true) {
         for (int player = 0; player < 4; player++) {
             int resources[5] = {0, 0, 0, 0, 0};
+
             for (int resource = 0; resource < 5; resource++) {
                 builders[player].resourcesType[resource] += getting[player][resource];
                 resources[resource] += getting[player][resource];
             }
+
             bool did_gain = false;
             for (int resource = 0; resource < 5; resource++) {
                 if (resources[resource] > 0) {
@@ -595,7 +597,7 @@ void Board::save(string file_name) {
 
 
 void Board::getRez() {
-    cout << colours[curTurn] << "has built:" << endl;
+    cout << colours[curTurn] << " has built:" << endl;
     for(auto v : vertices) {
         if (v.owner_index == curTurn) {
             cout << (v.pos) << " ";
