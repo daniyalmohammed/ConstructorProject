@@ -12,6 +12,8 @@ class Tile {
         int typeofResources;
         int chance;
         Tile(int tile_index);
+        string to_s();
+        string c_to_s();
 };
 
 #endif
