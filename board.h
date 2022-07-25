@@ -64,9 +64,9 @@ class Board {
 	void testTile(); // H -- done
 	void stealResource(int steal_from); // Dani -- done
 	void getRez(); // done
-	void loadBoard(string file_name); // gio
+	//void loadBoard(string file_name); // gio
 	void randomBoard(); // gio
 	bool checkWin(); // dani done
-	void saveGame(string file_name); // gio save game to file file_name
+	//void saveGame(string file_name); // gio save game to file file_name
 };
 #endif

@@ -56,7 +56,7 @@ void during_turn(Board b){
         else if (cmd == "save") { // saves the current game state to <file>
             string file;
             cin >> file;
-            b.saveGame(file);
+            b.save(file);
         } 
         else if (cmd == "help") { // prints out the list of commands
             b.helpCommandsPrint();
@@ -127,12 +127,12 @@ int main(int argc, char** argv) {
 		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
     }
     else if (board) {
-        b.loadBoard(file_name);
+        //b.loadFile(file_name);
         b.printBoard();
 		b.first8();
     }
     else if (random_board){
-        b.randomBoard();
+        //b.randomBoard();
 	    b.printBoard();
         b.first8();
     }
