@@ -376,6 +376,7 @@ void Board::next() {
         curTurn = 0;
     }
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
+    builders[curTurn].getInfo();
     printBoard();
 }
 
@@ -385,19 +386,6 @@ void Board::testTile() {
         cout << "type is" << " " << t.typeofResources;
 		cout << " " << "chance is" << " " << t.chance << endl;
 	}
-}
-
-void Board::residences() {
-	cout << colours[curTurn] << " " << "has built:" << endl;
-	for (int i : builders[curTurn].basement) {
-		cout << i << " " << "B" << endl;
-	} 
-	for (int j : builders[curTurn].house) {
-        cout << j << " " << "H" << endl;
-    }
-	for (int k : builders[curTurn].tower) {
-        cout << k << " " << "T" << endl;
-    }
 }
 
 void Board::stealResource(int steal_from) { //dani done
@@ -485,6 +473,8 @@ void Board::first8() {
 	}
     printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
+    builders[curTurn].getInfo();
+
 }
 
 void Board::save(string file_name) {
@@ -604,20 +594,20 @@ void Board::save(string file_name) {
 
 
 void Board::getRez() {
+    cout << colours[curTurn] << "has built:" << endl;
     for(auto v : vertices) {
         if (v.owner_index == curTurn) {
-            cout << colours[curTurn] << "has built: " << endl;
             cout << (v.pos) << " ";
             if (v.residenceLevel == 1) {
-                cout << "B ";
+                cout << "B";
             } else if (v.residenceLevel == 2) {
-                cout << "H ";
+                cout << "H";
             } else {
-                cout << "T ";
+                cout << "T";
             }
+            cout << endl;
         } 
     }
-    cout << endl;
 }
 
 void Board::seed(string input) { // assume input is in range of std::stoi

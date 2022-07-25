@@ -42,7 +42,6 @@ class Board {
 	// std::string convert(int num);
 	// std::string trans(std::string str);
 	void printBoard(); // Done
-	void residences(); // H -- done
 	void helpCommandsPrint(); // Dani -- done
 	void next(); // H -- done
 	bool canBuild(int vertex_index); //Dani -- done
