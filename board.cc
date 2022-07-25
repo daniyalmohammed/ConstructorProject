@@ -738,8 +738,8 @@ void Board::randomBoard() {
     vector<int> types = {0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,4,4,4,5};
     shuffle( cha.begin(), cha.end(), rng );
     shuffle( types.begin(), types.end(), rng );
-    int sev_p;
-    int five_p;
+    int sev_p = -2;
+    int five_p = -1;
     for(int ch = 0; ch < 19; ++ch) {
         if (cha[ch] == 7) {
             sev_p = ch;
