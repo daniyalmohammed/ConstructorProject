@@ -388,6 +388,7 @@ void Board::testTile() {
 	}
 }
 
+
 void Board::stealResource(int steal_from) { //dani done
     int total_resources = builders[steal_from].totalResources();
     vector<int> randomizer;
@@ -467,7 +468,7 @@ void Board::first8() {
 		    cin >> num;
             checking = canFirst8(num);
         }
-		builders[arr[i]].basement.emplace_back(num);
+		//builders[arr[i]].basement.emplace_back(num);
 		builders[arr[i]].buildingPoints += 1;
         vertices[num].colonize(arr[i]);
 	}
