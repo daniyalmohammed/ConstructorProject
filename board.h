@@ -34,7 +34,7 @@ class Board {
 	void init(); // done
 	void loadFile(string file_name); // Gio
 	void save(string file_name); // Done
-	// vector<int> seed(string input);
+	void seed(string input);
 	// void randomBoard();
 	void trade(string color, string give, string take); // Dani -- done
 	void status(); // Dani - done

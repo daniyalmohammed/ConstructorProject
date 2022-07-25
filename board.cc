@@ -163,9 +163,10 @@ void Board::rollDice() {
 } 
 
 void Board::fairDice() {
-    default_random_engine num = rng;
-    uniform_int_distribution<int> pic(2,12);
-    int n = pic(num);
+    uniform_int_distribution<int> pic(1,6);
+    int n_1 = pic(rng);
+    int n_2 = pic(rng);
+    int n = n_1 + n_2;
     if (n == 7) {
 	    moveGeese();
     } else {
@@ -606,5 +607,14 @@ void Board::getRez() {
         } 
     }
     cout << endl;
+}
+
+void Board::seed(string input) { // assume input is in range of std::stoi
+    //vector<int> v;
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    if (input != "") {
+        seed = stoi(input);
+    }
+    rng = default_random_engine{seed};
 }
 
