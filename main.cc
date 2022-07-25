@@ -130,18 +130,16 @@ int main(int argc, char** argv) {
         b.loadBoard(file_name);
         b.printBoard();
 		b.first8();
-        b.printBoard();
+
     }
     else if (random_board){
         b.randomBoard();
 	    b.printBoard();
         b.first8();
-        b.printBoard();
     }
     else {
         b.printBoard();
         b.first8();
-        b.printBoard();
     }
 
     bool game_over = false;

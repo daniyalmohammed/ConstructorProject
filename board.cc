@@ -483,6 +483,7 @@ void Board::first8() {
 		builders[arr[i]].buildingPoints += 1;
         vertices[num].colonize(arr[i]);
 	}
+    printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
 }
 
