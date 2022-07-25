@@ -165,12 +165,12 @@ void Board::fairDice() {
     int n_1 = pic(rng);
     int n_2 = pic(rng);
     int n = n_1 + n_2;
+    cout << n << " has been rolled." << endl;
     if (n == 7) {
 	    moveGeese();
     } else {
 	    distribution(n);
     }
-    cout << n << " has been rolled." << endl;
 }
 
 
@@ -450,9 +450,13 @@ void Board::distribution(int n) {
                 builders[player].resourcesType[resource] += getting[player][resource];
                 resources[resource] += getting[player][resource];
             }
-            cout << "Builder " << colours[player] << " gained: " << endl;
+            bool did_gain = false;
             for (int resource = 0; resource < 5; resource++) {
                 if (resources[resource] > 0) {
+                    if (!did_gain) {
+                    cout << "Builder " << colours[player] << " gained: " << endl;
+                    did_gain = true;
+                    }
                     cout << resources[resource] << " " << types[resource] << endl;
                 }
             }
