@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Mon Jul 25 16:05:07 2022
+# Make data base, printed on Mon Jul 25 18:50:27 2022
 
 # Variables
 
@@ -32,8 +29,8 @@ SHELL = /bin/sh
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
+# makefile (from `vertices.d', line 1)
+MAKEFILE_LIST :=  Makefile main.d tile.d builder.d board.d edges.d vertices.d
 # makefile (from `Makefile', line 11)
 CXXFLAGS = -std=c++14 -g -Wall -MMD	-Werror=vla		
 # environment
@@ -151,7 +148,7 @@ LANG = C
 # environment
 VSCODE_PID = 97069
 # variable set hash-table stats:
-# Load=68/1024=7%, Rehash=0, Collisions=3/99=3%
+# Load=68/1024=7%, Rehash=0, Collisions=3/111=3%
 
 # Pattern-specific Variable Values
 
@@ -159,9 +156,9 @@ VSCODE_PID = 97069
 
 # Directories
 
-# . (device 16777221, inode 34876919): 28 files, no impossibilities.
+# . (device 16777221, inode 34876919): 41 files, no impossibilities.
 
-# 28 files, no impossibilities in 1 directories.
+# 41 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -184,12 +181,18 @@ all:
 #  File has not been updated.
 
 # Not a target:
+vertices.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 tile.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-25 18:37:12
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -197,13 +200,13 @@ tile.d:
 board.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-25 18:37:14
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-edges.o: Makefile
+edges.o: Makefile edges.cc edges.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -223,6 +226,12 @@ Makefile:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+# Not a target:
+edges.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 final: main.o tile.o builder.o board.o edges.o vertices.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -232,21 +241,27 @@ final: main.o tile.o builder.o board.o edges.o vertices.o
 	
 
 # Not a target:
-vertices.d:
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-tile.o: Makefile
+builder.h:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-board.o: Makefile
+# Not a target:
+vertices.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 18:37:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+tile.o: Makefile tile.cc tile.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+board.o: Makefile board.cc board.h tile.h builder.h vertices.h edges.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -255,9 +270,9 @@ board.o: Makefile
 main.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-25 18:37:11
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -265,9 +280,9 @@ main.d:
 builder.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-25 18:37:13
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -277,13 +292,28 @@ builder.d:
 #  Modification time never checked.
 #  File has not been updated.
 
-vertices.o: Makefile
+# Not a target:
+tile.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+board.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+vertices.o: Makefile vertices.cc vertices.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
+ 
+make: *** No rule to make target `all'.  Stop.
+
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
@@ -291,12 +321,24 @@ clean:
 	rm -f ${DEPENDS} ${OBJECTS} ${EXEC}
 	
 
-main.o: Makefile
+# Not a target:
+edges.h:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-builder.o: Makefile
+# Not a target:
+vertices.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+main.o: Makefile main.cc board.h tile.h builder.h vertices.h edges.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+builder.o: Makefile builder.cc builder.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -305,14 +347,38 @@ builder.o: Makefile
 edges.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-25 18:37:15
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+# Not a target:
+main.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+tile.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+board.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+builder.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=19/1024=2%, Rehash=0, Collisions=0/50=0%
+# Load=30/1024=3%, Rehash=0, Collisions=0/87=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -324,6 +390,6 @@ edges.d:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4036 / max = 4036 / min = 4036 / avg = 4036
 
-# Finished Make data base on Mon Jul 25 16:05:07 2022
+# Finished Make data base on Mon Jul 25 18:50:27 2022
 
  
