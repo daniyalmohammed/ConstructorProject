@@ -734,13 +734,13 @@ void Board::randomBoard() {
     shuffle( types.begin(), types.end(), rng );
     int sev_p;
     int five_p;
-    for(int ch = 0; ch < 19; + ch) {
+    for(int ch = 0; ch < 19; ++ch) {
         if (cha[ch] == 7) {
             sev_p = ch;
             break;
         }
     }
-    for(int t = 0; t < 19; ++ t) {
+    for(int t = 0; t < 19; ++t) {
         if (types[t] == 5) {
             five_p = t;
             break;
