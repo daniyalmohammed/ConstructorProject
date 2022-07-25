@@ -144,7 +144,6 @@ int main(int argc, char** argv) {
         beginning_turn(b);
         during_turn(b);
         if (b.checkWin()) {
-            bool game_over = true;
             while(1){
                 string input;
                 cout << "Would you like to play again?" << endl;
