@@ -281,6 +281,7 @@ bool Board::trade(string color, string give, string take){ // Dani -- done
     int give_int = material_to_index(give);
     int take_int = material_to_index(take);
 
+    while(1) {
     string input = "";
     if (!(cin >> input)) {
         if (cin.eof()) {
@@ -288,16 +289,32 @@ bool Board::trade(string color, string give, string take){ // Dani -- done
             return false;
         }
     }
-    if (input == "yes") {
-        if ((builders[curTurn].resourcesType[give_int] < 1) || (builders[num_colour].resourcesType[take_int] < 1)){
-            cout << "Builder does not have enough resources for the given trade." << endl;
+    if (input == "yes" || input == "YES" || input == "Yes") {
+        if ((builders[curTurn].resourcesType[give_int] < 1)){
+            cout << "Builder " << colours[curTurn] << " does not have enough resources for the given trade." << endl;
+            break;
+        }
+        else if ((builders[num_colour].resourcesType[take_int] < 1)){
+            cout << "Builder " << color << " does not have enough resources for the given trade." << endl;
+            break;
         }
         else {
             builders[curTurn].resourcesType[give_int] -= 1;
             builders[curTurn].resourcesType[take_int] += 1;
             builders[num_colour].resourcesType[give_int] += 1;
             builders[num_colour].resourcesType[take_int] -= 1;
+            cout << "Builder " << colours[curTurn] << " has traded " << give << " to "
+            << color << " for " << take << "." << endl;
+            break;
         }
+    }
+    else if (input == "NO" || input == "no" || input == "No") {
+        cout << "Builder " << color << " has declined the trade." << endl;
+        break;
+    }
+    else {
+        cout << "Invalid Input (yes/no) " << endl;
+    }
     }
     return true;
 }
@@ -388,7 +405,7 @@ bool Board::moveGeese() {
     Here[curTurn] = false;
 
     for (int i = 0; i < 4; i++) {
-        if (builders[i].totalResources() != 0) {
+        if (builders[i].totalResources() == 0) {
             Here[i] = false;
         }
     }
@@ -430,6 +447,7 @@ bool Board::moveGeese() {
             }
             else {
                 cout << "Not a valid builder to steal from. Try again." << endl;
+                cout << "Builder " + colours[curTurn] + " can choose to steal from " + victimes + "." << endl;
             }
         }
     } else {
