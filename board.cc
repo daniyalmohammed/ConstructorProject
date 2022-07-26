@@ -52,6 +52,7 @@ bool Board::canBuild(int vertex_index) {
 }
 
 void Board::build(int vertex_index) {
+    cout << "Builder " << colours[curTurn] << " has built a basement at " << vertex_index << endl;
     vertices[vertex_index].colonize(curTurn);
     builders[curTurn].basementBuild();
 }
@@ -142,6 +143,8 @@ void Board::loadedDice() {
         if (!(cin >> n)) {
             cout << "Invalid roll." << endl;
             cout << "Input a roll between 2 and 12:" << endl;// H
+            cin.clear();
+            cin.ignore();
         } else if (n < 2 || n > 12) {
             cout << "Invalid roll." << endl;
             cout << "Input a roll between 2 and 12:" << endl;// H
@@ -234,7 +237,7 @@ void Board::status() { // - dani completed
 }
 
 void Board::helpCommandsPrint() { //done
-    cout << "Valid commands:" << endl;
+    cout << "Valid commands: (During Turn)" << endl;
     cout << "board" << endl;
     cout << "status" << endl;
     cout << "residences" << endl;
