@@ -25,7 +25,10 @@ void Board::init() {
 }
 
 bool Board::canBuild(int vertex_index) {
-    if (vertices[vertex_index].owner_index != -1) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot build here." << endl;
+        return false;
+    } else if (vertices[vertex_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
@@ -54,7 +57,10 @@ void Board::build(int vertex_index) {
 }
 
 bool Board::canBuildRoad(int road_index) {
-    if (roads[road_index].owner_index != -1) {
+    if (road_index < 0 || road_index > 71) {
+        cout << "You cannot build here." << endl;
+        return false;
+    } else if (roads[road_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
@@ -274,7 +280,10 @@ void Board::trade(string color, string give, string take){ // Dani -- done
 
 
 bool Board::canImprove(int vertex_index) {
-    if (vertices[vertex_index].residenceLevel == 3) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot improve here." << endl;
+        return false;
+    } else if (vertices[vertex_index].residenceLevel == 3) {
         cout << "You cannot improve here." << endl;
         return false;
     }
@@ -307,7 +316,10 @@ void Board::improve(int vertex_index) {
 }
 
 bool Board::canFirst8(int vertex_index) {
-    if (vertices[vertex_index].owner_index != -1) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot build here." << endl;
+        return false;
+    } else if (vertices[vertex_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
@@ -323,9 +335,15 @@ bool Board::canFirst8(int vertex_index) {
 
 void Board::moveGeese() {
     int index;
-    //check if valid spot
-    cout << "Choose where to place the GEESE." << endl;
-    cin >> index;
+    while (true) {
+        cout << "Choose where to place the GEESE." << endl;
+        cin >> index;
+        if (index < 0 || index > 18 || index == goose_location) {
+            cout << "GEESE cannot be placed here" << endl;
+        } else {
+            break;
+        }
+    }
     tiles[goose_location].geese = false;
     tiles[index].geese = true;
     goose_location = index;
