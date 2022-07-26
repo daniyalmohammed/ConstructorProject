@@ -149,6 +149,7 @@ void beginning_turn(Board &b){
 
 int main(int argc, char** argv) {
     bool quit_game = false;
+    bool restarted_game = false;
     while(!(quit_game))  {
     Board b;
     b.init();
@@ -178,7 +179,16 @@ int main(int argc, char** argv) {
     }
 
     b.seed(seed);
-    if (load) {
+    
+    if (restarted_game) {
+        if (random_board) {
+            b.randomBoard();
+        }
+	    b.printBoard();
+        b.first8();
+    }
+
+    else if (load) {
         b.loadFile(file_name);
         b.printBoard();
         cout << endl;
@@ -191,7 +201,9 @@ int main(int argc, char** argv) {
                 string input;
                 cout << "Would you like to play again?" << endl;
                 cin >> input;
+                toLowerCase(input);
                 if (input == "yes") {
+                    restarted_game = true;
                     quit_game = false;
                     break;
                 }
@@ -230,7 +242,9 @@ int main(int argc, char** argv) {
                 string input;
                 cout << "Would you like to play again?" << endl;
                 cin >> input;
+                toLowerCase(input);
                 if (input == "yes") {
+                    restarted_game = true;
                     quit_game = false;
                     break;
                 }
