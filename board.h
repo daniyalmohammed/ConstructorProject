@@ -37,7 +37,7 @@ class Board {
 	void save(string file_name); // Done
 	void seed(string input);
 	// void randomBoard();
-	void trade(string color, string give, string take); // Dani -- done
+	bool trade(string color, string give, string take); // Dani -- done
 	void status(); // Dani - done
 	// std::string convert(int num);
 	// std::string trans(std::string str);
@@ -51,13 +51,13 @@ class Board {
 	void distribution(int n); // Done
 	void SevenRolled(); // Dani -- done
 	void rollDice(); // H -- done
-	void loadedDice(); // H -- done
+	bool loadedDice(); // H -- done
 	void fairDice(); // H -- done
 	bool canBuildRoad(int road_index); // Dani -- done
 	void buildRoad(int road_index); // Dani -- done
 	bool canFirst8(int vertex_index); // Done
-	void first8(); // H -- done
-	void moveGeese(); // Done
+	bool first8(); // H -- done
+	bool moveGeese(); // Done
 	int colour_to_index(string colour); // done
 	int material_to_index(string material); // Dani done
 	string GeeseStr(int index); // Done

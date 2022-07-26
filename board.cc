@@ -136,11 +136,15 @@ string Board::GeeseStr(int index) {
     return "     ";
 }
 
-void Board::loadedDice() {
+bool Board::loadedDice() {
     cout << "Input a roll between 2 and 12:" << endl;// H
     int n;
     while (true) {
         if (!(cin >> n)) {
+            if (cin.eof()) {
+                save("backup.sv");
+                return false;
+            }
             cout << "Invalid roll." << endl;
             cout << "Input a roll between 2 and 12:" << endl;// H
             cin.clear();
@@ -158,7 +162,8 @@ void Board::loadedDice() {
         moveGeese();
     } else {
         distribution(n);
-    }        
+    }
+    return true;       
 }
     
 
@@ -256,7 +261,7 @@ void Board::SevenRolled() { // called to remove resources of builders -- done
     }
 } 
 
-void Board::trade(string color, string give, string take){ // Dani -- done
+bool Board::trade(string color, string give, string take){ // Dani -- done
 
     cout << colours[curTurn] << " offers " << color << 
     " one " << give << " for one " << take << "." << endl;
@@ -267,7 +272,12 @@ void Board::trade(string color, string give, string take){ // Dani -- done
     int take_int = material_to_index(take);
 
     string input = "";
-    cin >> input;
+    if (!(cin >> input)) {
+        if (cin.eof()) {
+            save("backup.sv");
+            return false;
+        }
+    }
     if (input == "yes") {
         if ((builders[curTurn].resourcesType[give_int] < 1) || (builders[num_colour].resourcesType[take_int] < 1)){
             cout << "Builder does not have enough resources for the given trade." << endl;
@@ -279,6 +289,7 @@ void Board::trade(string color, string give, string take){ // Dani -- done
             builders[num_colour].resourcesType[take_int] -= 1;
         }
     }
+    return true;
 }
 
 
@@ -336,12 +347,20 @@ bool Board::canFirst8(int vertex_index) {
 }
 
 
-void Board::moveGeese() {
+bool Board::moveGeese() {
     int index;
     while (true) {
         cout << "Choose where to place the GEESE." << endl;
-        cin >> index;
-        if (index < 0 || index > 18 || index == goose_location) {
+        if (!(cin >> index)) {
+            if (cin.eof()) {
+                save("backup.sv");
+                return false;
+            } else {
+                cin.clear();
+                cin.ignore();
+                cout << "Please enter an integer" << endl;
+            }
+        } else if (index < 0 || index > 18 || index == goose_location) {
             cout << "GEESE cannot be placed here" << endl;
         } else {
             break;
@@ -379,12 +398,16 @@ void Board::moveGeese() {
         }
         cout << "Builder " + colours[curTurn] + " can choose to steal from " + victimes + "." << endl;
         
-        string input;
         cout << "Choose a builder to steal from." << endl;
 
         while(1) {
             string input = "";
-            cin >> input;
+            if (!(cin >> input)) {
+                if (cin.eof()) {
+                    save("backup.sv");
+                    return false;
+                }
+            }
             bool is_builder = false;
             for (int i = 0; i < vect_victims.size(); i++) {
                 if (input == vect_victims[i]) {
@@ -402,7 +425,7 @@ void Board::moveGeese() {
     } else {
         cout << "Builder " + colours[curTurn] + " has no builders to steal from." << endl;
     }
-
+    return true;
 }
 
 void Board::next() {
@@ -500,7 +523,7 @@ void Board::distribution(int n) {
     }
 }
 
-void Board::first8() {
+bool Board::first8() {
     int arr[8] = {0,1,2,3,3,2,1,0};
     for (int i = 0; i < 8; i++) {
         bool checking = false;
@@ -509,8 +532,18 @@ void Board::first8() {
         cout << "Where do you want to build a basement?" << endl;
         int num;
         while (! checking) {
-		    cin >> num;
-            checking = canFirst8(num);
+            if (!(cin >> num)) {
+                if (cin.eof()) {
+                    save("backup.sv");
+                    return false;
+                } else {
+                    cin.clear();
+                    cin.ignore();
+                    cout << "Please enter an integer" << endl;
+                }
+            } else {
+                checking = canFirst8(num);
+            }
         }
 		//builders[arr[i]].basement.emplace_back(num);
 		builders[arr[i]].buildingPoints += 1;
@@ -519,7 +552,7 @@ void Board::first8() {
     printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
     builders[curTurn].getInfo();
-
+    return true;
 }
 
 void Board::save(string file_name) {
