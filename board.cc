@@ -52,6 +52,7 @@ bool Board::canBuild(int vertex_index) {
 }
 
 void Board::build(int vertex_index) {
+    cout << "Builder " << colours[curTurn] << " has built a basement at " << vertex_index << endl;
     vertices[vertex_index].colonize(curTurn);
     builders[curTurn].basementBuild();
 }
