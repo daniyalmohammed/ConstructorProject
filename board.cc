@@ -159,7 +159,9 @@ bool Board::loadedDice() {
     }
     if (n == 7) {
         SevenRolled(); //removes resources if necessary and produces output - Dani
-        moveGeese();
+        if (!(moveGeese())) {
+            return false;
+        }
     } else {
         distribution(n);
     }
@@ -168,25 +170,33 @@ bool Board::loadedDice() {
     
 
    
-void Board::rollDice() {
+bool Board::rollDice() {
     if (dice_modes[curTurn] == 0) {
-        loadedDice();
+        if (!(loadedDice())) {
+            return false;
+        }
     } else {
-        fairDice();
+        if (!(fairDice())) {
+            return false;
+        }
     }
+    return true;
 } 
 
-void Board::fairDice() {
+bool Board::fairDice() {
     uniform_int_distribution<int> pic(1,6);
     int n_1 = pic(rng);
     int n_2 = pic(rng);
     int n = n_1 + n_2;
     cout << n << " has been rolled." << endl;
     if (n == 7) {
-	    moveGeese();
+	    if (!(moveGeese())) {
+            return false;
+        }
     } else {
 	    distribution(n);
     }
+    return true;
 }
 
 

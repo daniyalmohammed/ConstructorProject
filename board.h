@@ -50,9 +50,9 @@ class Board {
 	void improve(int vertex_index); // Dani -- material done
 	void distribution(int n); // Done
 	void SevenRolled(); // Dani -- done
-	void rollDice(); // H -- done
+	bool rollDice(); // H -- done
 	bool loadedDice(); // H -- done
-	void fairDice(); // H -- done
+	bool fairDice(); // H -- done
 	bool canBuildRoad(int road_index); // Dani -- done
 	void buildRoad(int road_index); // Dani -- done
 	bool canFirst8(int vertex_index); // Done
