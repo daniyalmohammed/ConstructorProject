@@ -827,9 +827,12 @@ void Board::loadBoard(string file_name) {
         if (r == 5) {
             tiles[j].typeofResources = -1;
             tiles[j].chance = -1;
+            tiles[j].geese = true;
+            goose_location = j;
         } else {
             tiles[j].typeofResources = r;
             tiles[j].chance = c;
+            tiles[j].geese = false;
         }
     }
 }
