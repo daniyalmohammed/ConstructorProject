@@ -57,7 +57,10 @@ void Board::build(int vertex_index) {
 }
 
 bool Board::canBuildRoad(int road_index) {
-    if (roads[road_index].owner_index != -1) {
+    if (road_index < 0 || road_index > 71) {
+        cout << "You cannot build here." << endl;
+        return false;
+    } else if (roads[road_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
