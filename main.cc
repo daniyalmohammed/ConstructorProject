@@ -110,7 +110,6 @@ void beginning_turn(Board &b){
 }
 
 int main(int argc, char** argv) {
-
     bool quit_game = false;
     while(!(quit_game))  {
     Board b;
@@ -118,6 +117,7 @@ int main(int argc, char** argv) {
     bool load = false;
     bool board = false;
     bool random_board = false;
+    bool game_over = false;
     string file_name = "";
     string seed = "";
     for (int i = 1; i < argc; i++) {
@@ -145,8 +145,27 @@ int main(int argc, char** argv) {
         b.printBoard();
         cout << endl;
 		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
-        b.builders[b.curTurn].getInfo();
+        //b.builders[b.curTurn].getInfo();
         during_turn(b);
+            if (b.checkWin()) {
+                    game_over = true;
+            while(1){
+                string input;
+                cout << "Would you like to play again?" << endl;
+                cin >> input;
+                if (input == "yes") {
+                    quit_game = false;
+                    break;
+                }
+                else if (input == "no") {
+                    quit_game = true;
+                    break;
+                }
+                else {
+                    cout << "Invalid command." << endl;
+                }
+            }
+        }
     }
     else if (board) {
         b.loadBoard(file_name);
@@ -164,11 +183,11 @@ int main(int argc, char** argv) {
         b.first8();
     }
 
-    bool game_over = false;
-    while(!(game_over)) {
+    while(!(game_over) && (!quit_game)) {
         beginning_turn(b);
         during_turn(b);
         if (b.checkWin()) {
+            game_over = true;
             while(1){
                 string input;
                 cout << "Would you like to play again?" << endl;

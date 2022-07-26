@@ -274,9 +274,11 @@ void Board::trade(string color, string give, string take){ // Dani -- done
 
 bool Board::canImprove(int vertex_index) {
     if (vertices[vertex_index].residenceLevel == 3) {
+        cout << "You cannot improve here." << endl;
         return false;
     }
     else if (vertices[vertex_index].owner_index != curTurn) {
+        cout << "You cannot improve here." << endl;
         return false;
     }
     else if (vertices[vertex_index].residenceLevel == 1) {
@@ -293,9 +295,11 @@ bool Board::canImprove(int vertex_index) {
 
 void Board::improve(int vertex_index) {
     if (vertices[vertex_index].residenceLevel == 1) {
+        cout << "Builder " << curTurn << " has built a house at " << vertex_index << endl;
         builders[curTurn].houseBuild();
     }
     else if (vertices[vertex_index].residenceLevel == 2) {
+        cout << "Builder " << curTurn << " has built a tower at " << vertex_index << endl;
         builders[curTurn].towerBuild();
     }
     vertices[vertex_index].upgrade();
@@ -380,13 +384,19 @@ void Board::moveGeese() {
 }
 
 void Board::next() {
+    int oldTurn = curTurn;
     curTurn += 1;
     if (curTurn == 4) {
         curTurn = 0;
     }
+    if (!checkWin()) {
     printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
     builders[curTurn].getInfo();
+    }
+    else {
+        cout << "Player " << colours[oldTurn] << " wins the game!" << endl;
+    }
 }
 
 void Board::testTile() {
@@ -713,7 +723,6 @@ void Board::loadFile(string file_name) {
 bool Board::checkWin(){
     for (int i = 0; i < 4; i++){
         if (builders[i].buildingPoints >= 10){
-            cout << "Player " << colours[i] << "wins the game!" << endl;
             return true;
         }
     }
