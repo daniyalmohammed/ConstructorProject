@@ -20,7 +20,7 @@ class Board {
 	public:
 	string loadout;
     default_random_engine rng;
-    bool win;
+    //bool win;
     int curTurn;
     int goose_location;
     vector<Tile> tiles;
@@ -65,7 +65,8 @@ class Board {
 	void stealResource(int steal_from); // Dani -- done
 	void getRez(); // done
 	void loadBoard(string file_name); // Done
-	void randomBoard(); // gio
+	void randomBoard(); // done
 	bool checkWin(); // dani done
+	void resetLoad();// Gio
 };
 #endif

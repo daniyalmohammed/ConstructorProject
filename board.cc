@@ -7,7 +7,7 @@ void Board::init() {
         dice_modes[i] = 0;
     }
     curTurn = 0;
-    win = false;
+    //win = false;
     for (int t = 0; t < 19; ++t) {
         tiles.emplace_back(Tile{t});
     }
@@ -416,7 +416,8 @@ void Board::next() {
     builders[curTurn].getInfo();
     }
     else {
-        cout << "Player " << colours[oldTurn] << " wins the game!" << endl;
+        cout << "Player " << colours[oldTurn] << " wins the game with "
+        << builders[oldTurn].buildingPoints << " points." << endl;
     }
 }
 
@@ -824,3 +825,35 @@ void Board::randomBoard() {
     tiles[five_p].geese = true;
     goose_location = five_p;
 }
+
+
+void Board::resetLoad() {
+    for (int i = 0; i < 4; i++) {
+        dice_modes[i] = 0;
+    }
+    curTurn = 0;
+    //win = false;
+    for (auto t: tiles) {
+        t.geese = false;
+        if (t.typeofResources == -1) {
+            t.geese = true;
+            goose_location = t.pos;
+        }
+    }
+    for (auto r : roads) {
+        r.owner_index = -1;
+    }
+    for (auto v: vertices) {
+        v.residenceLevel = 0;
+        v.owner_index = -1;
+    }
+    for (auto b: builders) {
+        b.buildingPoints = 0;
+        b.resourcesType[0] = 0;
+        b.resourcesType[1] = 0;
+        b.resourcesType[2] = 0;
+        b.resourcesType[3] = 0;
+        b.resourcesType[4] = 0;
+    }
+}
+
