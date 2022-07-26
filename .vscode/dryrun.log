@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/giovanighanem/Desktop/cs246 project/ConstructorProject-2'
+make: Entering directory `/Users/giovanighanem/Desktop/cs246 project/ConstructorProject-3'
 g++					 -std=c++14 -g -Wall -MMD	-Werror=vla		   -c -o main.o main.cc
 g++					 -std=c++14 -g -Wall -MMD	-Werror=vla		   -c -o tile.o tile.cc
 g++					 -std=c++14 -g -Wall -MMD	-Werror=vla		   -c -o builder.o builder.cc
@@ -7,5 +7,5 @@ g++					 -std=c++14 -g -Wall -MMD	-Werror=vla		   -c -o board.o board.cc
 g++					 -std=c++14 -g -Wall -MMD	-Werror=vla		   -c -o edges.o edges.cc
 g++					 -std=c++14 -g -Wall -MMD	-Werror=vla		   -c -o vertices.o vertices.cc
 g++					 -std=c++14 -g -Wall -MMD	-Werror=vla		 main.o tile.o builder.o board.o edges.o vertices.o -o final		# additional object files before main.o tile.o builder.o board.o edges.o vertices.o
-make: Leaving directory `/Users/giovanighanem/Desktop/cs246 project/ConstructorProject-2'
+make: Leaving directory `/Users/giovanighanem/Desktop/cs246 project/ConstructorProject-3'
  
