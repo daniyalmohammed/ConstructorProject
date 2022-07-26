@@ -1,9 +1,7 @@
 #ifndef EDGES_H
 #define EDGES_H
-
 #include <vector>
 #include <string>
-// #include "subject.h"
 using namespace std;
 
 class Edge {
@@ -19,3 +17,5 @@ class Edge {
 };
 
 #endif
+
+

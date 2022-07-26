@@ -24,16 +24,22 @@ Builder::Builder(int playerNum) : playerNum{playerNum}, buildingPoints{0} {
         cout << "error in builder::constructor()" << endl;
     }
 }
+
+
 bool Builder::roadCanBuild(){
     if ((resourcesType[4] < 1) || (resourcesType[3] < 1)) {
         return false; //not enough resources
     }
     return true;
 }
+
+
 void Builder::roadBuild(){
     this->resourcesType[4] -= 1;
     this->resourcesType[3] -= 1;
 }
+
+
 bool Builder::basementCanBuild(){
     if ((resourcesType[0] < 1) || (resourcesType[1] < 1) 
     || (resourcesType[2] < 1) || (resourcesType[4] < 1)) {
@@ -41,6 +47,7 @@ bool Builder::basementCanBuild(){
     }
     return true;
 }
+
 
 void Builder::basementBuild(){
     this->resourcesType[0] -= 1;
@@ -50,6 +57,7 @@ void Builder::basementBuild(){
     buildingPoints++;
 }
 
+
 bool Builder::towerCanBuild(){
     if ((resourcesType[0] < 3) || (resourcesType[1] < 2) 
     || (resourcesType[2] < 2) || (resourcesType[4] < 1) || (resourcesType[3] < 2)) {
@@ -58,6 +66,8 @@ bool Builder::towerCanBuild(){
     }
     return true;
 }
+
+
 void Builder::towerBuild(){
     this->resourcesType[0] -= 3;
     this->resourcesType[1] -= 2;
@@ -67,6 +77,7 @@ void Builder::towerBuild(){
     buildingPoints++;
 } 
 
+
 bool Builder::houseCanBuild(){
     if ((resourcesType[2] < 2) || (resourcesType[3] < 3)) {
         cout << "You do not have enough resources." << endl;
@@ -74,6 +85,8 @@ bool Builder::houseCanBuild(){
     }
     return true;
 }
+
+
 void Builder::houseBuild(){
     this->resourcesType[2] -= 2;
     this->resourcesType[3] -= 3;
@@ -81,15 +94,13 @@ void Builder::houseBuild(){
 } 
 
 
-//void Builder::improveResources(int type, int num){}
-//bool Builder::improveResidences(int pos, int residenceLevel){}
-
 void Builder::getInfo(){
     cout << colour << " has " << buildingPoints << " building points, " << resourcesType[0]
     << " brick, " << resourcesType[1] << " energy, " << resourcesType[2] << " glass, "
     << resourcesType[3] << " heat, and " << resourcesType[4] << " WiFi." << endl;
 }
-    
+
+
 void Builder::loseResources(){
     int total = totalResources();
     if (total < 10) {
@@ -148,6 +159,7 @@ void Builder::loseResources(){
         }
     }
 }
+
 
 int Builder::totalResources(){
     int total_resources = 0;

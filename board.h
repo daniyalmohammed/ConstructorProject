@@ -20,7 +20,6 @@ class Board {
 	public:
 	string loadout;
     default_random_engine rng;
-    //bool win;
     int curTurn;
     int goose_location;
     vector<Tile> tiles;
@@ -28,45 +27,40 @@ class Board {
 	vector<Edge> roads;
 	vector<Vertex> vertices;
 	const string colours[4] = {"Blue","Red","Orange","Yellow"};
-	// string initials[4] = {"B","R","O","Y"};
 	const string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	int dice_modes[4];
-	// bool loadedGame = false;
-	void init(); // done
-	void loadFile(string file_name); // Done
-	void save(string file_name); // Done
+	void init(); 
+	void loadFile(string file_name); 
+	void save(string file_name); 
 	void seed(string input);
-	// void randomBoard();
-	bool trade(string color, string give, string take); // Dani -- done
-	void status(); // Dani - done
-	// std::string convert(int num);
-	// std::string trans(std::string str);
-	void printBoard(); // Done
-	void helpCommandsPrint(); // Dani -- done
-	void next(); // H -- done
-	bool canBuild(int vertex_index); //Dani -- done
-	void build(int vertex_index); //Dani -- done
-	bool canImprove(int vertex_index); // Dani -- material done
-	void improve(int vertex_index); // Dani -- material done
-	void distribution(int n); // Done
-	void SevenRolled(); // Dani -- done
-	bool rollDice(); // H -- done
-	bool loadedDice(); // H -- done
-	bool fairDice(); // H -- done
-	bool canBuildRoad(int road_index); // Dani -- done
-	void buildRoad(int road_index); // Dani -- done
-	bool canFirst8(int vertex_index); // Done
-	bool first8(); // H -- done
-	bool moveGeese(); // Done
-	int colour_to_index(string colour); // done
-	int material_to_index(string material); // Dani done
-	string GeeseStr(int index); // Done
-	void testTile(); // H -- done
-	void stealResource(int steal_from); // Dani -- done
-	void getRez(); // done
-	void loadBoard(string file_name); // Done
-	void randomBoard(); // done
-	bool checkWin(); // dani done
-	// void resetLoad();// Gio
+	bool trade(string color, string give, string take); 
+	void status(); 
+	void printBoard(); 
+	void helpCommandsPrint(); 
+	void next(); 
+	bool canBuild(int vertex_index); 
+	void build(int vertex_index); 
+	bool canImprove(int vertex_index); 
+	void improve(int vertex_index); 
+	void distribution(int n); 
+	void SevenRolled(); 
+	bool rollDice(); 
+	bool loadedDice(); 
+	bool fairDice(); 
+	bool canBuildRoad(int road_index); 
+	void buildRoad(int road_index); 
+	bool canFirst8(int vertex_index); 
+	bool first8(); 
+	bool moveGeese(); 
+	int colour_to_index(string colour); 
+	int material_to_index(string material); 
+	string GeeseStr(int index); 
+	void testTile(); 
+	void stealResource(int steal_from); 
+	void getRez(); 
+	void loadBoard(string file_name); 
+	void randomBoard(); 
+	bool checkWin(); 
 };
 #endif
+

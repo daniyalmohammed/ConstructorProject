@@ -14,6 +14,7 @@ const vector<vector<int>> all_roads = {{0,1},{0,2},
 	{63,67},{64,67,69},{65,68,79},{66,68},
 	{69,71},{70,71}};
 
+
 const vector<vector<int>> collectNeighbours = {{1,3},{0,4},
     {3,7},{0,2,8},{1,5,9},{4,10},
 	{7,12},{2,6,13},{3,9,14},{4,8,15},{5,11,16},{10,17},
@@ -26,21 +27,26 @@ const vector<vector<int>> collectNeighbours = {{1,3},{0,4},
 	{43,49},{44,48,52},{45,51,53},{46,50},
 	{49,53},{50,52}};
 
+
 const string res_types[4] = {" ","B","H","T"};
 const string builders[4] = {"B","R","O","Y"};
+
 
 Vertex::Vertex(int location) : pos{location}, residenceLevel{0},
  owner_index{-1}, neighbor{collectNeighbours[location]},
  my_roads{all_roads[location]} {};
+
 
 void Vertex::colonize(int builder_index) {
     residenceLevel = 1;
     owner_index = builder_index;
 }
 
+
 void Vertex::upgrade() {
     residenceLevel += 1;
 }
+
 
 string Vertex::getIn() {
     if (owner_index == -1) {
@@ -52,3 +58,4 @@ string Vertex::getIn() {
         return builders[owner_index] + res_types[residenceLevel];
     }
 }
+

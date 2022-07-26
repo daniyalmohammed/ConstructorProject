@@ -25,13 +25,13 @@ bool during_turn(Board &b){
     while (cin >> cmd) {
         toLowerCase(cmd);
         if (cmd == "board") { // prints the current board
-            b.printBoard(); //DONE
+            b.printBoard(); 
         } 
         else if (cmd == "status") { // prints the current status of all builders in order from builder 0 to 3
-            b.status(); //DONE
+            b.status(); 
         } 
         else if (cmd == "residences") { // prints the residences the current builder has currently completed
-            b.getRez(); //DONE
+            b.getRez(); 
         } 
         else if (cmd == "build-road") { // attempts to build the road at <road#>
             int road;
@@ -53,7 +53,6 @@ bool during_turn(Board &b){
             if (b.canBuildRoad(road)){
             b.buildRoad(road);
             }
-            //DONE
         } 
         else if (cmd == "build-res") { // attempts to builds a basement at <housing#>
             int housing;
@@ -74,7 +73,6 @@ bool during_turn(Board &b){
             if (b.canBuild(housing)){
                 b.build(housing);
             }
-            //DONE
         } 
         else if (cmd == "improve") { // attempts to improve the residence at <housing#>
             int housing;
@@ -95,7 +93,6 @@ bool during_turn(Board &b){
             if (b.canImprove(housing)){
                 b.improve(housing);
             }
-            //DONE
         } 
         else if (cmd == "trade") { // attempts to trade with builder <colour> giving one resource of type <give> and receiving one resource of type <take>
             string colour;
@@ -138,12 +135,10 @@ bool during_turn(Board &b){
             else {
                 cout << "Invalid command." << endl;
             }
-            //DONE
         } 
         else if (cmd == "next") { // passes control onto the next builder in the game. This ends the ”During the Turn” phase.
             b.next(); 
             break;
-            //DONE
         } 
         else if (cmd == "save") { // saves the current game state to <file>
             string file;
@@ -156,7 +151,6 @@ bool during_turn(Board &b){
         } 
         else if (cmd == "help") { // prints out the list of commands
             b.helpCommandsPrint();
-            //DONE
         } 
         else {
             cout << "Invalid command." << endl;
@@ -169,6 +163,7 @@ bool during_turn(Board &b){
     }
     return true;
 }
+
 
 bool beginning_turn(Board &b){
     string cmd;
@@ -188,13 +183,13 @@ bool beginning_turn(Board &b){
             break;
         }
         else if (cmd == "board") { // prints the current board
-            b.printBoard(); //DONE
+            b.printBoard(); 
         } 
         else if (cmd == "status") { // prints the current status of all builders in order from builder 0 to 3
-            b.status(); //DONE
+            b.status(); 
         }
         else if (cmd == "residences") { // prints the current status of all builders in order from builder 0 to 3
-            b.getRez(); //DONE
+            b.getRez(); 
         }
         else if (cmd == "help") { // prints out the list of commands
             cout << "Valid commands: (Start of Turn)" << endl;
@@ -218,129 +213,127 @@ bool beginning_turn(Board &b){
     return true;
 }
 
+
 int main(int argc, char** argv) {
     bool quit_game = false;
     bool restarted_game = false;
     while(!(quit_game))  {
-    Board b;
-    b.init();
-    bool load = false;
-    bool board = false;
-    bool random_board = false;
-    bool game_over = false;
-    string file_name = "";
-    string seed = "";
-    for (int i = 1; i < argc; i++) {
-        string option = argv[i];
-	    if (option == "-load") {
-            i++;
-		    file_name = argv[i];
-            load = true;
-	    } else if (option == "-board") {
-            i++;
-            file_name = argv[i];
-            board = true;
-	    } else if (option == "-seed") {
-            i++;
-		    seed = argv[i];
-	    } 
-        else if (option == "-random-board") {
-            random_board = true;
-	    } 
-    }
-
-    b.seed(seed);
-    
-    if (restarted_game) {
-        if (random_board) {
-            b.randomBoard();
+        Board b;
+        b.init();
+        bool load = false;
+        bool board = false;
+        bool random_board = false;
+        bool game_over = false;
+        string file_name = "";
+        string seed = "";
+        for (int i = 1; i < argc; i++) {
+            string option = argv[i];
+            if (option == "-load") {
+                i++;
+                file_name = argv[i];
+                load = true;
+            } else if (option == "-board") {
+                i++;
+                file_name = argv[i];
+                board = true;
+            } else if (option == "-seed") {
+                i++;
+                seed = argv[i];
+            } 
+            else if (option == "-random-board") {
+                random_board = true;
+            } 
         }
-	    b.printBoard();
-        b.first8();
-    }
-
-    else if (load) {
-        b.loadFile(file_name);
-        b.printBoard();
-        cout << endl;
-		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
-        //b.builders[b.curTurn].getInfo();
-        if (!(during_turn(b))) {
-            return 0;
+        b.seed(seed);
+        if (restarted_game) {
+            if (random_board) {
+                b.randomBoard();
+            }
+            b.printBoard();
+            b.first8();
         }
+        else if (load) {
+            b.loadFile(file_name);
+            b.printBoard();
+            cout << endl;
+            cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
+            if (!(during_turn(b))) {
+                return 0;
+            }
             if (b.checkWin()) {
-                    game_over = true;
-            while(1){
-                string input;
-                cout << "Would you like to play again?" << endl;
-                if (!(cin >> input)) {
+                game_over = true;
+                while(1) {
+                    string input;
+                    cout << "Would you like to play again?" << endl;
+                    if (!(cin >> input)) {
+                        if (cin.eof()) {
+                            input = "no";
+                        }
+                    }
+                    toLowerCase(input);
+                    if (input == "yes") {
+                        restarted_game = true;
+                        quit_game = false;
+                        break;
+                    }
+                    else if (input == "no") {
+                        quit_game = true;
+                        break;
+                    }
+                    else {
+                        cout << "Invalid command." << endl;
+                    }
+                }
+            }
+        }
+        else if (board) {
+            b.loadBoard(file_name);
+            b.printBoard();
+            b.first8();
+        }
+        else if (random_board){
+            b.randomBoard();
+            b.printBoard();
+            b.first8();
+        }
+        else {
+            b.printBoard();
+            b.first8();
+        }
+
+        while(!(game_over) && (!quit_game)) {
+            if (!(beginning_turn(b))) {
+                return 0;
+            }
+            if (!(during_turn(b))) {
+                return 0;
+            }
+            if (b.checkWin()) {
+                game_over = true;
+                while(1) {
+                    string input;
+                    cout << "Would you like to play again?" << endl;
+                    cin >> input;
                     if (cin.eof()) {
                         input = "no";
                     }
-                }
-                toLowerCase(input);
-                if (input == "yes") {
-                    restarted_game = true;
-                    quit_game = false;
-                    break;
-                }
-                else if (input == "no") {
-                    quit_game = true;
-                    break;
-                }
-                else {
-                    cout << "Invalid command." << endl;
-                }
-            }
-        }
-    }
-    else if (board) {
-        b.loadBoard(file_name);
-        b.printBoard();
-		b.first8();
-
-    }
-    else if (random_board){
-        b.randomBoard();
-	    b.printBoard();
-        b.first8();
-    }
-    else {
-        b.printBoard();
-        b.first8();
-    }
-
-    while(!(game_over) && (!quit_game)) {
-        if (!(beginning_turn(b))) {
-            return 0;
-        }
-        if (!(during_turn(b))) {
-            return 0;
-        }
-        if (b.checkWin()) {
-            game_over = true;
-            while(1){
-                string input;
-                cout << "Would you like to play again?" << endl;
-                cin >> input;
-                if (cin.eof()) {
-                    input = "no";
-                }
-                toLowerCase(input);
-                if (input == "yes") {
-                    restarted_game = true;
-                    quit_game = false;
-                    break;
-                }
-                else if (input == "no") {
-                    quit_game = true;
-                    break;
-                }
-                else {
-                    cout << "Invalid command." << endl;
+                    toLowerCase(input);
+                    if (input == "yes") {
+                        restarted_game = true;
+                        quit_game = false;
+                        break;
+                    }
+                    else if (input == "no") {
+                        quit_game = true;
+                        break;
+                    }
+                    else {
+                        cout << "Invalid command." << endl;
+                    }
                 }
             }
         }
-    }
     }
 }
+
+

@@ -15,8 +15,10 @@ const vector<vector<int>> TILES = {{0, 1, 3, 4, 8, 9}, {2, 3, 7, 8, 13, 14},
 const vector<vector<int>> R_and_C = {{0,3},{1,10},{3,5},{1,4},{-1,-1},{3,10},{2,11},{0,3},{3,8},{0,2},
     {0,6},{1,8},{4,12},{1,5},{4,11},{2,4},{4,6},{2,9},{2,9}};
 
+
 Tile::Tile(int tile_index) : geese{false}, elements{TILES[tile_index]}, pos{tile_index},
  typeofResources{R_and_C[tile_index][0]}, chance{R_and_C[tile_index][1]} {};
+
 
 string Tile::to_s() {
     if (typeofResources == 0) {
@@ -34,6 +36,7 @@ string Tile::to_s() {
     }
 }
 
+
 string Tile::c_to_s() {
     if (chance == -1) {
         return "  ";
@@ -43,3 +46,5 @@ string Tile::c_to_s() {
     }
     return to_string(chance);
 }
+
+

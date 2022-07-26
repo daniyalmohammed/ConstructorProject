@@ -7,7 +7,6 @@ void Board::init() {
         dice_modes[i] = 1;
     }
     curTurn = 0;
-    //win = false;
     for (int t = 0; t < 19; ++t) {
         tiles.emplace_back(Tile{t});
     }
@@ -23,6 +22,7 @@ void Board::init() {
         builders.emplace_back(Builder{b});
     }
 }
+
 
 bool Board::canBuild(int vertex_index) {
     if (vertex_index < 0 || vertex_index > 53) {
@@ -51,11 +51,13 @@ bool Board::canBuild(int vertex_index) {
     return false;
 }
 
+
 void Board::build(int vertex_index) {
     cout << "Builder " << colours[curTurn] << " has built a basement at " << vertex_index << endl;
     vertices[vertex_index].colonize(curTurn);
     builders[curTurn].basementBuild();
 }
+
 
 bool Board::canBuildRoad(int road_index) {
     if (road_index < 0 || road_index > 71) {
@@ -92,6 +94,7 @@ void Board::buildRoad(int road_index) {
     builders[curTurn].roadBuild();
 }
 
+
 int Board::colour_to_index(string colour) {
     if (colour == "B" || colour == "Blue") {
         return 0;
@@ -104,6 +107,7 @@ int Board::colour_to_index(string colour) {
     }
     return 3;
 }
+
 
 int Board::material_to_index(string material) {
     if (material == "BRICK") {
@@ -129,12 +133,14 @@ int Board::material_to_index(string material) {
     }
 }
 
+
 string Board::GeeseStr(int index) {
     if (index == goose_location) {
         return "GEESE";
     }
     return "     ";
 }
+
 
 bool Board::loadedDice() {
     cout << "Input a roll between 2 and 12:" << endl;// H
@@ -168,7 +174,6 @@ bool Board::loadedDice() {
     return true;       
 }
     
-
    
 bool Board::rollDice() {
     if (dice_modes[curTurn] == 0) {
@@ -182,6 +187,7 @@ bool Board::rollDice() {
     }
     return true;
 } 
+
 
 bool Board::fairDice() {
     uniform_int_distribution<int> pic(1,6);
@@ -198,7 +204,6 @@ bool Board::fairDice() {
     }
     return true;
 }
-
 
 
 void Board::printBoard() {
@@ -245,13 +250,15 @@ void Board::printBoard() {
     cout << "                          |"+vertices[52].getIn()+"|--"+roads[71].getIn()+"--|"+vertices[53].getIn()+"|" << endl;
 }
 
-void Board::status() { // - dani completed
+
+void Board::status() { 
     for (int i = 0; i < 4; i++) {
         builders[i].getInfo();
     }
 }
 
-void Board::helpCommandsPrint() { //done
+
+void Board::helpCommandsPrint() { 
     cout << "Valid commands: (During Turn)" << endl;
     cout << "board" << endl;
     cout << "status" << endl;
@@ -265,14 +272,15 @@ void Board::helpCommandsPrint() { //done
     cout << "help" << endl;
 }
 
-void Board::SevenRolled() { // called to remove resources of builders -- done
+
+void Board::SevenRolled() { 
     for (int i = 0; i < 4; i++) {
         builders[i].loseResources();
     }
 } 
 
-bool Board::trade(string color, string give, string take){ // Dani -- done
 
+bool Board::trade(string color, string give, string take) { 
     cout << colours[curTurn] << " offers " << color << 
     " one " << give << " for one " << take << "." << endl;
     cout << "Does " << color << " accept this offer?" << endl;
@@ -282,45 +290,41 @@ bool Board::trade(string color, string give, string take){ // Dani -- done
     int take_int = material_to_index(take);
 
     while(1) {
-    string input = "";
-    if (!(cin >> input)) {
-        if (cin.eof()) {
-            save("backup.sv");
-            return false;
+        string input = "";
+        if (!(cin >> input)) {
+            if (cin.eof()) {
+                save("backup.sv");
+                return false;
+            }
         }
-    }
         auto r = input;
         for (auto i = 0; i < input.length(); ++ i) {
             if (input[i] >= 'A' && input[i] <= 'Z') {
                 input[i] += 32;
             } 
         }
-    if (input == "yes") {
-        if ((builders[curTurn].resourcesType[give_int] < 1)){
-            cout << "Builder " << colours[curTurn] << " does not have enough resources for the given trade." << endl;
+        if (input == "yes") {
+            if ((builders[curTurn].resourcesType[give_int] < 1)) {
+                cout << "Builder " << colours[curTurn] << " does not have enough resources for the given trade." << endl;
+                break;
+            } else if ((builders[num_colour].resourcesType[take_int] < 1)) {
+                cout << "Builder " << color << " does not have enough resources for the given trade." << endl;
+                break;
+            } else {
+                builders[curTurn].resourcesType[give_int] -= 1;
+                builders[curTurn].resourcesType[take_int] += 1;
+                builders[num_colour].resourcesType[give_int] += 1;
+                builders[num_colour].resourcesType[take_int] -= 1;
+                cout << "Builder " << colours[curTurn] << " has traded " << give << " to "
+                << color << " for " << take << "." << endl;
+                break;
+            }
+        } else if (input == "no") {
+            cout << "Builder " << color << " has declined the trade." << endl;
             break;
+        } else {
+            cout << "Invalid Input (yes/no) " << endl;
         }
-        else if ((builders[num_colour].resourcesType[take_int] < 1)){
-            cout << "Builder " << color << " does not have enough resources for the given trade." << endl;
-            break;
-        }
-        else {
-            builders[curTurn].resourcesType[give_int] -= 1;
-            builders[curTurn].resourcesType[take_int] += 1;
-            builders[num_colour].resourcesType[give_int] += 1;
-            builders[num_colour].resourcesType[take_int] -= 1;
-            cout << "Builder " << colours[curTurn] << " has traded " << give << " to "
-            << color << " for " << take << "." << endl;
-            break;
-        }
-    }
-    else if (input == "no") {
-        cout << "Builder " << color << " has declined the trade." << endl;
-        break;
-    }
-    else {
-        cout << "Invalid Input (yes/no) " << endl;
-    }
     }
     return true;
 }
@@ -350,6 +354,7 @@ bool Board::canImprove(int vertex_index) {
     }
 }
 
+
 void Board::improve(int vertex_index) {
     if (vertices[vertex_index].residenceLevel == 1) {
         cout << "Builder " << colours[curTurn] << " has built a house at " << vertex_index << endl;
@@ -361,6 +366,7 @@ void Board::improve(int vertex_index) {
     }
     vertices[vertex_index].upgrade();
 }
+
 
 bool Board::canFirst8(int vertex_index) {
     if (vertex_index < 0 || vertex_index > 53) {
@@ -419,7 +425,6 @@ bool Board::moveGeese() {
     if (Here[0] || Here[1] || Here[2] || Here[3]) {
         string victimes = "";
         vector<string> vect_victims;
-
         for(int b = 0; b < 4; ++b) {
             if (Here[b] && (builders[b].totalResources() != 0)) {
                 if (victimes != "") {
@@ -430,9 +435,7 @@ bool Board::moveGeese() {
             }
         }
         cout << "Builder " + colours[curTurn] + " can choose to steal from " + victimes + "." << endl;
-        
         cout << "Choose a builder to steal from." << endl;
-
         while(1) {
             string input = "";
             if (!(cin >> input)) {
@@ -441,16 +444,15 @@ bool Board::moveGeese() {
                     return false;
                 }
             }
-
-        auto r = input;
-        for (auto i = 0; i < input.length(); ++ i) {
-            if (input[i] >= 'A' && input[i] <= 'Z') {
-                input[i] += 32;
+            auto r = input;
+            for (auto i = 0; i < input.length(); ++ i) {
+                if (input[i] >= 'A' && input[i] <= 'Z') {
+                    input[i] += 32;
+                }
+                if (i == 0) {
+                    input[i] -= 32;
+                }
             }
-            if (i == 0) {
-                input[i] -= 32;
-            }
-        }
             bool is_builder = false;
             for (int i = 0; i < vect_victims.size(); i++) {
                 if (input == vect_victims[i]) {
@@ -471,6 +473,7 @@ bool Board::moveGeese() {
     return true;
 }
 
+
 void Board::next() {
     int oldTurn = curTurn;
     curTurn += 1;
@@ -481,8 +484,7 @@ void Board::next() {
     printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
     builders[curTurn].getInfo();
-    }
-    else {
+    } else {
         cout << "Player " << colours[oldTurn] << " wins the game with "
         << builders[oldTurn].buildingPoints << " points." << endl;
     }
@@ -526,8 +528,8 @@ void Board::stealResource(int steal_from) { //dani done
 
     cout << "Builder " << colours[curTurn] << " steals " << types[resource] << 
     " from builder " << colours[steal_from] << "." << endl;
-
 }
+
 
 void Board::distribution(int n) {
     bool give = false;
@@ -568,6 +570,7 @@ void Board::distribution(int n) {
     }
 }
 
+
 bool Board::first8() {
     int arr[8] = {0,1,2,3,3,2,1,0};
     for (int i = 0; i < 8; i++) {
@@ -590,7 +593,6 @@ bool Board::first8() {
                 checking = canFirst8(num);
             }
         }
-		//builders[arr[i]].basement.emplace_back(num);
 		builders[arr[i]].buildingPoints += 1;
         vertices[num].colonize(arr[i]);
 	}
@@ -599,6 +601,7 @@ bool Board::first8() {
     builders[curTurn].getInfo();
     return true;
 }
+
 
 void Board::save(string file_name) {
     ofstream outfile{ file_name };
@@ -663,7 +666,6 @@ void Board::save(string file_name) {
     }
     outfile << endl;
 
-
     outfile << builders[2].resourcesType[0] << " ";
     outfile << builders[2].resourcesType[1] << " ";
     outfile << builders[2].resourcesType[2] << " ";
@@ -709,10 +711,8 @@ void Board::save(string file_name) {
         }
     }
     outfile << endl;
-
     outfile << loadout << endl;
     outfile << goose_location << endl;
-
 }
 
 
@@ -733,8 +733,8 @@ void Board::getRez() {
     }
 }
 
-void Board::seed(string input) { // assume input is in range of std::stoi
-    //vector<int> v;
+
+void Board::seed(string input) { 
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     if (input != "") {
         seed = stoi(string{input});
@@ -744,7 +744,6 @@ void Board::seed(string input) { // assume input is in range of std::stoi
         builders[i].rng_b = rng;
     }
 }
-
 
 
 void Board::loadFile(string file_name) {
@@ -821,6 +820,7 @@ void Board::loadFile(string file_name) {
     goose_location = g_pos;
 }
 
+
 bool Board::checkWin(){
     for (int i = 0; i < 4; i++){
         if (builders[i].buildingPoints >= 10){
@@ -829,6 +829,7 @@ bool Board::checkWin(){
     }
     return false;
 }
+
 
 void Board::loadBoard(string file_name) {
     string line;
@@ -853,6 +854,7 @@ void Board::loadBoard(string file_name) {
         }
     }
 }
+
 
 void Board::randomBoard() {
     vector<int> cha = {2,7,12,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11};
@@ -908,34 +910,3 @@ void Board::randomBoard() {
     goose_location = five_p;
 }
 
-/*
-void Board::resetLoad() {
-    for (int i = 0; i < 4; i++) {
-        dice_modes[i] = 1;
-    }
-    curTurn = 0;
-    //win = false;
-    for (auto t: tiles) {
-        t.geese = false;
-        if (t.typeofResources == -1) {
-            t.geese = true;
-            goose_location = t.pos;
-        }
-    }
-    for (auto r : roads) {
-        r.owner_index = -1;
-    }
-    for (auto v: vertices) {
-        v.residenceLevel = 0;
-        v.owner_index = -1;
-    }
-    for (auto b: builders) {
-        b.buildingPoints = 0;
-        b.resourcesType[0] = 0;
-        b.resourcesType[1] = 0;
-        b.resourcesType[2] = 0;
-        b.resourcesType[3] = 0;
-        b.resourcesType[4] = 0;
-    }
-}
-*/
