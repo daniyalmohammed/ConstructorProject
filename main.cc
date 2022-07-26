@@ -1,10 +1,29 @@
 #include "board.h"
 using namespace std;
 
+void toLowerCase(string &str) {
+        auto r = str;
+        for (auto i = 0; i < str.length(); ++ i) {
+            if (str[i] >= 'A' && str[i] <= 'Z') {
+                str[i] += 32;
+            } 
+        }
+}
+
+void toUpperCase(string &str) {
+        auto r = str;
+        for (auto i = 0; i < str.length(); ++ i) {
+            if (str[i] >= 'a' && str[i] <= 'z') {
+                str[i] -= 32;
+            } 
+        }
+}
+
 void during_turn(Board &b){
     string cmd;
     cout << "> ";
     while (cin >> cmd) {
+        toLowerCase(cmd);
         if (cmd == "board") { // prints the current board
             b.printBoard(); //DONE
         } 
@@ -42,6 +61,12 @@ void during_turn(Board &b){
             string colour;
             string give;
             string take;
+            toLowerCase(colour);
+            if (colour.length() > 2){
+                colour[0] += 32;
+            }
+            toUpperCase(give);
+            toUpperCase(take);
             if ((colour == "Blue" || colour == "Red" || colour == "Yellow" || colour == "Orange")
             && (give == "BRICK" || give == "ENERGY" || give == "GLASS" || give == "HEAT" || give == "WIFI") && 
             (take == "BRICK" || take == "ENERGY" || take == "GLASS" || take == "HEAT" || take == "WIFI")) {
@@ -83,6 +108,7 @@ void beginning_turn(Board &b){
     string cmd;
     cout << "> ";
     while (cin >> cmd) {
+        toLowerCase(cmd);
         if (cmd == "load") { // sets the dice of the current builder to be loaded dice
             b.dice_modes[b.curTurn] = 0;
         } 
