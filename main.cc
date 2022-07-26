@@ -19,7 +19,7 @@ void toUpperCase(string &str) {
         }
 }
 
-void during_turn(Board &b){
+bool during_turn(Board &b){
     string cmd;
     cout << "> ";
     while (cin >> cmd) {
@@ -36,6 +36,20 @@ void during_turn(Board &b){
         else if (cmd == "build-road") { // attempts to build the road at <road#>
             int road;
             cin >> road;
+            while (true) {
+                if (!(cin >> road)) {
+                    if (cin.eof()) {
+                        b.save("backup.sv");
+                        return false;
+                    } else {
+                        cin.clear();
+                        cin.ignore();
+                        cout << "Please enter an integer" << endl;
+                    }
+                } else {
+                    break;
+                }
+            }
             if (b.canBuildRoad(road)){
             b.buildRoad(road);
             }
@@ -43,7 +57,20 @@ void during_turn(Board &b){
         } 
         else if (cmd == "build-res") { // attempts to builds a basement at <housing#>
             int housing;
-            cin >> housing;
+            while (true) {
+                if (!(cin >> housing)) {
+                    if (cin.eof()) {
+                        b.save("backup.sv");
+                        return false;
+                    } else {
+                        cin.clear();
+                        cin.ignore();
+                        cout << "Please enter an integer" << endl;
+                    }
+                } else {
+                    break;
+                }
+            }
             if (b.canBuild(housing)){
                 b.build(housing);
             }
@@ -51,7 +78,20 @@ void during_turn(Board &b){
         } 
         else if (cmd == "improve") { // attempts to improve the residence at <housing#>
             int housing;
-            cin >> housing;
+            while (true) {
+                if (!(cin >> housing)) {
+                    if (cin.eof()) {
+                        b.save("backup.sv");
+                        return false;
+                    } else {
+                        cin.clear();
+                        cin.ignore();
+                        cout << "Please enter an integer" << endl;
+                    }
+                } else {
+                    break;
+                }
+            }
             if (b.canImprove(housing)){
                 b.improve(housing);
             }
@@ -62,8 +102,20 @@ void during_turn(Board &b){
             string give;
             string take;
             cin >> colour;
+            if (cin.eof()) {
+                b.save("backup.sv");
+                return false;
+            }
             cin >> give;
+            if (cin.eof()) {
+                b.save("backup.sv");
+                return false;
+            }
             cin >> take;
+            if (cin.eof()) {
+                b.save("backup.sv");
+                return false;
+            }
             toLowerCase(colour);
             if (colour.length() > 2){
                 colour[0] -= 32;
@@ -77,7 +129,10 @@ void during_turn(Board &b){
                     cout << "You cannot trade with yourself." << endl;
                 }
                 else {
-                    b.trade(colour, give, take);
+                    if (!(b.trade(colour, give, take))) {
+                        return false;
+                    }
+
                 }
             }
             else {
@@ -93,6 +148,10 @@ void during_turn(Board &b){
         else if (cmd == "save") { // saves the current game state to <file>
             string file;
             cin >> file;
+            if (cin.eof()) {
+                b.save("backup.sv");
+                return false;
+            }
             b.save(file);
         } 
         else if (cmd == "help") { // prints out the list of commands
@@ -104,9 +163,14 @@ void during_turn(Board &b){
         }
         cout << "> ";
     } 
+    if (cin.eof()) {
+        b.save("backup.sv");
+        return false;
+    }
+    return true;
 }
 
-void beginning_turn(Board &b){
+bool beginning_turn(Board &b){
     string cmd;
     cout << "> ";
     while (cin >> cmd) {
@@ -118,7 +182,9 @@ void beginning_turn(Board &b){
             b.dice_modes[b.curTurn] = 1;
         } 
         else if (cmd == "roll") { // rolls the current builder’s dice. This ends the ”Beginning of the turn” phase and moves the builder to ”During the turn”.
-            b.rollDice();
+            if (!(b.rollDice())) {
+                return false;
+            }
             break;
         }
         else if (cmd == "board") { // prints the current board
@@ -145,6 +211,11 @@ void beginning_turn(Board &b){
         }
         cout << "> ";
     } 
+    if (cin.eof()) {
+        b.save("backup.sv");
+        return false;
+    }
+    return true;
 }
 
 int main(int argc, char** argv) {
@@ -194,13 +265,20 @@ int main(int argc, char** argv) {
         cout << endl;
 		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
         //b.builders[b.curTurn].getInfo();
-        during_turn(b);
+        if (!(during_turn(b))) {
+            return 0;
+        }
             if (b.checkWin()) {
                     game_over = true;
             while(1){
                 string input;
                 cout << "Would you like to play again?" << endl;
-                cin >> input;
+                if (!(cin >> input)) {
+                    if (cin.eof()) {
+                        b.save("backup.sv");
+                        return 0;
+                    }
+                }
                 toLowerCase(input);
                 if (input == "yes") {
                     restarted_game = true;
@@ -234,14 +312,22 @@ int main(int argc, char** argv) {
     }
 
     while(!(game_over) && (!quit_game)) {
-        beginning_turn(b);
-        during_turn(b);
+        if (!(beginning_turn(b))) {
+            return 0;
+        }
+        if (!(during_turn(b))) {
+            return 0;
+        }
         if (b.checkWin()) {
             game_over = true;
             while(1){
                 string input;
                 cout << "Would you like to play again?" << endl;
                 cin >> input;
+                if (cin.eof()) {
+                    b.save("backup.sv");
+                    return 0;
+                }
                 toLowerCase(input);
                 if (input == "yes") {
                     restarted_game = true;
