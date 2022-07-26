@@ -114,17 +114,19 @@ void Builder::loseResources(){
     for (int j = 0; j < resourcesType[3]; j++) {
             randomizer.emplace_back(3);
     }
+    for (int j = 0; j < resourcesType[4]; j++) {
+            randomizer.emplace_back(4);
+    }
 
     uniform_int_distribution<int> pic(0, total_resources - 1);
     int spot = pic(rng_b);
-
     int resource = randomizer[spot];
     resourcesType[resource] -= 1;
     remove--;
     removed_resources[resource] += 1;
     }
 
-    cout << "Builder " << colour << " loses " << total/2 << " to the geese. They lose:" << endl;
+    cout << "Builder " << colour << " loses " << total/2 << " resources to the geese. They lose:" << endl;
     for (int i = 0; i < 5; i++) {
         if (removed_resources[i] > 0) {
             cout << removed_resources[i] << " ";
