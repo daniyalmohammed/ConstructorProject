@@ -870,7 +870,7 @@ void Board::randomBoard() {
     goose_location = five_p;
 }
 
-
+/*
 void Board::resetLoad() {
     for (int i = 0; i < 4; i++) {
         dice_modes[i] = 1;
@@ -900,4 +900,4 @@ void Board::resetLoad() {
         b.resourcesType[4] = 0;
     }
 }
-
+*/
