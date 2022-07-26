@@ -626,7 +626,7 @@ void Board::seed(string input) { // assume input is in range of std::stoi
     //vector<int> v;
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     if (input != "") {
-        seed = stoi(input);
+        seed = stoi(string{input});
     }
     rng = default_random_engine{seed};
     for (int i = 0; i < 4; i++) {
