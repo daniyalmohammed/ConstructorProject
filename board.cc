@@ -516,7 +516,7 @@ void Board::distribution(int n) {
     bool give = false;
     vector<vector<int>> getting = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
     for(auto T : tiles) {
-        if (T.chance == n) {
+        if (T.chance == n && (!(T.geese))) {
             for (auto ind : T.elements) {
                 if (vertices[ind].owner_index != -1) {
                     getting[vertices[ind].owner_index][T.typeofResources] += vertices[ind].residenceLevel;
