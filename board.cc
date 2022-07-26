@@ -414,7 +414,8 @@ void Board::next() {
     builders[curTurn].getInfo();
     }
     else {
-        cout << "Player " << colours[oldTurn] << " wins the game!" << endl;
+        cout << "Player " << colours[oldTurn] << " wins the game with "
+        << builders[oldTurn].buildingPoints << " points." << endl;
     }
 }
 
