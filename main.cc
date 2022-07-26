@@ -131,7 +131,7 @@ void beginning_turn(Board &b){
             b.getRez(); //DONE
         }
         else if (cmd == "help") { // prints out the list of commands
-            cout << "Valid commands:" << endl;
+            cout << "Valid commands: (Start of Turn)" << endl;
             cout << "load" << endl;
             cout << "fair" << endl;
             cout << "roll" << endl;

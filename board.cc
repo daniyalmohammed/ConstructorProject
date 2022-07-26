@@ -236,7 +236,7 @@ void Board::status() { // - dani completed
 }
 
 void Board::helpCommandsPrint() { //done
-    cout << "Valid commands:" << endl;
+    cout << "Valid commands: (During Turn)" << endl;
     cout << "board" << endl;
     cout << "status" << endl;
     cout << "residences" << endl;
