@@ -289,7 +289,13 @@ bool Board::trade(string color, string give, string take){ // Dani -- done
             return false;
         }
     }
-    if (input == "yes" || input == "YES" || input == "Yes") {
+        auto r = input;
+        for (auto i = 0; i < input.length(); ++ i) {
+            if (input[i] >= 'A' && input[i] <= 'Z') {
+                input[i] += 32;
+            } 
+        }
+    if (input == "yes") {
         if ((builders[curTurn].resourcesType[give_int] < 1)){
             cout << "Builder " << colours[curTurn] << " does not have enough resources for the given trade." << endl;
             break;
@@ -308,7 +314,7 @@ bool Board::trade(string color, string give, string take){ // Dani -- done
             break;
         }
     }
-    else if (input == "NO" || input == "no" || input == "No") {
+    else if (input == "no") {
         cout << "Builder " << color << " has declined the trade." << endl;
         break;
     }
@@ -435,6 +441,17 @@ bool Board::moveGeese() {
                     return false;
                 }
             }
+
+        auto r = input;
+        for (auto i = 0; i < input.length(); ++ i) {
+            if (input[i] >= 'A' && input[i] <= 'Z') {
+                input[i] += 32;
+            }
+            if (i == 0) {
+                input[i] -= 32;
+            }
+        }
+        cout << input << endl;
             bool is_builder = false;
             for (int i = 0; i < vect_victims.size(); i++) {
                 if (input == vect_victims[i]) {
