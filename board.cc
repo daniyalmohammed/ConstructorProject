@@ -417,7 +417,7 @@ bool Board::moveGeese() {
         for(int b = 0; b < 4; ++b) {
             if (Here[b] && (builders[b].totalResources() != 0)) {
                 if (victimes != "") {
-                    victimes += ",";
+                    victimes += ", ";
                 }
                 victimes += colours[b];
                 vect_victims.emplace_back(colours[b]);
@@ -497,10 +497,12 @@ void Board::stealResource(int steal_from) { //dani done
     for (int j = 0; j < builders[steal_from].resourcesType[3]; j++) {
             randomizer.emplace_back(3);
     }
+    for (int j = 0; j < builders[steal_from].resourcesType[4]; j++) {
+            randomizer.emplace_back(4);
+    }
 
-    default_random_engine num = rng;
     uniform_int_distribution<int> pic(0, total_resources - 1);
-    int spot = pic(num);
+    int spot = pic(rng);
     int resource = randomizer[spot];
 
     builders[curTurn].resourcesType[resource] += 1;
