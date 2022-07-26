@@ -336,9 +336,15 @@ bool Board::canFirst8(int vertex_index) {
 
 void Board::moveGeese() {
     int index;
-    //check if valid spot
-    cout << "Choose where to place the GEESE." << endl;
-    cin >> index;
+    while (true) {
+        cout << "Choose where to place the GEESE." << endl;
+        cin >> index;
+        if (index < 0 || index > 18 || index == goose_location) {
+            cout << "GEESE cannot be placed here" << endl;
+        } else {
+            break;
+        }
+    }
     tiles[goose_location].geese = false;
     tiles[index].geese = true;
     goose_location = index;
