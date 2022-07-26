@@ -795,4 +795,6 @@ void Board::randomBoard() {
             tiles[j].chance = c;
         }
     }
+    tiles[4].geese = false;
+    tiles[five_p].geese = true;
 }
