@@ -61,9 +61,12 @@ void during_turn(Board &b){
             string colour;
             string give;
             string take;
+            cin >> colour;
+            cin >> give;
+            cin >> take;
             toLowerCase(colour);
             if (colour.length() > 2){
-                colour[0] += 32;
+                colour[0] -= 32;
             }
             toUpperCase(give);
             toUpperCase(take);
@@ -73,10 +76,9 @@ void during_turn(Board &b){
                 if (colour == b.colours[b.curTurn]){
                     cout << "You cannot trade with yourself." << endl;
                 }
-                cin >> colour;
-                cin >> give;
-                cin >> take;
-            b.trade(colour, give, take);
+                else {
+                    b.trade(colour, give, take);
+                }
             }
             else {
                 cout << "Invalid command." << endl;
