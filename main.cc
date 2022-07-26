@@ -86,7 +86,7 @@ void beginning_turn(Board &b){
         else if (cmd == "status") { // prints the current status of all builders in order from builder 0 to 3
             b.status(); //DONE
         }
-        else if (cmd == "residence") { // prints the current status of all builders in order from builder 0 to 3
+        else if (cmd == "residences") { // prints the current status of all builders in order from builder 0 to 3
             b.getRez(); //DONE
         }
         else if (cmd == "save") { // prints the current status of all builders in order from builder 0 to 3
@@ -100,7 +100,7 @@ void beginning_turn(Board &b){
             cout << "fair" << endl;
             cout << "roll" << endl;
             cout << "status" << endl;
-            cout << "residence" << endl;
+            cout << "residences" << endl;
             cout << "save" << endl;
             cout << "help" << endl;
         } 
