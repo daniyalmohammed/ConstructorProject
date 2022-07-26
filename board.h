@@ -67,6 +67,6 @@ class Board {
 	void loadBoard(string file_name); // Done
 	void randomBoard(); // done
 	bool checkWin(); // dani done
-	void resetLoad();// Gio
+	// void resetLoad();// Gio
 };
 #endif

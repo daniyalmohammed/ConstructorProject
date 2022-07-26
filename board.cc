@@ -4,7 +4,7 @@ using namespace std;
 void Board::init() {
     loadout = "0 3 1 10 3 5 1 4 5 7 3 10 2 11 0 3 3 8 0 2 0 6 1 8 4 12 1 5 4 11 2 4 4 6 2 9 2 9";
     for (int i = 0; i < 4; i++) {
-        dice_modes[i] = 0;
+        dice_modes[i] = 1;
     }
     curTurn = 0;
     //win = false;
@@ -888,10 +888,10 @@ void Board::randomBoard() {
     goose_location = five_p;
 }
 
-
+/*
 void Board::resetLoad() {
     for (int i = 0; i < 4; i++) {
-        dice_modes[i] = 0;
+        dice_modes[i] = 1;
     }
     curTurn = 0;
     //win = false;
@@ -918,4 +918,4 @@ void Board::resetLoad() {
         b.resourcesType[4] = 0;
     }
 }
-
+*/
