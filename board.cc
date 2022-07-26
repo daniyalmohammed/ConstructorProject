@@ -451,7 +451,6 @@ bool Board::moveGeese() {
                 input[i] -= 32;
             }
         }
-        cout << input << endl;
             bool is_builder = false;
             for (int i = 0; i < vect_victims.size(); i++) {
                 if (input == vect_victims[i]) {
