@@ -447,7 +447,6 @@ bool Board::moveGeese() {
             }
             else {
                 cout << "Not a valid builder to steal from. Try again." << endl;
-                cout << "Builder " + colours[curTurn] + " can choose to steal from " + victimes + "." << endl;
             }
         }
     } else {
