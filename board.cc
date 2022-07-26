@@ -25,6 +25,10 @@ void Board::init() {
 }
 
 bool Board::canBuild(int vertex_index) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot build here." << endl;
+        return false;
+    }
     if (vertices[vertex_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
@@ -54,6 +58,10 @@ void Board::build(int vertex_index) {
 }
 
 bool Board::canBuildRoad(int road_index) {
+    if (road_index < 0 || road_index > 71) {
+        cout << "You cannot build here." << endl;
+        return false;
+    }
     if (roads[road_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
@@ -273,19 +281,20 @@ void Board::trade(string color, string give, string take){ // Dani -- done
 
 
 bool Board::canImprove(int vertex_index) {
-    if (vertices[vertex_index].residenceLevel == 3) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot improve here" << endl;
         return false;
-    }
-    else if (vertices[vertex_index].owner_index != curTurn) {
+    } else if (vertices[vertex_index].owner_index != curTurn) {
+        cout << "You cannot improve here" << endl;
         return false;
-    }
-    else if (vertices[vertex_index].residenceLevel == 1) {
+    } else if (vertices[vertex_index].residenceLevel == 3) {
+        cout << "You cannot improve here" << endl;
+        return false;
+    } else if (vertices[vertex_index].residenceLevel == 1) {
         return builders[curTurn].houseCanBuild();
-    }
-    else if (vertices[vertex_index].residenceLevel == 2) {
+    } else if (vertices[vertex_index].residenceLevel == 2) {
         return builders[curTurn].towerCanBuild();
-    }
-    else {
+    } else {
         cout << "check Board::canImprove for bugs" << endl;
         return false;
     }
@@ -302,7 +311,10 @@ void Board::improve(int vertex_index) {
 }
 
 bool Board::canFirst8(int vertex_index) {
-    if (vertices[vertex_index].owner_index != -1) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot build here." << endl;
+        return false;
+    } else if (vertices[vertex_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
@@ -783,4 +795,6 @@ void Board::randomBoard() {
             tiles[j].chance = c;
         }
     }
+    tiles[4].geese = false;
+    tiles[five_p].geese = true;
 }
