@@ -125,8 +125,9 @@ int main(int argc, char** argv) {
         b.loadFile(file_name);
         b.printBoard();
         cout << endl;
-        b.status();
+        //b.status();
 		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
+        b.builders[b.curTurn].getInfo();
     }
     else if (board) {
         b.loadBoard(file_name);

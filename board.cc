@@ -337,7 +337,7 @@ void Board::moveGeese() {
             Here[i] = false;
         }
     }
-    
+
     if (Here[0] || Here[1] || Here[2] || Here[3]) {
         string victimes = "";
         vector<string> vect_victims;
