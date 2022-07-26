@@ -507,7 +507,7 @@ void Board::stealResource(int steal_from) { //dani done
     builders[curTurn].resourcesType[resource] += 1;
     builders[steal_from].resourcesType[resource] -= 1;
 
-    cout << "Builder " << colours[curTurn] << "steals "<< types[resource] << 
+    cout << "Builder " << colours[curTurn] << " steals " << types[resource] << 
     " from builder " << colours[steal_from] << "." << endl;
 
 }
