@@ -275,8 +275,7 @@ int main(int argc, char** argv) {
                 cout << "Would you like to play again?" << endl;
                 if (!(cin >> input)) {
                     if (cin.eof()) {
-                        b.save("backup.sv");
-                        return 0;
+                        input = "no";
                     }
                 }
                 toLowerCase(input);
@@ -325,8 +324,7 @@ int main(int argc, char** argv) {
                 cout << "Would you like to play again?" << endl;
                 cin >> input;
                 if (cin.eof()) {
-                    b.save("backup.sv");
-                    return 0;
+                    input = "no";
                 }
                 toLowerCase(input);
                 if (input == "yes") {
