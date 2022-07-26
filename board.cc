@@ -86,6 +86,7 @@ bool Board::canBuildRoad(int road_index) {
 
 
 void Board::buildRoad(int road_index) {
+    cout << "Builder " << colours[curTurn] << " has built a road at " << road_index << endl;
     roads[road_index].colonize(curTurn);
     builders[curTurn].roadBuild();
 }
@@ -141,8 +142,6 @@ void Board::loadedDice() {
         if (!(cin >> n)) {
             cout << "Invalid roll." << endl;
             cout << "Input a roll between 2 and 12:" << endl;// H
-            cin.ignore();
-            cin.clear();
         } else if (n < 2 || n > 12) {
             cout << "Invalid roll." << endl;
             cout << "Input a roll between 2 and 12:" << endl;// H
@@ -306,11 +305,11 @@ bool Board::canImprove(int vertex_index) {
 
 void Board::improve(int vertex_index) {
     if (vertices[vertex_index].residenceLevel == 1) {
-        cout << "Builder " << curTurn << " has built a house at " << vertex_index << endl;
+        cout << "Builder " << colours[curTurn] << " has built a house at " << vertex_index << endl;
         builders[curTurn].houseBuild();
     }
     else if (vertices[vertex_index].residenceLevel == 2) {
-        cout << "Builder " << curTurn << " has built a tower at " << vertex_index << endl;
+        cout << "Builder " << colours[curTurn] << " has built a tower at " << vertex_index << endl;
         builders[curTurn].towerBuild();
     }
     vertices[vertex_index].upgrade();
@@ -503,7 +502,7 @@ void Board::first8() {
         bool checking = false;
         cout << "Builder" << " ";
         cout << colours[arr[i]] << ", ";
-        cout << "where do you want to build a basement?" << endl;
+        cout << "Where do you want to build a basement?" << endl;
         int num;
         while (! checking) {
 		    cin >> num;

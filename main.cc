@@ -42,10 +42,20 @@ void during_turn(Board &b){
             string colour;
             string give;
             string take;
-            cin >> colour;
-            cin >> give;
-            cin >> take;
+            if ((colour == "Blue" || colour == "Red" || colour == "Yellow" || colour == "Orange")
+            && (give == "BRICK" || give == "ENERGY" || give == "GLASS" || give == "HEAT" || give == "WIFI") && 
+            (take == "BRICK" || take == "ENERGY" || take == "GLASS" || take == "HEAT" || take == "WIFI")) {
+                if (colour == b.colours[b.curTurn]){
+                    cout << "You cannot trade with yourself." << endl;
+                }
+                cin >> colour;
+                cin >> give;
+                cin >> take;
             b.trade(colour, give, take);
+            }
+            else {
+                cout << "Invalid command." << endl;
+            }
             //DONE
         } 
         else if (cmd == "next") { // passes control onto the next builder in the game. This ends the ”During the Turn” phase.
