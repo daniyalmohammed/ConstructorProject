@@ -873,7 +873,7 @@ void Board::randomBoard() {
 
 void Board::resetLoad() {
     for (int i = 0; i < 4; i++) {
-        dice_modes[i] = 0;
+        dice_modes[i] = 1;
     }
     curTurn = 0;
     //win = false;
