@@ -53,7 +53,7 @@ void during_turn(Board &b){
             break;
             //DONE
         } 
-        else if (cmd == "save") { // saves the current game state to <file>
+        else if (cmd == "save <file>") { // saves the current game state to <file>
             string file;
             cin >> file;
             b.save(file);
@@ -86,12 +86,22 @@ void beginning_turn(Board &b){
         else if (cmd == "status") { // prints the current status of all builders in order from builder 0 to 3
             b.status(); //DONE
         }
+        else if (cmd == "residence") { // prints the current status of all builders in order from builder 0 to 3
+            b.getRez(); //DONE
+        }
+        else if (cmd == "save") { // prints the current status of all builders in order from builder 0 to 3
+            string file;
+            cin >> file;
+            b.save(file);
+        }
         else if (cmd == "help") { // prints out the list of commands
             cout << "Valid commands:" << endl;
             cout << "load" << endl;
             cout << "fair" << endl;
             cout << "roll" << endl;
             cout << "status" << endl;
+            cout << "residence" << endl;
+            cout << "save" << endl;
             cout << "help" << endl;
         } 
         else {
