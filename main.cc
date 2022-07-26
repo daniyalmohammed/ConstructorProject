@@ -83,6 +83,17 @@ void beginning_turn(Board &b){
             b.rollDice();
             break;
         }
+        else if (cmd == "status") { // prints the current status of all builders in order from builder 0 to 3
+            b.status(); //DONE
+        }
+        else if (cmd == "help") { // prints out the list of commands
+            cout << "Valid commands:" << endl;
+            cout << "load" << endl;
+            cout << "fair" << endl;
+            cout << "roll" << endl;
+            cout << "status" << endl;
+            cout << "help" << endl;
+        } 
         else {
             cout << "Invalid command." << endl;
         }
