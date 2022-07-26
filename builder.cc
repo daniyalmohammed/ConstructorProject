@@ -87,7 +87,7 @@ void Builder::houseBuild(){
 void Builder::getInfo(){
     cout << colour << " has " << buildingPoints << " building points, " << resourcesType[0]
     << " brick, " << resourcesType[1] << " energy, " << resourcesType[2] << " glass, "
-    << resourcesType[3] << " heat, and " << resourcesType[4] << " Wifi." << endl;
+    << resourcesType[3] << " heat, and " << resourcesType[4] << " WiFi." << endl;
 }
     
 void Builder::loseResources(){
