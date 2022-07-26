@@ -1,7 +1,7 @@
 #include "board.h"
 using namespace std;
 
-void during_turn(Board b){
+void during_turn(Board &b){
     string cmd;
     cout << "> ";
     while (cin >> cmd) {
@@ -69,7 +69,7 @@ void during_turn(Board b){
     } 
 }
 
-void beginning_turn(Board b){
+void beginning_turn(Board &b){
     string cmd;
     cout << "> ";
     while (cin >> cmd) {
@@ -124,6 +124,7 @@ int main(int argc, char** argv) {
     if (load) {
         b.loadFile(file_name);
         b.printBoard();
+        cout << endl;
         b.status();
 		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
     }

@@ -142,10 +142,11 @@ void Board::loadedDice() {
     while (true) {
         if (!(cin >> n)) {
             cout << "Invalid roll." << endl;
+            cout << "Input a roll between 2 and 12:" << endl;// H
         } else if (n < 2 || n > 12) {
             cout << "Invalid roll." << endl;
+            cout << "Input a roll between 2 and 12:" << endl;// H
         } else {
-            //cin >> n;
             cout << colours[curTurn] << " has rolled a " << n << "." <<endl;
             break;
         }
@@ -329,8 +330,9 @@ bool Board::canFirst8(int vertex_index) {
 
 void Board::moveGeese() {
     int index;
-    cin >> index;
+    //check if valid input
     cout << "Choose where to place the GEESE." << endl;
+    cin >> index;
     tiles[goose_location].geese = false;
     tiles[index].geese = true;
     goose_location = index;
@@ -387,9 +389,9 @@ void Board::next() {
     if (curTurn == 4) {
         curTurn = 0;
     }
+    printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
     builders[curTurn].getInfo();
-    printBoard();
 }
 
 void Board::testTile() {
@@ -447,10 +449,12 @@ void Board::distribution(int n) {
     if (give == true) {
         for (int player = 0; player < 4; player++) {
             int resources[5] = {0, 0, 0, 0, 0};
+
             for (int resource = 0; resource < 5; resource++) {
                 builders[player].resourcesType[resource] += getting[player][resource];
                 resources[resource] += getting[player][resource];
             }
+
             bool did_gain = false;
             for (int resource = 0; resource < 5; resource++) {
                 if (resources[resource] > 0) {
@@ -607,7 +611,7 @@ void Board::save(string file_name) {
 
 
 void Board::getRez() {
-    cout << colours[curTurn] << "has built:" << endl;
+    cout << colours[curTurn] << " has built:" << endl;
     for(auto v : vertices) {
         if (v.owner_index == curTurn) {
             cout << (v.pos) << " ";
