@@ -497,7 +497,7 @@ void Board::save(string file_name) {
     for(auto v : vertices) {
         if (v.owner_index != -1) {
             owners_pos[v.owner_index].emplace_back(v.pos);
-            owners_pos[v.owner_index].emplace_back(v.residenceLevel);
+            owners_lv[v.owner_index].emplace_back(v.residenceLevel);
         } 
     }
     vector<vector<int>> road_pos = {{},{},{},{}};
