@@ -25,7 +25,10 @@ void Board::init() {
 }
 
 bool Board::canBuild(int vertex_index) {
-    if (vertices[vertex_index].owner_index != -1) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot build here." << endl;
+        return false;
+    } else if (vertices[vertex_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
@@ -275,7 +278,10 @@ void Board::trade(string color, string give, string take){ // Dani -- done
 
 
 bool Board::canImprove(int vertex_index) {
-    if (vertices[vertex_index].residenceLevel == 3) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot improve here." << endl;
+        return false;
+    } else if (vertices[vertex_index].residenceLevel == 3) {
         cout << "You cannot improve here." << endl;
         return false;
     }
@@ -308,7 +314,10 @@ void Board::improve(int vertex_index) {
 }
 
 bool Board::canFirst8(int vertex_index) {
-    if (vertices[vertex_index].owner_index != -1) {
+    if (vertex_index < 0 || vertex_index > 53) {
+        cout << "You cannot build here." << endl;
+        return false;
+    } else if (vertices[vertex_index].owner_index != -1) {
         cout << "You cannot build here." << endl;
         return false;
     }
