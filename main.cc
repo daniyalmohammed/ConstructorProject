@@ -83,16 +83,14 @@ void beginning_turn(Board &b){
             b.rollDice();
             break;
         }
+        else if (cmd == "board") { // prints the current board
+            b.printBoard(); //DONE
+        } 
         else if (cmd == "status") { // prints the current status of all builders in order from builder 0 to 3
             b.status(); //DONE
         }
         else if (cmd == "residences") { // prints the current status of all builders in order from builder 0 to 3
             b.getRez(); //DONE
-        }
-        else if (cmd == "save") { // prints the current status of all builders in order from builder 0 to 3
-            string file;
-            cin >> file;
-            b.save(file);
         }
         else if (cmd == "help") { // prints out the list of commands
             cout << "Valid commands:" << endl;
@@ -100,8 +98,8 @@ void beginning_turn(Board &b){
             cout << "fair" << endl;
             cout << "roll" << endl;
             cout << "status" << endl;
+            cout << "board" << endl;
             cout << "residences" << endl;
-            cout << "save" << endl;
             cout << "help" << endl;
         } 
         else {
@@ -146,9 +144,9 @@ int main(int argc, char** argv) {
         b.loadFile(file_name);
         b.printBoard();
         cout << endl;
-        //b.status();
 		cout << "Builder " << b.colours[b.curTurn] << "'s turn." << endl;
         b.builders[b.curTurn].getInfo();
+        during_turn(b);
     }
     else if (board) {
         b.loadBoard(file_name);
