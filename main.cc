@@ -9,9 +9,9 @@ void print_score_board(vector<int> v) {
     cout << "-------------------" << endl;
     cout << "| RED    : " + to_string(v[1]) + "      |" << endl;
     cout << "-------------------" << endl;
-    cout << "| YELLOW : " + to_string(v[2]) + "      |" << endl;
+    cout << "| ORANGE : " + to_string(v[2]) + "      |" << endl;
     cout << "-------------------" << endl;
-    cout << "| ORANGE : " + to_string(v[3]) + "      |" << endl;
+    cout << "| YELLOW : " + to_string(v[3]) + "      |" << endl;
     cout << "-------------------" << endl;
 }
 
