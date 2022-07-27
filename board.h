@@ -29,6 +29,7 @@ class Board {
 	const string colours[4] = {"Blue","Red","Orange","Yellow"};
 	const string types[6] = {"BRICK","ENERGY","GLASS","HEAT","WIFI","PARK"};
 	int dice_modes[4];
+	int winner;
 	void init(); 
 	void loadFile(string file_name); 
 	void save(string file_name); 
