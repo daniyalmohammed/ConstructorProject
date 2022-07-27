@@ -3,6 +3,7 @@ using namespace std;
 
 void Board::init() {
     loadout = "0 3 1 10 3 5 1 4 5 7 3 10 2 11 0 3 3 8 0 2 0 6 1 8 4 12 1 5 4 11 2 4 4 6 2 9 2 9";
+    winner = 0;
     for (int i = 0; i < 4; i++) {
         dice_modes[i] = 1;
     }
@@ -484,6 +485,9 @@ void Board::next() {
     printBoard();
     cout << "Builder " << colours[curTurn] << "'s turn." << endl;
     builders[curTurn].getInfo();
+    } else if (builders[oldTurn].buildingPoints >= 15) {
+        cout << "Player " << colours[oldTurn] << " DOMINATED the game with "
+        << builders[oldTurn].buildingPoints << " points!!!!" << endl;
     } else {
         cout << "Player " << colours[oldTurn] << " wins the game with "
         << builders[oldTurn].buildingPoints << " points." << endl;
@@ -824,6 +828,7 @@ void Board::loadFile(string file_name) {
 bool Board::checkWin(){
     for (int i = 0; i < 4; i++){
         if (builders[i].buildingPoints >= 10){
+            winner = i;
             return true;
         }
     }

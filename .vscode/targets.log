@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Tue Jul 26 18:30:25 2022
+# Make data base, printed on Tue Jul 26 19:34:36 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ make: *** No rule to make target `all'.  Stop.
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-4
+CURDIR := /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-5
 # makefile
 SHELL = /bin/sh
 # environment
@@ -55,7 +55,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.MPYIsyjYoo/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-PWD = /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-4
+PWD = /Users/giovanighanem/Desktop/cs246 project/ConstructorProject-5
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -150,7 +150,6 @@ OBJECTS = main.o tile.o builder.o board.o edges.o vertices.o
 LANG = C
 # environment
 VSCODE_PID = 97069
- 
 # variable set hash-table stats:
 # Load=68/1024=7%, Rehash=0, Collisions=3/99=3%
 
@@ -160,9 +159,9 @@ VSCODE_PID = 97069
 
 # Directories
 
-# . (device 16777221, inode 35034425): 35 files, no impossibilities.
+# . (device 16777221, inode 35040319): 33 files, no impossibilities.
 
-# 35 files, no impossibilities in 1 directories.
+# 33 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -218,8 +217,7 @@ edges.o: Makefile
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
- 
-#  Last modified 2022-07-26 18:30:13
+#  Last modified 2022-07-26 19:34:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -326,6 +324,6 @@ edges.d:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4036 / max = 4036 / min = 4036 / avg = 4036
 
-# Finished Make data base on Tue Jul 26 18:30:25 2022
+# Finished Make data base on Tue Jul 26 19:34:36 2022
 
  

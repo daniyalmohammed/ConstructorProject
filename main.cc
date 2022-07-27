@@ -1,6 +1,20 @@
 #include "board.h"
 using namespace std;
 
+void print_score_board(vector<int> v) {
+    cout << "-------------------" << endl;
+    cout << "| THE SCORE BOARD |" << endl;
+    cout << "-------------------" << endl;
+    cout << "| BLUE   : " + to_string(v[0]) + "      |" << endl;
+    cout << "-------------------" << endl;
+    cout << "| RED    : " + to_string(v[1]) + "      |" << endl;
+    cout << "-------------------" << endl;
+    cout << "| YELLOW : " + to_string(v[2]) + "      |" << endl;
+    cout << "-------------------" << endl;
+    cout << "| ORANGE : " + to_string(v[3]) + "      |" << endl;
+    cout << "-------------------" << endl;
+}
+
 void toLowerCase(string &str) {
         auto r = str;
         for (auto i = 0; i < str.length(); ++ i) {
@@ -35,7 +49,6 @@ bool during_turn(Board &b){
         } 
         else if (cmd == "build-road") { // attempts to build the road at <road#>
             int road;
-            cin >> road;
             while (true) {
                 if (!(cin >> road)) {
                     if (cin.eof()) {
@@ -215,6 +228,7 @@ bool beginning_turn(Board &b){
 
 
 int main(int argc, char** argv) {
+    vector<int> score_board = {0,0,0,0};
     bool quit_game = false;
     bool restarted_game = false;
     while(!(quit_game))  {
@@ -272,6 +286,8 @@ int main(int argc, char** argv) {
                     }
                     toLowerCase(input);
                     if (input == "yes") {
+                        score_board[b.winner] += 1;
+                        print_score_board(score_board);
                         restarted_game = true;
                         quit_game = false;
                         break;
@@ -319,6 +335,8 @@ int main(int argc, char** argv) {
                     }
                     toLowerCase(input);
                     if (input == "yes") {
+                        score_board[b.winner] += 1;
+                        print_score_board(score_board);
                         restarted_game = true;
                         quit_game = false;
                         break;
